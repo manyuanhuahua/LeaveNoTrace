@@ -10,6 +10,15 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_img = db.Column(db.String(255),nullable=False)
+    # bio = db.Column(db.String(255))
+    # city = db.Column(db.String(100),nullable=False)
+    # state = db.Column(db.String(100),nullable=False)
+    # country = db.Column(db.String(100),nullable=False)
+
+    reviews = db.relationship("Review", back_populates="user",cascade="all, delete")
+    activities = db.relationship("Activity", back_populates="user",cascade="all, delete")
+
 
     @property
     def password(self):
@@ -26,5 +35,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'profileImg':self.profile_image
         }
