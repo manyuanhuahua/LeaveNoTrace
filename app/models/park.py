@@ -9,7 +9,7 @@ class Park(db.Model):
     name = db.Column(db.String(255),nullable=False,unique=True)
     description = db.Column(db.String(500),nullable=False)
     preview_img = db.Column(db.String(255),nullable=False)
-    acreage = db.Column(db.Numeric(10,2))
+    acreage = db.Column(db.Integer)
     contact = db.Column(db.String(50))
     state = db.Column(db.String(50))
     country = db.Column(db.String(50))
@@ -36,8 +36,5 @@ class Park(db.Model):
             "log": self.log,
             "park_originlinks": self.park_originlinks,
             "park_hours": self.park_hours,
-            # "tags": {
-            #     "name":self.trail_tags.
-            # }
             # "totalReviews": len(self.trails.reviews),
         }

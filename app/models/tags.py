@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 
 trail_tags = db.Table(
-  "post_likes",
+  "trail_tags",
   db.Column("trail_id", db.Integer, db.ForeignKey("trail.id", ondelete="CASCADE"), primary_key=True),
   db.Column("tag_id", db.Integer, db.ForeignKey("tag.id", ondelete="CASCADE"), primary_key=True)
 )
@@ -17,7 +17,7 @@ class Tag(db.Model):
     tags_trail = db.relationship(
         "Trail",
         secondary=trail_tags,
-        back_populates="like_posts",
+        back_populates="trail_tags",
         passive_deletes=True
      )
 

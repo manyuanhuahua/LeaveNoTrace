@@ -1,6 +1,7 @@
 from .db import db
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
+from .tags import trail_tags
 
 class Trail(db.Model):
     __tablename__="trails"
@@ -10,7 +11,7 @@ class Trail(db.Model):
     name = db.Column(db.String(255),nullable=False,unique=True)
     description = db.Column(db.String(500),nullable=False)
     preview_img = db.Column(db.String(255),nullable=False)
-    length = db.Column(db.Numeric(10,2))
+    length = db.Column(db.Numeric(6,2))
     elevation = db.Column(db.Integer,nullable=False)
     difficulty = db.Column(db.String(100),nullable=False)
     lat=db.Column(db.Float(10,2),nullable=False)
@@ -42,9 +43,9 @@ class Trail(db.Model):
         "difficulty": self.difficulty,
         "lat": self.lat,
         "log": self.log,
-        # "tags": {
-        #     "name":self.trail_tags.
-        # }
+        "tags": {
+            "name":list(self.trail_tags.name)
+        }
         "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
         }
