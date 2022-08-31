@@ -55,3 +55,5 @@ class Trail(db.Model):
         "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
         }
+
+    

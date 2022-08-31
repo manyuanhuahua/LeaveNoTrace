@@ -38,3 +38,13 @@ class Park(db.Model):
             "park_hours": self.park_hours,
             # "totalReviews": len(self.trails.reviews),
         }
+        
+    def preview_dict(self):
+                return {
+                    "id": self.id,
+                    "name": self.name,
+                    "preview_img": self.preview_img,
+                    "acreage": self.acreage,
+                    "state": self.state,
+                    "country": self.country,
+                }
