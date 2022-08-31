@@ -1,5 +1,7 @@
 from app.models import db, Tag, Trail
 
+
+
 def seed_trails():
     trail1 = Trail(
         park_id = 1,
@@ -63,7 +65,7 @@ def seed_trails():
         difficulty = "Moderate",
         lat = 39.17547632998192,
         log = -119.93118839417714,
-        trail_tags = [User.query.get(7), User.query.get(8), User.query.get(10)]
+        trail_tags = [Tag.query.get(7), Tag.query.get(8), Tag.query.get(5)]
     )
 
 
@@ -82,6 +84,6 @@ def seed_trails():
     db.session.commit()
 
 
-def undo_comments():
+def undo_trails():
     db.session.execute('TRUNCATE trails RESTART IDENTITY CASCADE;')
     db.session.commit()

@@ -1,12 +1,8 @@
 from .db import db
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
+from .trail import trail_tags
 
-trail_tags = db.Table(
-  "trail_tags",
-  db.Column("trail_id", db.Integer, db.ForeignKey("trail.id", ondelete="CASCADE"), primary_key=True),
-  db.Column("tag_id", db.Integer, db.ForeignKey("tag.id", ondelete="CASCADE"), primary_key=True)
-)
 
 class Tag(db.Model):
     __tablename__="tags"

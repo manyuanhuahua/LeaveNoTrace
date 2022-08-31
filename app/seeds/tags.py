@@ -1,44 +1,44 @@
-from app.models import db
+from app.models import db,Tag
 
 
 def seed_tags():
-    tag1 = Comment(
+    tag1 = Tag(
         name='forest'
     )
 
-    tag2 = Comment(
+    tag2 = Tag(
         name='waterfall'
     )
 
-    tag3 = Comment(
+    tag3 = Tag(
         name='dog friendly'
     )
 
-    tag4 = Comment(
+    tag4 = Tag(
         name='no dogs'
     )
 
-    tag5 = Comment(
+    tag5 = Tag(
         name='views'
     )
 
-    tag6 = Comment(
+    tag6 = Tag(
         name='wildflowers'
     )
 
-    tag7 = Comment(
+    tag7 = Tag(
         name='beach'
     )
 
-    tag8 = Comment(
+    tag8 = Tag(
         name='hot springs'
     )
 
-    tag9 = Comment(
+    tag9 = Tag(
         name='historic site'
     )
 
-    tag10 = Comment(
+    tag10 = Tag(
         name='fee'
     )
 
@@ -62,6 +62,6 @@ def seed_tags():
     db.session.commit()
 
 
-def undo_comments():
+def undo_tags():
     db.session.execute('TRUNCATE tags RESTART IDENTITY CASCADE;')
     db.session.commit()

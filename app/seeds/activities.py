@@ -33,11 +33,9 @@ def seed_activities():
     db.session.add(activity3)
 
 
-
-
     db.session.commit()
 
 
-def undo_comments():
-    db.session.execute('TRUNCATE activitys RESTART IDENTITY CASCADE;')
+def undo_activities():
+    db.session.execute('TRUNCATE activities RESTART IDENTITY CASCADE;')
     db.session.commit()

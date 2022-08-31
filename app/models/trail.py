@@ -1,7 +1,13 @@
 from .db import db
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
-from .tags import trail_tags
+
+
+trail_tags = db.Table(
+  "trail_tags",
+  db.Column("trail_id", db.Integer, db.ForeignKey("trails.id", ondelete="CASCADE"), primary_key=True),
+  db.Column("tag_id", db.Integer, db.ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True)
+)
 
 class Trail(db.Model):
     __tablename__="trails"
@@ -24,7 +30,7 @@ class Trail(db.Model):
     reviews = db.relationship("Review", back_populates="trail", cascade="all, delete")
 
 
-     trail_tags = db.relationship(
+    trail_tags = db.relationship(
         "Tag",
         secondary=trail_tags,
         back_populates="tags_trail",
@@ -45,7 +51,7 @@ class Trail(db.Model):
         "log": self.log,
         "tags": {
             "name":list(self.trail_tags.name)
-        }
+        },
         "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
         }

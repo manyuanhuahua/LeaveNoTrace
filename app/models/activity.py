@@ -17,15 +17,15 @@ class Activity(db.Model):
     trail = relationship("Trail", back_populates="activities")
     routes = db.relationship("Route", back_populates="activity", cascade="all, delete")
 
-     def to_dict(self):
-    return {
-        "id": self.id,
-        "trailId": self.trail_id,
-        "user": {
-            'username':self.user.username,
-            'profileImg':self.user.profile_img,
-            },
-        "name": self.name,
-        "length": self.length,
-        "createdAt": self.created_at
-    }
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "trailId": self.trail_id,
+            "user": {
+                'username':self.user.username,
+                'profileImg':self.user.profile_img,
+                },
+            "name": self.name,
+            "length": self.length,
+            "createdAt": self.created_at
+        }
