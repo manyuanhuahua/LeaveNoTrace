@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2a282818cc81
+Revision ID: b8caa691dcbc
 Revises: 
-Create Date: 2022-08-31 18:29:06.488033
+Create Date: 2022-08-31 20:39:56.203591
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2a282818cc81'
+revision = 'b8caa691dcbc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -56,7 +56,7 @@ def upgrade():
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=False),
     sa.Column('preview_img', sa.String(length=255), nullable=False),
-    sa.Column('length', sa.Numeric(precision=6, scale=2), nullable=True),
+    sa.Column('length', sa.Float(precision=2), nullable=True),
     sa.Column('elevation', sa.Integer(), nullable=False),
     sa.Column('difficulty', sa.String(length=100), nullable=False),
     sa.Column('lat', sa.Float(precision=8), nullable=False),
@@ -71,7 +71,7 @@ def upgrade():
     sa.Column('trail_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
-    sa.Column('length', sa.Numeric(precision=10, scale=2), nullable=True),
+    sa.Column('length', sa.Float(precision=2), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['trail_id'], ['trails.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),

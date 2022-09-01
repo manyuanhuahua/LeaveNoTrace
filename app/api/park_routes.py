@@ -21,16 +21,15 @@ def get_all_park():
 @login_required
 def get_park_detail(id):
     park= Park.query.get(id)
-    # if not park:
-    #     return {'errors':['Park can not be found']},404
+    if not park:
+        return {'errors':['Park can not be found']},404
 
-    # trails = Trail.query.filter(Trail.park_id == id).all()
-    # totalReviews = 0
+    trails = Trail.query.filter(Trail.park_id == id).all()
+    totalReviews = 0
 
-    # for trail in trails:
-    #     console.log()
-    #     totalReviews += len(trail.reviews)
+    for trail in trails:
+        totalReviews += len(trail.reviews)
 
     park_dict = park.to_dict()
-    # park_dict[totalReviews] = totalReviews
+    park_dict['totalReviews'] = totalReviews
     return park_dict

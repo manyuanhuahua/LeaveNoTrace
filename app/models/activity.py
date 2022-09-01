@@ -9,7 +9,7 @@ class Activity(db.Model):
     trail_id = db.Column(db.Integer,db.ForeignKey("trails.id", ondelete="CASCADE"),nullable=False)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id", ondelete="CASCADE"),nullable=False)
     name = db.Column(db.String(255),nullable=False,unique=True)
-    length = db.Column(db.Numeric(10,2))
+    length = db.Column(db.Float(precision=2, asdecimal=False))
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 
