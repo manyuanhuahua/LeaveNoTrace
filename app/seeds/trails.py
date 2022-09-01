@@ -11,8 +11,8 @@ def seed_trails():
         length = 6.00,
         elevation = 2162,
         difficulty = "Hard",
-        lat = 37.72620918325973,
-        log = -119.55160191563179,
+        lat = "37.72620918325973",
+        log = "-119.55160191563179",
         trail_tags = [Tag.query.get(1), Tag.query.get(3), Tag.query.get(6)]
     )
 
@@ -24,8 +24,8 @@ def seed_trails():
         length = 7.60,
         elevation = 3218,
         difficulty = "Hard",
-        lat = 37.759742120669905,
-        log = -119.59877519119395,
+        lat = "37.759742120669905",
+        log = "-119.59877519119395",
         trail_tags = [Tag.query.get(2), Tag.query.get(4),Tag.query.get(5),Tag.query.get(6), Tag.query.get(9)]
     )
 
@@ -37,8 +37,8 @@ def seed_trails():
         length = 1.20,
         elevation = 59,
         difficulty = "Easy",
-        lat = 37.748486122184836,
-        log = -119.59637337330318,
+        lat = "37.748486122184836",
+        log = "-119.59637337330318",
         trail_tags = [Tag.query.get(3), Tag.query.get(4),Tag.query.get(5), Tag.query.get(7)]
     )
 
@@ -50,8 +50,8 @@ def seed_trails():
         length = 6.20,
         elevation = 1788,
         difficulty = "Hard",
-        lat = 46.78670287662199,
-        log = -121.73619047301776,
+        lat = "46.78670287662199",
+        log = "-121.73619047301776",
         trail_tags = [Tag.query.get(2), Tag.query.get(8)]
     )
 
@@ -63,8 +63,8 @@ def seed_trails():
         length = 5.80,
         elevation = 1627,
         difficulty = "Moderate",
-        lat = 39.17547632998192,
-        log = -119.93118839417714,
+        lat = "39.17547632998192",
+        log = "-119.93118839417714",
         trail_tags = [Tag.query.get(7), Tag.query.get(8), Tag.query.get(5)]
     )
 

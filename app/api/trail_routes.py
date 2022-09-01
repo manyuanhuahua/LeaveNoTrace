@@ -85,7 +85,7 @@ def create_reviews(trailId):
     return {'errors':['rating is required']},400
 
 
-#create a review for a trail
+#update a review for a trail
 @trail_routes.route('/<int:trailId>/reviews/<int:reviewId>', methods=["PUT"])
 @login_required
 def update_reviews(trailId,reviewId):
@@ -145,4 +145,3 @@ def delete_reviews(trailId,reviewId):
     db.session.delete(review)
     db.session.commit()
     return {"message":"Successfully deleted!"}
-    
