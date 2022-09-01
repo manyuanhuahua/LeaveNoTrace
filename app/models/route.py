@@ -7,8 +7,8 @@ class Route(db.Model):
 
     id=db.Column(db.Integer,primary_key=True)
     activity_id = db.Column(db.Integer,db.ForeignKey("activities.id", ondelete="CASCADE"),nullable=False)
-    lat=db.Column(db.Float(10,2),nullable=False)
-    log=db.Column(db.Float(10,2),nullable=False)
+    lat=db.Column(db.Float(precision=8, asdecimal=False),nullable=False)
+    log=db.Column(db.Float(precision=8, asdecimal=False),nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 

@@ -13,8 +13,8 @@ class Park(db.Model):
     contact = db.Column(db.String(50))
     state = db.Column(db.String(50))
     country = db.Column(db.String(50))
-    lat=db.Column(db.Float(10,2),nullable=False)
-    log=db.Column(db.Float(10,2),nullable=False)
+    lat=db.Column(db.Float(precision=8, asdecimal=False),nullable=False)
+    log=db.Column(db.Float(precision=8, asdecimal=False),nullable=False)
     park_originlinks = db.Column(db.String(500))
     park_hours = db.Column(db.String(100))
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
@@ -38,7 +38,7 @@ class Park(db.Model):
             "park_hours": self.park_hours,
             # "totalReviews": len(self.trails.reviews),
         }
-        
+
     def preview_dict(self):
                 return {
                     "id": self.id,

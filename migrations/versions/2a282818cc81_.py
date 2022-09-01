@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: dbe448630911
+Revision ID: 2a282818cc81
 Revises: 
-Create Date: 2022-08-31 14:26:04.899312
+Create Date: 2022-08-31 18:29:06.488033
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'dbe448630911'
+revision = '2a282818cc81'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,8 +27,8 @@ def upgrade():
     sa.Column('contact', sa.String(length=50), nullable=True),
     sa.Column('state', sa.String(length=50), nullable=True),
     sa.Column('country', sa.String(length=50), nullable=True),
-    sa.Column('lat', sa.Float(precision=10, asdecimal=2), nullable=False),
-    sa.Column('log', sa.Float(precision=10, asdecimal=2), nullable=False),
+    sa.Column('lat', sa.Float(precision=8), nullable=False),
+    sa.Column('log', sa.Float(precision=8), nullable=False),
     sa.Column('park_originlinks', sa.String(length=500), nullable=True),
     sa.Column('park_hours', sa.String(length=100), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
@@ -59,8 +59,8 @@ def upgrade():
     sa.Column('length', sa.Numeric(precision=6, scale=2), nullable=True),
     sa.Column('elevation', sa.Integer(), nullable=False),
     sa.Column('difficulty', sa.String(length=100), nullable=False),
-    sa.Column('lat', sa.Float(precision=10, asdecimal=2), nullable=False),
-    sa.Column('log', sa.Float(precision=10, asdecimal=2), nullable=False),
+    sa.Column('lat', sa.Float(precision=8), nullable=False),
+    sa.Column('log', sa.Float(precision=8), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['park_id'], ['parks.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id'),
@@ -99,8 +99,8 @@ def upgrade():
     op.create_table('routes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('activity_id', sa.Integer(), nullable=False),
-    sa.Column('lat', sa.Float(precision=10, asdecimal=2), nullable=False),
-    sa.Column('log', sa.Float(precision=10, asdecimal=2), nullable=False),
+    sa.Column('lat', sa.Float(precision=8), nullable=False),
+    sa.Column('log', sa.Float(precision=8), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['activity_id'], ['activities.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')

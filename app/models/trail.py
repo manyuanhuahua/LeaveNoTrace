@@ -20,8 +20,8 @@ class Trail(db.Model):
     length = db.Column(db.Numeric(6,2))
     elevation = db.Column(db.Integer,nullable=False)
     difficulty = db.Column(db.String(100),nullable=False)
-    lat=db.Column(db.Float(10,2),nullable=False)
-    log=db.Column(db.Float(10,2),nullable=False)
+    lat=db.Column(db.Float(precision=8, asdecimal=False),nullable=False)
+    log=db.Column(db.Float(precision=8, asdecimal=False),nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 
@@ -55,5 +55,3 @@ class Trail(db.Model):
         "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
         }
-
-    
