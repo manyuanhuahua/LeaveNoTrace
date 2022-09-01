@@ -37,7 +37,14 @@ class Trail(db.Model):
         cascade="all, delete"
     )
 
+    def avg_rating(self):
+        totalRating = 0
 
+        for review in self.reviews:
+            totalRating += review.rating
+
+        avg_rating = totalRating / len(self.reviews)
+        return round(avg_rating,1)
 
     def to_dict(self):
         return {
@@ -51,6 +58,7 @@ class Trail(db.Model):
         "difficulty": self.difficulty,
         "lat": self.lat,
         "log": self.log,
+        "avgRating":self.avg_rating(),
         # "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
 
@@ -67,5 +75,6 @@ class Trail(db.Model):
             "park":{
                 "name":self.park.name
             },
-            "totalReviews": len(self.reviews)
+            "totalReviews": len(self.reviews),
+            "avgRating":self.avg_rating()
             }

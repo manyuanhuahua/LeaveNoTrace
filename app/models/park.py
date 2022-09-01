@@ -22,6 +22,25 @@ class Park(db.Model):
 
     trails=relationship("Trail",back_populates="park",cascade="all,delete")
 
+
+    def avg_rating(self):
+        totalRating = 0
+
+        for trail in self.trails:
+            for review in trail.reviews:
+                totalRating += review.rating
+
+        avg_rating = totalRating / self.total_review()
+        return round(avg_rating,1)
+
+    def total_review(self):
+        totalReview = 0
+
+        for trail in self.trails:
+            totalReview += len(trail.reviews)
+
+        return totalReview
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -36,7 +55,8 @@ class Park(db.Model):
             "log": self.log,
             "park_originlinks": self.park_originlinks,
             "park_hours": self.park_hours,
-            # "totalReviews": len(self.trails.reviews),
+            "totalReviews": self.total_review(),
+            "avgRating": self.avg_rating()
         }
 
     def preview_dict(self):
@@ -47,4 +67,6 @@ class Park(db.Model):
                     "acreage": self.acreage,
                     "state": self.state,
                     "country": self.country,
+                    "totalReviews": self.total_review(),
+                    "avgRating": self.avg_rating()
                 }
