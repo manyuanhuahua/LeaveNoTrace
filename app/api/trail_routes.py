@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, Response,request
 # from flask_api import status
 from flask_login import login_required, current_user
-from app.models import Park, Trail,Review,db
-from app.forms import CreateReviewForm
+from app.models import Park, Trail,Review,Activity,db
+from app.forms import CreateReviewForm,CreateActivityForm
 import json
 
 trail_routes = Blueprint('trails',__name__)
@@ -41,6 +41,8 @@ def get_trail_detail(trailId):
     trail_dict['tags'] = tags
     return trail_dict
 
+
+#reviews
 
 #get all reviews for a trail
 @trail_routes.route('/<int:trailId>/reviews')
@@ -103,27 +105,14 @@ def update_reviews(trailId,reviewId):
     form = CreateReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # print('review----',review)
+
     if form.validate_on_submit():
         review.content = form.data['content']
         review.rating=form.data['rating']
-        # print('review content----',review.user.username)
 
-    #         # id = review.id,
-    #         # trail_id = review.trail_id,
-    #         # created_at=review.created_at,
         db.session.commit()
         review_dic = review.to_dict()
 
-    #     # user_dic = {
-    #     #     "id" : current_user.id,
-    #     #     "profileImage": current_user.profile_img,
-    #     #     "username":current_user.username
-    #     # }
-    #     res=review.to_dict()
-    #     # review["user"] = user_dic
-        # print('review-----',review)
-        # review_dic = review.to_dict()
         return review_dic
     return {'errors':['rating is required']},400
 
@@ -143,5 +132,104 @@ def delete_reviews(trailId,reviewId):
         return {"errors": ['Unauthorized']}, 401
 
     db.session.delete(review)
+    db.session.commit()
+    return {"message":"Successfully deleted!"}
+
+
+#activity
+
+#get all activities for a trail
+@trail_routes.route('/<int:trailId>/activities')
+@login_required
+def get_all_activities(trailId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    activities = Activity.query.filter(Activity.trail_id == trailId).all()
+    res = {}
+    for activity in activities:
+        res[activity.id] = activity.to_dict()
+    return {'Activities':res}
+
+
+#create an activity
+@trail_routes.route('/<int:trailId>/activities/new', methods=["POST"])
+@login_required
+def create_activity(trailId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    form = CreateActivityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        activity = Activity(
+            name=form.data['name'],
+            ori_lat=form.data['ori_lat'],
+            ori_log=form.data['ori_log'],
+            des_lat=form.data['des_lat'],
+            des_log=form.data['des_log']
+        )
+        activity.trail_id=trailId
+        activity.user_id=current_user.id
+
+
+        db.session.add(activity)
+        db.session.commit()
+
+        res = activity.to_dict()
+        return res
+    return {'errors':['rating is required']},400
+
+
+#update an activity
+@trail_routes.route('/<int:trailId>/activities/<int:activityId>', methods=["PUT"])
+@login_required
+def update_activity(trailId,activityId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    activity = Activity.query.get(activityId)
+    if not activity:
+        return {'errors':['Activity can not be found']},404
+
+    if activity.user_id != current_user.id:
+        return {"errors": ['Unauthorized']}, 401
+
+    form = CreateActivityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        activity.name = form.data['name']
+        activity.ori_lat=form.data['ori_lat']
+        activity.ori_log=form.data['ori_log']
+        activity.des_lat=form.data['des_lat']
+        activity.des_log=form.data['des_log']
+
+        db.session.commit()
+
+        res = activity.to_dict()
+        return res
+    return {'errors':['rating is required']},400
+
+#delete an activity
+@trail_routes.route('/<int:trailId>/activities/<int:activityId>', methods=["DELETE"])
+@login_required
+def delete_activities(trailId,activityId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    activity = Activity.query.get(activityId)
+    if not activity:
+        return {'errors':['Activity can not be found']},404
+
+    if activity.user_id != current_user.id:
+        return {"errors": ['Unauthorized']}, 401
+
+    db.session.delete(activity)
     db.session.commit()
     return {"message":"Successfully deleted!"}
