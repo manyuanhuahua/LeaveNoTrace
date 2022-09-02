@@ -17,6 +17,9 @@ def get_all_trails():
     return res
 
 
+
+
+
 #get a trail detail
 @trail_routes.route('/<int:trailId>')
 @login_required

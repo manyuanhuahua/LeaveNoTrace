@@ -46,7 +46,18 @@ def get_park_trails(parkId):
     trails = Trail.query.filter(Trail.park_id == parkId).all()
     res = {}
     for trail in trails:
-        
+
         res[trail.id] = trail.preview_dict()
 
+    return res
+
+
+
+#get nearby trails
+@park_routes.route('/<int:parkId>/trails/<int:trailId>/nearby')
+def get_nearby_trails(trailId,parkId):
+    trails = Trail.query.filter((Trail.id != trailId)&(Trail.park_id == parkId))
+    res = {}
+    for trail in trails:
+        res[trail.id]=trail.preview_dict()
     return res

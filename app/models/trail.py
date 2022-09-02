@@ -50,6 +50,7 @@ class Trail(db.Model):
         return {
         "id": self.id,
         "parkId": self.park_id,
+        "parkName":self.park.name,
         "name": self.name,
         "description": self.description,
         "preview_img": self.preview_img,
@@ -59,7 +60,7 @@ class Trail(db.Model):
         "lat": self.lat,
         "log": self.log,
         "avgRating":self.avg_rating(),
-        # "totalActivities" : len(self.activities),
+        "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
 
         }
