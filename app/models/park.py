@@ -13,14 +13,33 @@ class Park(db.Model):
     contact = db.Column(db.String(50))
     state = db.Column(db.String(50))
     country = db.Column(db.String(50))
-    lat=db.Column(db.Float(10,2),nullable=False)
-    log=db.Column(db.Float(10,2),nullable=False)
+    lat=db.Column(db.String(100),nullable=False)
+    log=db.Column(db.String(100),nullable=False)
     park_originlinks = db.Column(db.String(500))
     park_hours = db.Column(db.String(100))
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 
     trails=relationship("Trail",back_populates="park",cascade="all,delete")
+
+
+    def avg_rating(self):
+        totalRating = 0
+
+        for trail in self.trails:
+            for review in trail.reviews:
+                totalRating += review.rating
+
+        avg_rating = totalRating / self.total_review()
+        return round(avg_rating,1)
+
+    def total_review(self):
+        totalReview = 0
+
+        for trail in self.trails:
+            totalReview += len(trail.reviews)
+
+        return totalReview
 
     def to_dict(self):
         return {
@@ -36,9 +55,10 @@ class Park(db.Model):
             "log": self.log,
             "park_originlinks": self.park_originlinks,
             "park_hours": self.park_hours,
-            # "totalReviews": len(self.trails.reviews),
+            "totalReviews": self.total_review(),
+            "avgRating": self.avg_rating()
         }
-        
+
     def preview_dict(self):
                 return {
                     "id": self.id,
@@ -47,4 +67,6 @@ class Park(db.Model):
                     "acreage": self.acreage,
                     "state": self.state,
                     "country": self.country,
+                    "totalReviews": self.total_review(),
+                    "avgRating": self.avg_rating()
                 }
