@@ -21,11 +21,16 @@ function TrailDetail() {
         dispatch(getTrailDetailThunk(trailId)).then(() => setTrailsIsLoaded(true));
     }, [dispatch,trailId]);
 
+    if(!trail){
+        return null
+    }
+
+    console.log("createmodal----------",createModal)
+  
 
 
 
-
-    return (trailIsLoaded &&
+    return (trailIsLoaded && trail && (
         <div className='main-container'>
             <div className='top-box'>
                 <div className='pre-img'>
@@ -59,7 +64,6 @@ function TrailDetail() {
                             </div>
                         </div>
                         <div className='tags'>
-
                             {trail.tags.map((tag,index)=>(
                                 <p key={index}>{tag}</p>
                             ))}
@@ -80,7 +84,7 @@ function TrailDetail() {
                             <p>{trail.totalReviews}Review(s)</p>
                         </div>
                         <button className='write-review' onClick={() => setCreateModal(true)}>
-                                {createModal && <CreateReviewModal trail={trail} setShowModal={setCreateModal} />}
+                                {createModal && (<CreateReviewModal trail={trail} setCreateModal={setCreateModal} />)}
                                 Write review
                         </button>
 
@@ -102,7 +106,7 @@ function TrailDetail() {
             </div>
         </div>
 
-      );
+    ));
 }
 
 export default TrailDetail;

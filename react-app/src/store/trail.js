@@ -102,7 +102,7 @@ export default function trail(state = initialState, action) {
           return newState;
         }
         case GET_TRAIL_DETAIL: {
-          newState = {...state}
+          newState = {}
           newState[action.trail.id] = action.trail
           return newState
         }

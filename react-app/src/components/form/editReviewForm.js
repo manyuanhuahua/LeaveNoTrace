@@ -17,22 +17,23 @@ const EditReviewForm = ({ review,hideModal }) => {
     const [errors, setErrors] = useState([])
     const [rating, setRating] = useState(review.rating)
 
-    // let res;
-    // const ratingConvert = (rating) =>{
-    //     if (rating === 5){
-    //         res = 100
-    //     }else if(rating === 4){
-    //         res = 80
-    //     }else if(rating === 3){
-    //         res = 60
-    //     }else if(rating === 2){
-    //         res = 40
-    //     }else{
-    //         res = 20
-    //     }
-    //     setRating = res
-    // }
+    let res;
+    const ratingConvert = (rating) =>{
+        if (rating === 5){
+            res = 100
+        }else if(rating === 4){
+            res = 80
+        }else if(rating === 3){
+            res = 60
+        }else if(rating === 2){
+            res = 40
+        }else{
+            res = 20
+        }
+        return res
+    }
 
+    // console.log("rating-------",ratingConvert(review.rating))
 
     const handleRating = (rate) => {
         let score;
@@ -74,11 +75,12 @@ const EditReviewForm = ({ review,hideModal }) => {
                 })
     }
 
-    const handleCancel = (e) => {
-        e.preventDefault();
-        setErrors([]);
-        hideModal()
-      };
+    // const handleCancel = (e) => {
+    //     e.preventDefault();
+    //     setErrors([]);
+
+    //     hideModal()
+    //   };
 
     return (
         <div className="create-form-box">
@@ -93,7 +95,8 @@ const EditReviewForm = ({ review,hideModal }) => {
                         <div className="star-rating">
                             <Rating
                                 onClick={handleRating}
-                                rating={rating}
+                                ratingValue={ratingConvert(review.rating)}
+                                onChange={e => setRating(e.target.value)}
                                 fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
                             />
                         </div>
@@ -106,7 +109,7 @@ const EditReviewForm = ({ review,hideModal }) => {
                     </div>
                     <div className="create-form-buttons">
                         <button id='submit-review-button' type="submit" onClick={handleSubmit}>Update Review</button>
-                        <button id='cancel-review-button' type="button" onClick={handleCancel} >Cancel</button>
+                        <button id='cancel-review-button' type="button" onClick={()=> hideModal()} >Cancel</button>
 
                     </div>
                     <ul>
