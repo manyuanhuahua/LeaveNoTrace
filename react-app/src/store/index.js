@@ -1,9 +1,19 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+import park from './park';
+import trail from './trail'
+import review from './review'
+import activity from './activity'
+import {nearby} from './trail'
 
 const rootReducer = combineReducers({
   session,
+  park,
+  trail,
+  activity,
+  review,
+  nearby
 });
 
 

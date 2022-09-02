@@ -21,13 +21,13 @@ class Review(db.Model):
     def to_dict(self):
         return {
         "id": self.id,
-        "userId": self.user_id,
         "trailId": self.trail_id,
         "content": self.content,
         "rating": self.rating,
         "createdAt": self.created_at,
         "user": {
-                    "profileImage": self.user.profile_image,
-                    "username": self.user.username
+                "id":self.user_id,
+                "profileImage": self.user.profile_img,
+                "username": self.user.username
                 },
         }

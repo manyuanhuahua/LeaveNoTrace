@@ -5,21 +5,21 @@ def seed_activities():
         trail_id = 1,
         user_id = 1,
         name = "My First hike",
-        length = 6.00,
+        ori_lat = "37.74213",
+        ori_log = "-119.60186",
+        des_lat = "37.75714",
+        des_log ="-119.59769"
     )
+
 
     activity2 = Activity(
         trail_id = 2,
         user_id = 2,
-        name = "First try",
-        length = 4.30,
-    )
-
-    activity3 = Activity(
-        trail_id = 3,
-        user_id = 3,
         name = "Completed",
-        length = 1.20,
+        ori_lat= "37.74611",
+        ori_log = "-119.59692",
+        des_lat = "37.75010",
+        des_log = "-119.59579"
     )
 
 
@@ -30,7 +30,7 @@ def seed_activities():
 
     db.session.add(activity1)
     db.session.add(activity2)
-    db.session.add(activity3)
+
 
 
     db.session.commit()

@@ -5,7 +5,7 @@ from .tags import seed_tags, undo_tags
 from .reviews import seed_reviews,undo_reviews
 from .parks import seed_parks,undo_parks
 from .activities import seed_activities,undo_activities
-
+# from .routes import seed_routes,undo_routes
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -20,6 +20,7 @@ def seed():
     seed_trails()
     seed_reviews()
     seed_activities()
+    # seed_routes()
 
     # Add other seed functions here
 
@@ -27,6 +28,7 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    # undo_routes()
     undo_activities()
     undo_reviews()
     undo_trails()

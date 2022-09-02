@@ -17,11 +17,11 @@ class Trail(db.Model):
     name = db.Column(db.String(255),nullable=False,unique=True)
     description = db.Column(db.String(500),nullable=False)
     preview_img = db.Column(db.String(255),nullable=False)
-    length = db.Column(db.Numeric(6,2))
+    length = db.Column(db.Float(precision=2, asdecimal=False))
     elevation = db.Column(db.Integer,nullable=False)
     difficulty = db.Column(db.String(100),nullable=False)
-    lat=db.Column(db.Float(precision=8, asdecimal=False),nullable=False)
-    log=db.Column(db.Float(precision=8, asdecimal=False),nullable=False)
+    lat=db.Column(db.String(100),nullable=False)
+    log=db.Column(db.String(100),nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 
@@ -37,10 +37,20 @@ class Trail(db.Model):
         cascade="all, delete"
     )
 
+    def avg_rating(self):
+        totalRating = 0
+
+        for review in self.reviews:
+            totalRating += review.rating
+
+        avg_rating = totalRating / len(self.reviews)
+        return round(avg_rating,1)
+
     def to_dict(self):
         return {
         "id": self.id,
         "parkId": self.park_id,
+        "parkName":self.park.name,
         "name": self.name,
         "description": self.description,
         "preview_img": self.preview_img,
@@ -49,9 +59,23 @@ class Trail(db.Model):
         "difficulty": self.difficulty,
         "lat": self.lat,
         "log": self.log,
-        "tags": {
-            "name":list(self.trail_tags.name)
-        },
+        "avgRating":self.avg_rating(),
         "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
+
         }
+
+    def preview_dict(self):
+
+        return {
+            "id": self.id,
+            "name": self.name,
+            "preview_img": self.preview_img,
+            "length": self.length,
+            "difficulty": self.difficulty,
+            "park":{
+                "name":self.park.name
+            },
+            "totalReviews": len(self.reviews),
+            "avgRating":self.avg_rating()
+            }

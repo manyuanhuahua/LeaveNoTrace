@@ -17,20 +17,47 @@ def get_all_park():
 
 
 #get a park detail
-@park_routes.route('/<int:id>')
+@park_routes.route('/<int:parkId>')
 @login_required
-def get_park_detail(id):
-    park= Park.query.get(id)
-    # if not park:
-    #     return {'errors':['Park can not be found']},404
+def get_park_detail(parkId):
+    park= Park.query.get(parkId)
+    if not park:
+        return {'errors':['Park can not be found']},404
 
-    # trails = Trail.query.filter(Trail.park_id == id).all()
-    # totalReviews = 0
+    trails = Trail.query.filter(Trail.park_id == parkId).all()
+    totalReviews = 0
 
-    # for trail in trails:
-    #     console.log()
-    #     totalReviews += len(trail.reviews)
+    for trail in trails:
+        totalReviews += len(trail.reviews)
 
     park_dict = park.to_dict()
-    # park_dict[totalReviews] = totalReviews
+    park_dict['totalTrails'] = len(park.trails)
+    park_dict['totalReviews'] = totalReviews
     return park_dict
+
+#get all trail for a park
+@park_routes.route('/<int:parkId>/trails')
+@login_required
+def get_park_trails(parkId):
+    park= Park.query.get(parkId)
+    if not park:
+        return {'errors':['Park can not be found']},404
+
+    trails = Trail.query.filter(Trail.park_id == parkId).all()
+    res = {}
+    for trail in trails:
+
+        res[trail.id] = trail.preview_dict()
+
+    return res
+
+
+
+#get nearby trails
+@park_routes.route('/<int:parkId>/trails/<int:trailId>/nearby')
+def get_nearby_trails(trailId,parkId):
+    trails = Trail.query.filter((Trail.id != trailId)&(Trail.park_id == parkId))
+    res = {}
+    for trail in trails:
+        res[trail.id]=trail.preview_dict()
+    return res
