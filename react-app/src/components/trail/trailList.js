@@ -18,7 +18,7 @@ function TrailList() {
   return (trailsIsLoaded &&
     <div className='trailList-container'>
         {trailsList.map(trail => (
-            <div className="trail-img">
+            <div className="trail-img" key={trail.id}>
                 <NavLink to={`/trails/${trail.id}`}>
                     <img className="trail-img" alt="" src={trail.preview_img}></img>
                 </NavLink>
