@@ -5,6 +5,7 @@ import EditReviewForm from '../form/editReviewForm';
 
 function EditReviewModal({review,setEditModal}){
     // const [showModal, setShowModal] = useState(false);
+    // setEditModal('test')
 
     return(
         <>

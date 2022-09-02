@@ -22,7 +22,7 @@ function ReviewList({trailId}) {
     }, [dispatch,trailId,editModal]);
 
 
-    // console.log("Editmodal-------",editModal)
+    console.log("Editmodal-------",editModal)
 
     const handleRating = (rating) => {
             let res
@@ -70,8 +70,13 @@ function ReviewList({trailId}) {
                         )}
                 </div>
                 <div className='review-rate'>
-                    <Rating readonly={true} ratingValue={handleRating(review.rating)}/>
-                        {`Rating:${review.rating}`}
+                    <Rating
+                        readonly={true}
+                        ratingValue={handleRating(review.rating)}
+                        fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
+                        // style={{ maxWidth:180 }}
+                        />
+                    {/* {`Rating:${review.rating}`} */}
                     </div>
                 <div className='review-content'>{review.content}</div>
 
