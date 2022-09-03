@@ -25,8 +25,8 @@ function TrailDetail() {
         return null
     }
 
-    console.log("createmodal----------",createModal)
-  
+
+
 
 
 
@@ -83,10 +83,10 @@ function TrailDetail() {
                             <h1>{trail.avgRating}</h1>
                             <p>{trail.totalReviews}Review(s)</p>
                         </div>
-                        <button className='write-review' onClick={() => setCreateModal(true)}>
-                                {createModal && (<CreateReviewModal trail={trail} setCreateModal={setCreateModal} />)}
-                                Write review
-                        </button>
+                        <CreateReviewModal trail={trail} createModal={createModal} setCreateModal={setCreateModal} />
+
+
+
 
                     </div>
                     <div className='review-list'>

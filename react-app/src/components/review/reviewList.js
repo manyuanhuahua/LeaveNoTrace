@@ -22,7 +22,7 @@ function ReviewList({trailId}) {
     }, [dispatch,trailId,editModal]);
 
 
-    console.log("Editmodal-------",editModal)
+
 
     const handleRating = (rating) => {
             let res
@@ -58,14 +58,8 @@ function ReviewList({trailId}) {
                     </div>
                     {(review.user.id === session.id) && review && (
                         <div className='buttons'>
-                            <button className='edit-button' onClick={() => setEditModal(true)} >
-                                Edit
-                                {editModal && <EditReviewModal review={review} setEditModal={setEditModal} />}
-                            </button>
-                            <button className='delete-button' onClick={() => setDeleteModal(true)} >
-                                Delete
-                                {deleteModal && <DeleteReviewModal review={review} setDeleteModal={setDeleteModal} />}
-                            </button>
+                            <EditReviewModal review={review} editModal={editModal} setEditModal={setEditModal} />
+                            <DeleteReviewModal review={review} deleteModal={deleteModal} setDeleteModal={setDeleteModal} />
                         </div>
                         )}
                 </div>

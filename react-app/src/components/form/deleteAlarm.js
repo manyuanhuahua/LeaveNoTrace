@@ -44,8 +44,8 @@ const DeleteReviewAlarm = ({ review,hideModal }) => {
             <h2>Delete Review</h2>
             <p>Are you sure you want to delete this review? This action cannot be undone.</p>
             <div className='button-group'>
-              <button type="button" onClick={handleCancel} >Cancel</button>
               <button type="button" onClick={handleDelete}>Delete</button>
+              <button type="button" onClick={handleCancel} >Cancel</button>
             </div>
             <ul>
                 {errors.map((error, idx) => (

@@ -3,18 +3,17 @@ import { Modal } from "../../context/Modal";
 import EditReviewForm from '../form/editReviewForm';
 
 
-function EditReviewModal({review,setEditModal}){
-    // const [showModal, setShowModal] = useState(false);
-    // setEditModal('test')
+function EditReviewModal({review,editModal,setEditModal}){
+
 
     return(
         <>
-        { (
-
-            <Modal onClose={()=>setEditModal(false)}>
-                {/* {setEditModal(false)} */}
-                <EditReviewForm review={review} hideModal={()=> setEditModal(false)} />
-            </Modal>
+        <button onClick={()=>setEditModal(true)}>Edit</button>
+            {editModal &&
+                (
+                <Modal onClose={()=>setEditModal(false)}>
+                    <EditReviewForm review={review} hideModal={setEditModal} />
+                </Modal>
             )
         }
         </>

@@ -33,7 +33,7 @@ const EditReviewForm = ({ review,hideModal }) => {
         return res
     }
 
-    // console.log("rating-------",ratingConvert(review.rating))
+
 
     const handleRating = (rate) => {
         let score;
@@ -48,7 +48,7 @@ const EditReviewForm = ({ review,hideModal }) => {
         }else{
             score = 1
         }
-        console.log("rate------",score)
+
         setRating(score)
     }
 
@@ -75,12 +75,13 @@ const EditReviewForm = ({ review,hideModal }) => {
                 })
     }
 
-    // const handleCancel = (e) => {
-    //     e.preventDefault();
-    //     setErrors([]);
 
-    //     hideModal()
-    //   };
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setErrors([]);
+
+        hideModal()
+      };
 
     return (
         <div className="create-form-box">
@@ -109,7 +110,7 @@ const EditReviewForm = ({ review,hideModal }) => {
                     </div>
                     <div className="create-form-buttons">
                         <button id='submit-review-button' type="submit" onClick={handleSubmit}>Update Review</button>
-                        <button id='cancel-review-button' type="button" onClick={()=> hideModal()} >Cancel</button>
+                        <button id='cancel-review-button' type="button" onClick={handleCancel} >Cancel</button>
 
                     </div>
                     <ul>

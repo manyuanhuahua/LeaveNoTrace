@@ -30,7 +30,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
         }else{
             score = 1
         }
-        console.log("rate------",score)
+       
         setRating(score)
     }
 
@@ -49,7 +49,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                         setErrors(res.errors)
                     }
                     else {
-                        hideModal()
+                        // hideModal()
                         history.push(`/trails/${trailId}`);
                     }
 
