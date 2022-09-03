@@ -11,3 +11,6 @@ class CreateActivityForm(FlaskForm):
     ori_log = StringField('start longtitude',validators=[DataRequired()])
     des_lat = StringField('destination latitude',validators=[DataRequired()])
     des_log = StringField('destination longtitude',validators=[DataRequired()])
+    distance = IntegerField('distance',validators=[DataRequired()])
+    duration = IntegerField('duration',validators=[DataRequired()])
+    static_url = StringField('static map',validators=[DataRequired()])

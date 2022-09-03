@@ -45,7 +45,7 @@ function ReviewList({trailId}) {
 
 
   return (reviewsIsLoaded &&
-    <div className='parkList-container'>
+    <div className='reviewList-container'>
         {reviewsList.map(review => (
             <div className="review-container">
                 <div className='review-owner'>
@@ -57,7 +57,7 @@ function ReviewList({trailId}) {
                         <p>{review.createdAt}</p>
                     </div>
                     {(review.user.id === session.id) && review && (
-                        <div className='buttons'>
+                        <div className='modal'>
                             <EditReviewModal review={review} editModal={editModal} setEditModal={setEditModal} />
                             <DeleteReviewModal review={review} deleteModal={deleteModal} setDeleteModal={setDeleteModal} />
                         </div>

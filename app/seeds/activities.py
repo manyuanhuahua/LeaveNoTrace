@@ -8,7 +8,10 @@ def seed_activities():
         ori_lat = "37.74213",
         ori_log = "-119.60186",
         des_lat = "37.75714",
-        des_log ="-119.59769"
+        des_log ="-119.59769",
+        distance=4061,
+        duration=6335,
+        static_url = "https://fullsuitcase.com/wp-content/uploads/2022/03/Zermatt-hiking-map-indicating-10-best-hikes.jpg"
     )
 
 
@@ -19,7 +22,10 @@ def seed_activities():
         ori_lat= "37.74611",
         ori_log = "-119.59692",
         des_lat = "37.75010",
-        des_log = "-119.59579"
+        des_log = "-119.59579",
+        distance=5747,
+        duration=7608,
+        static_url = "https://s27363.pcdn.co/wp-content/uploads/2019/09/Glymur-Map.jpg.optimal.jpg"
     )
 
 
