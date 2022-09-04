@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import ParkList from './components/park/parkList';
 import TrailList from './components/trail/trailList';
 import ParkDetail from './components/park/parkDetail';
+import CreateMap from './components/map/createMap';
 
 import User from './components/User';
 import { authenticate } from './store/session';
@@ -56,6 +57,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/parks/:parkId' exact={true} >
           <ParkDetail />
+        </ProtectedRoute>
+        <ProtectedRoute path='/maps/new' exact={true} >
+          <CreateMap />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
