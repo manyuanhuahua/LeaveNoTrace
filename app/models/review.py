@@ -22,6 +22,7 @@ class Review(db.Model):
         return {
         "id": self.id,
         "trailId": self.trail_id,
+        "trailName":self.trail.name,
         "content": self.content,
         "rating": self.rating,
         "createdAt": self.created_at,

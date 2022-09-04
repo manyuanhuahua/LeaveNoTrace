@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 896a9954147e
+Revision ID: beebbd0112a2
 Revises: 
-Create Date: 2022-09-01 14:19:42.849848
+Create Date: 2022-09-02 23:43:28.974100
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '896a9954147e'
+revision = 'beebbd0112a2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -75,6 +75,9 @@ def upgrade():
     sa.Column('ori_log', sa.String(length=255), nullable=False),
     sa.Column('des_lat', sa.String(length=255), nullable=False),
     sa.Column('des_log', sa.String(length=255), nullable=False),
+    sa.Column('distance', sa.Integer(), nullable=False),
+    sa.Column('duration', sa.Integer(), nullable=False),
+    sa.Column('static_url', sa.String(length=500), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['trail_id'], ['trails.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),

@@ -13,6 +13,9 @@ class Activity(db.Model):
     ori_log=db.Column(db.String(255),nullable=False)
     des_lat=db.Column(db.String(255),nullable=False)
     des_log=db.Column(db.String(255),nullable=False)
+    distance=db.Column(db.Integer,nullable=False)
+    duration=db.Column(db.Integer,nullable=False)
+    static_url=db.Column(db.String(500),nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 
@@ -29,9 +32,12 @@ class Activity(db.Model):
                 'profileImg':self.user.profile_img,
                 },
             "name": self.name,
-            "ori_lat":self.ori_lat,
-            "ori_log":self.ori_log,
-            "des_lat":self.des_lat,
-            "des_log":self.des_log,
+            "oriLat":self.ori_lat,
+            "oriLog":self.ori_log,
+            "desLat":self.des_lat,
+            "desLog":self.des_log,
+            "distance":self.distance,
+            "duration":self.duration,
+            "staticMap":self.static_url,
             "createdAt": self.created_at
         }

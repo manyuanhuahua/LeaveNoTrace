@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink} from "react-router-dom";
 import {getAlltrailsThunk} from "../../store/trail"
+import { Rating } from 'react-simple-star-rating'
+import handleRating from '../../helper/StarConvert';
 
 function TrailList() {
     const dispatch = useDispatch();
@@ -15,14 +17,22 @@ function TrailList() {
     }, [dispatch]);
 
 
+
   return (trailsIsLoaded &&
     <div className='trailList-container'>
         {trailsList.map(trail => (
-            <div className="trail-img">
+            <div className="trail-img" key={trail.id}>
                 <NavLink to={`/trails/${trail.id}`}>
                     <img className="trail-img" alt="" src={trail.preview_img}></img>
                 </NavLink>
-                <p><span>{trail.avgRating}</span><span>(</span>{trail.totalReviews}<span>)</span></p>
+                <p>
+
+                    <div className='trail-avg-rating'>
+                        <Rating readonly={true} ratingValue={handleRating(trail.avgRating)} allowHalfIcon={true}/>
+                            <span>{`Rating:${trail.avgRating}`}</span>
+
+                    </div>
+                <span>(</span>{trail.totalReviews}<span>)</span></p>
                 <p>{trail.difficulty}</p>
                 <p>{trail.name}</p>
                 <p>{trail.length}</p>
