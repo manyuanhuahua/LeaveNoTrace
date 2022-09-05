@@ -14,6 +14,7 @@ import CreateMap from './components/map/createMap';
 import User from './components/User';
 import { authenticate } from './store/session';
 import TrailDetail from './components/trail/trailDetail';
+import EditMap from './components/map/editMap';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -60,6 +61,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/maps/new' exact={true} >
           <CreateMap />
+        </ProtectedRoute>
+        <ProtectedRoute path='/maps/:mapId' exact={true} >
+          <EditMap />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>

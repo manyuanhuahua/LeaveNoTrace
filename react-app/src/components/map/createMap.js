@@ -58,6 +58,31 @@ function CreateMap({trail}){
   //   document.getElementById("total").innerHTML = total + " km";
   // }
 
+    const staticMap = (directions)=>{
+      const route = directions.route[0]
+      // let image = `https://maps.googleapis.com/maps/api/staticmap?size=200x200`
+      // var request = directionsDisplay.directions.request;
+      // var start = request.origin.lat() + ',' + request.origin.lng();
+      // var end = request.destination.lat() + ',' + request.destination.lng();
+      // var path = directionsDisplay.directions.routes[0].overview_polyline;
+      // var markers = [];
+      // var waypoints_labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];
+      // var waypoints_label_iter = 0;
+      // markers.push("markers=color:green|label:" + waypoints_labels[waypoints_label_iter] + '|' + start);
+
+      // for(var i=0;i<request.waypoints.length;i++){
+      //     //I have waypoints that are not stopovers I dont want to display them
+      //     if(request.waypoints[i].stopover==true){
+      //         markers.push("markers=color:blue|label:" + waypoints_labels[++waypoints_label_iter] + '|' + request.waypoints[i].location.lat() + "," +request.waypoints[i].location.lng());
+      //     }
+      // }
+
+      // markers.push("markers=color:red|label:" + waypoints_labels[++waypoints_label_iter] + '|' + end);
+
+      // markers = markers.join('&');
+
+      // alert("https://maps.googleapis.com/maps/api/staticmap?size=1000x1000&maptype=roadmap&path=enc:" + path + "&" + markers);
+    }
 
     const displayRoute = async (origin,destination)=>{
       if(!origin || !destination){
@@ -95,7 +120,23 @@ function CreateMap({trail}){
 
   }
 
-  const hancleClear = () =>{
+  // const hancleClear = () =>{
+  //   setDirectionsResponse(null)
+  //   setDistance('')
+  //   setDuration('')
+  //   setMarkers([])
+  //   setOriLat('')
+  //   setOriLog('')
+  //   setDesLat('')
+  //   setDesLog('')
+  //   setName('')
+  //   history.push('/maps/new')
+
+
+  // }
+
+  const hancleCancel = () =>{
+    // hancleClear()
     setDirectionsResponse(null)
     setDistance('')
     setDuration('')
@@ -105,11 +146,6 @@ function CreateMap({trail}){
     setDesLat('')
     setDesLog('')
     setName('')
-
-  }
-
-  const hancleCancel = () =>{
-    hancleClear()
     history.push('/trails')
   }
 
@@ -165,7 +201,7 @@ function CreateMap({trail}){
         >
 
 
-            {markers &&
+            {markers ? (
                 markers.filter((marker)=> marker.id <2).map((marker) => {
                   return (
                     <Marker
@@ -175,7 +211,7 @@ function CreateMap({trail}){
                       onDragEnd={e => marker.coords = e.latLng.toJSON()}
                     />
                   )
-                })
+                })) : null
                 }
 
 
@@ -199,7 +235,8 @@ function CreateMap({trail}){
                   type='text'
                   placeholder='Latitude'
                   value={oriLat}
-                  onChange={e => setOriLat(e.target.value)}/>
+                  onChange={e => setOriLat(e.target.value)}
+                  />
                 <input
                   type='text'
                   placeholder='longtitude'
@@ -239,7 +276,7 @@ function CreateMap({trail}){
           <div className='map-buttons'>
               <button onClick={()=> displayRoute(markers[0].coords,markers[1].coords)}>Display</button>
               <button type='submit'onClick={handleSubmit}>Create</button>
-              <button onClick={hancleClear}>Clear</button>
+              {/* <button onClick={hancleClear}>Clear</button> */}
               <button onClick={hancleCancel}>Cancel</button>
 
               {/* in order to use Panto method, need to define map type to GoogleMap to active google.maps.Map class */}
