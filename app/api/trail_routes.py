@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from app.models import Park, Trail,Review,Activity,db
 from app.forms import CreateReviewForm,CreateActivityForm
 import json
+from app.api.auth_routes import validation_errors_to_error_messages
 
 trail_routes = Blueprint('trails',__name__)
 
@@ -87,7 +88,8 @@ def create_reviews(trailId):
 
         res = review.to_dict()
         return res
-    return {'errors':['rating is required']},400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 #update a review for a trail
@@ -117,7 +119,7 @@ def update_reviews(trailId,reviewId):
         review_dic = review.to_dict()
 
         return review_dic
-    return {'errors':['rating is required']},400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 #delete a review for a trail
 @trail_routes.route('/<int:trailId>/reviews/<int:reviewId>', methods=["DELETE"])
@@ -204,7 +206,7 @@ def create_activity(trailId):
 
         res = activity.to_dict()
         return res
-    return {'errors':['input error']},400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 #update an activity
@@ -239,7 +241,7 @@ def update_activity(trailId,activityId):
 
         res = activity.to_dict()
         return res
-    return {'errors':['input error']},400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 #delete an activity
 @trail_routes.route('/<int:trailId>/activities/<int:activityId>', methods=["DELETE"])

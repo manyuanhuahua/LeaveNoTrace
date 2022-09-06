@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams,Link} from "react-router-dom";
+import { useParams,Link} from "react-router-dom";
 import {getTrailDetailThunk} from "../../store/trail"
 import CreateReviewModal from '../modals/CreateReviewModal';
 import ReviewList from '../review/reviewList';
 import NearbyTrails from './nearbyTrails';
 import ActivityList from '../map/ActivityList';
-import CreateActivity from '../form/createActivity';
+
 
 function TrailDetail() {
     const dispatch = useDispatch();
@@ -86,7 +86,7 @@ function TrailDetail() {
                             <p>{trail.totalReviews}Review(s)</p>
                         </div>
                         <CreateReviewModal trail={trail} createModal={createModal} setCreateModal={setCreateModal} />
-                        <Link to={`/trails/${trail.id}/activities/new`} trail={trail} exact={true} activeClassName='active'>
+                        <Link to={`/trails/${trail.id}/activities/new`} trail={trail} exact="true" >
                              Create map
                         </Link>
 

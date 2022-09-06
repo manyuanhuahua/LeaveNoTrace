@@ -3,26 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useJsApiLoader,GoogleMap,Marker,DirectionsRenderer } from "@react-google-maps/api"
 import MapLoading from '../map/mapLoading';
 import "./map.css"
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import {updateActivityThunk,getActivityDetailThunk} from "../../store/activity"
-import { useLocation} from "react-router-dom"
 
-
-
-
-// const activity ={
-//   trail_id : 1,
-//   user_id : 1,
-//   name : "My First hike",
-//   ori_lat : "37.74213",
-//   ori_log : "-119.60186",
-//   des_lat : "37.75714",
-//   des_log :"-119.59769",
-//   distance : 4061,
-//   duration : 6335,
-//   static_url : "https://fullsuitcase.com/wp-content/uploads/2022/03/Zermatt-hiking-map-indicating-10-best-hikes.jpg"
-// }
 
 
 
@@ -65,7 +49,7 @@ function EditActivity(){
 
     useEffect(() => {
       dispatch(getActivityDetailThunk(activity.trail.id,activity.id)).then(() => setActivityIsLoaded(true));
-  }, [dispatch,activity.id]);
+  }, [dispatch,activity.id,activity.trail.id]);
 
 
 
@@ -103,16 +87,25 @@ function EditActivity(){
           travelMode: google.maps.TravelMode.WALKING,
           avoidTolls: true,
       }).then((res) => {
+          console.log("res--------",res)
           setDirectionsResponse(res);
           setmapUrl(staticMap(res))
+          console.log("url--------",mapUrl)
+
           setOriLat(origin.lat)
           setOriLog(origin.lng)
           setDesLat(destination.lat)
           setDesLog(destination.lng)
+
+
           setShowMarker(false)
           // setOriLat()
-          setDistance(res.route[0].legs[0].distance.text)
-          setDuration(res.route[0].legs[0].duration.text)
+          setDistance(res.routes[0].legs[0].distance.text)
+          setDuration(res.routes[0].legs[0].duration.text)
+          console.log("distance--------",distance)
+          console.log("duration--------",duration)
+
+
         }).catch((e) => {
             alert("Could not display directions due to: " + e);
         });
@@ -152,17 +145,20 @@ function EditActivity(){
         setErrors([]);
 
         const updatedActivity = {
-          ...activity,
-          name,
-          oriLat,
-          oriLog,
-          desLat,
-          desLog,
-          distance,
-          duration,
-          mapUrl
-
+          // ...activity,
+          id:activity.id,
+          name:name,
+          ori_lat:oriLat,
+          ori_log:oriLog,
+          des_lat:desLat,
+          des_log:desLog,
+          distance:distance,
+          duration:duration,
+          static_url:mapUrl
         };
+        console.log("updatedActivity--------",updatedActivity)
+
+
         dispatch(updateActivityThunk(activity.trail.id,updatedActivity))
             .then(
                 async (res) => {
@@ -170,8 +166,8 @@ function EditActivity(){
                         setErrors(res.errors)
                     }
                     else {
-
-                        history.push(`/trails/${activity.trail.id}`);
+                        console.log("res------",res)
+                        history.push(`/trails/${res.trail.id}`);
                     }
 
                 })
@@ -192,8 +188,6 @@ function EditActivity(){
             streetViewControl:false
           }}
           onLoad={map=>setMap(map)}
-
-
         >
 
 
@@ -269,13 +263,13 @@ function EditActivity(){
           </div>
 
           <div className='map-buttons'>
-              <button onClick={()=> displayRoute(markers[0].coords,markers[1].coords)}>Display</button>
-              <button type='submit'onClick={handleSubmit}>Update</button>
-           
-              <button onClick={hancleCancel}>Cancel</button>
+              <button type='button' onClick={()=> displayRoute(markers[0].coords,markers[1].coords)}>Display</button>
+              <button type='submit' onClick={handleSubmit}>Update</button>
+
+              <button type='button' onClick={hancleCancel}>Cancel</button>
 
 
-              <button onClick={()=> map.panTo({lat:activity.trail.lat,lng:activity.trail.lng})}>Reset Center</button>
+              <button type='button' onClick={()=> map.panTo({lat:activity.trail.lat,lng:activity.trail.lng})}>Reset Center</button>
           </div>
           <ul>
             {errors.map((error, idx) => (

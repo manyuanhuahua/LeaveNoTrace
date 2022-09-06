@@ -100,7 +100,7 @@ export const updateActivityThunk = (trailId,activity) => async dispatch => {
 
 
 export const deleteActivityThunk = (trailId,activityId) => async dispatch => {
-    const response = await fetch(`/api/trails/${trailId}/reviews/${activityId}`,{
+    const response = await fetch(`/api/trails/${trailId}/activities/${activityId}`,{
         method:'DELETE'
         }
     );
@@ -140,7 +140,7 @@ export const deleteActivityThunk = (trailId,activityId) => async dispatch => {
           }
           case DELETE_ACTIVITY: {
             newState = {...state};
-            delete newState[action.reviewId]
+            delete newState[action.activityId]
             return newState;
           }
           default:
