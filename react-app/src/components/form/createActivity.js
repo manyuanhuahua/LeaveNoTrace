@@ -1,18 +1,23 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { useJsApiLoader,GoogleMap,Marker,DirectionsRenderer } from "@react-google-maps/api"
-import MapLoading from './mapLoading';
+import MapLoading from '../map/mapLoading';
 import "./map.css"
-import { useHistory } from 'react-router-dom';
-import { useDispatch} from "react-redux";
+import { useHistory, useParams } from 'react-router-dom';
+
 import {createActivityThunk} from "../../store/activity"
+import {getTrailDetailThunk} from "../../store/trail"
 
 
 
-const center={lat:37.72620918325973,lng:-119.55160191563179,}
 
-function CreateMap({trail}){
+
+
+
+function CreateActivity(){
     const history = useHistory()
+    const {trailId,activityId} = useParams()
     const {isLoaded} = useJsApiLoader({
       googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     })
@@ -27,9 +32,18 @@ function CreateMap({trail}){
     const [oriLog, setOriLog] = useState('')
     const [desLat, setDesLat] = useState('')
     const [desLog, setDesLog] = useState('')
+    const [mapUrl, setmapUrl] = useState('')
     const [errors, setErrors] = useState([])
     const [ id, setId ] = useState(0);
     const [ markers, setMarkers ] = useState([]);
+    const [showMarker, setShowMarker] = useState(true)
+    const trailObj = useSelector(state => state.trail);
+    const trail = Object.values(trailObj)[0];
+    const [trailIsLoaded, setTrailsIsLoaded] = useState(false);
+
+    useEffect(() => {
+        dispatch(getTrailDetailThunk(trailId)).then(() => setTrailsIsLoaded(true));
+    }, [dispatch,trailId]);
 
 
     const addMarker = (coords) => {
@@ -42,56 +56,33 @@ function CreateMap({trail}){
       return <MapLoading />
     }
 
-  // function computeTotalDistance(result) {
-  //   let total = 0;
-  //   const myroute = result.routes[0];
 
-  //   if (!myroute) {
-  //     return;
-  //   }
 
-  //   for (let i = 0; i < myroute.legs.length; i++) {
-  //     total += myroute.legs[i].distance.value;
-  //   }
-
-  //   total = total / 1000;
-  //   document.getElementById("total").innerHTML = total + " km";
-  // }
-
-    const staticMap = (directions)=>{
-      const route = directions.route[0]
-      // let image = `https://maps.googleapis.com/maps/api/staticmap?size=200x200`
-      // var request = directionsDisplay.directions.request;
-      // var start = request.origin.lat() + ',' + request.origin.lng();
-      // var end = request.destination.lat() + ',' + request.destination.lng();
-      // var path = directionsDisplay.directions.routes[0].overview_polyline;
-      // var markers = [];
-      // var waypoints_labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];
-      // var waypoints_label_iter = 0;
-      // markers.push("markers=color:green|label:" + waypoints_labels[waypoints_label_iter] + '|' + start);
-
-      // for(var i=0;i<request.waypoints.length;i++){
-      //     //I have waypoints that are not stopovers I dont want to display them
-      //     if(request.waypoints[i].stopover==true){
-      //         markers.push("markers=color:blue|label:" + waypoints_labels[++waypoints_label_iter] + '|' + request.waypoints[i].location.lat() + "," +request.waypoints[i].location.lng());
-      //     }
-      // }
-
-      // markers.push("markers=color:red|label:" + waypoints_labels[++waypoints_label_iter] + '|' + end);
-
-      // markers = markers.join('&');
-
-      // alert("https://maps.googleapis.com/maps/api/staticmap?size=1000x1000&maptype=roadmap&path=enc:" + path + "&" + markers);
+    const staticMap = (res) =>{
+      let image = `https://maps.googleapis.com/maps/api/staticmap?size=500x500`
+      let APIKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+      let route = res.routes[0]
+      const color = `&path=weight:8%7Ccolor:red%7C`
+      const path = route.overview_polyline
+      const enc_path = `enc:${path}`
+      const startMarker = `&markers=color:blue%7Clabel:S%7C${markers[0].coords.lat},${markers[0].coords.lng}`
+      const endMarker = `&markers=color:orange%7Clabel:D%7C${markers[1].coords.lat},${markers[1].coords.lng}`
+      image += color + enc_path + startMarker + endMarker +  '&key=' + `${APIKey}`
+      return image
     }
+
+
 
     const displayRoute = async (origin,destination)=>{
       if(!origin || !destination){
         return
       }
-      setOriLat(origin.lat)
-      setOriLog(origin.lng)
-      setDesLat(destination.lat)
-      setDesLog(destination.lng)
+      // setOriLat(origin.lat)
+      // setOriLog(origin.lng)
+      // setDesLat(destination.lat)
+      // setDesLog(destination.lng)
+      // setShowMarker(false)
+
 
       console.log("ori in route------",origin)
       console.log("des in route------",destination)
@@ -103,22 +94,25 @@ function CreateMap({trail}){
           avoidTolls: true,
       }).then((res) => {
           setDirectionsResponse(res);
+          setmapUrl(staticMap(res))
+          // console.log("STATIC MAP------",mapUrl)
+          console.log("ori in route------",origin)
+          console.log("des in route------",destination)
+          setOriLat(origin.lat)
+          setOriLog(origin.lng)
+          setDesLat(destination.lat)
+          setDesLog(destination.lng)
+          setShowMarker(false)
           // setOriLat()
-          setDistance(res.route[0].legs[0].distance.text)
-          setDuration(res.route[0].legs[0].duration.text)
+          setDistance(res.routes[0].legs[0].distance.text)
+          setDuration(res.routes[0].legs[0].duration.text)
         }).catch((e) => {
             alert("Could not display directions due to: " + e);
         });
 
-    //     result.addListener("directions_changed", () => {
-    //   const directions = directionsRenderer.getDirections();
-
-    //   if (directions) {
-    //     computeTotalDistance(directions);
-    //   }
-    // });
 
   }
+  // console.log("STATIC MAP------",mapUrl)
 
   // const hancleClear = () =>{
   //   setDirectionsResponse(null)
@@ -163,9 +157,10 @@ function CreateMap({trail}){
           des_log:desLog,
           distance:distance,
           duration:duration,
-          // static_url:static_url
+          static_url:mapUrl
         };
-        dispatch(createActivityThunk(1,newActivity))
+        console.log("newActivity------",newActivity)
+        dispatch(createActivityThunk(trailId,newActivity))
             .then(
                 async (res) => {
                     if (res.errors) {
@@ -173,22 +168,22 @@ function CreateMap({trail}){
                     }
                     else {
                         // hideModal()
-                        history.push(`/trails/${trail.id}/activities`);
+                        history.push(`/trails/${trail.id}`);
                     }
 
                 })
 
   }
 
-  return (
+  return trailIsLoaded && (
     <div className='main-box'>
 
       <div className='right-map-box'>
         {/* initMap */}
 
         <GoogleMap
-          center={center}
-          zoom={8}
+          center={{lat:trail.lat,lng:trail.log}}
+          zoom={12}
           mapContainerStyle={{width:'800px', height:'800px'}}
           options={{
             streetViewControl:false
@@ -203,12 +198,12 @@ function CreateMap({trail}){
 
             {markers ? (
                 markers.filter((marker)=> marker.id <2).map((marker) => {
-                  return (
+                  return showMarker && (
                     <Marker
                       key={marker.id}
-                      draggable={true}
+                      draggable={false}
                       position={marker.coords}
-                      onDragEnd={e => marker.coords = e.latLng.toJSON()}
+                      // onDragEnd={e => marker.coords = e.latLng.toJSON()}
                     />
                   )
                 })) : null
@@ -226,8 +221,7 @@ function CreateMap({trail}){
                 <input type='text'
                   value={name}
                   onChange={e => setName(e.target.value)}/>
-              <div className='input-ori'>
-              </div>
+
 
               <div className='input-ori'>
                 <label>Origin: </label>
@@ -235,13 +229,16 @@ function CreateMap({trail}){
                   type='text'
                   placeholder='Latitude'
                   value={oriLat}
-                  onChange={e => setOriLat(e.target.value)}
+                  readOnly
+                  // onChange={e => setOriLat(e.target.value)}
                   />
                 <input
                   type='text'
                   placeholder='longtitude'
                   value={oriLog}
-                  onChange={e => setOriLog(e.target.value)}/>
+                  readOnly
+                  // onChange={e => setOriLog(e.target.value)}
+                  />
               </div>
               <div className='input-des'>
                 <label>Destination: </label>
@@ -249,27 +246,23 @@ function CreateMap({trail}){
                   type='text'
                   placeholder='Latitude'
                   value={desLat}
-                  onChange={e => setDesLat(e.target.value)}/>
+                  readOnly
+                  // onChange={e => setDesLat(e.target.value)}
+                  />
                 <input
                   type='text'
                   placeholder='longtitude'
                   value={desLog}
-                  onChange={e => setDesLog(e.target.value)}/>
+                  readOnly
+                  // onChange={e => setDesLog(e.target.value)}
+                  />
               </div>
           </div>
           <div className='statistics'>
               <div>Distance: {distance}</div>
-              {/* <input
-                type='text'
-                value={distance}
-                onChange={e => setDistance(e.target.value)}
-                /> */}
+
               <div>Duration: {duration}</div>
-              {/* <input
-                type='text'
-                value={duration}
-                onChange={e => setDuration(e.target.value)}
-                /> */}
+
 
           </div>
 
@@ -279,9 +272,14 @@ function CreateMap({trail}){
               {/* <button onClick={hancleClear}>Clear</button> */}
               <button onClick={hancleCancel}>Cancel</button>
 
-              {/* in order to use Panto method, need to define map type to GoogleMap to active google.maps.Map class */}
-              <button onClick={()=> map.panTo(center)}>Reset Center</button>
+
+              <button onClick={()=> map.panTo({lat:trail.lat,lng:trail.log})}>Reset Center</button>
           </div>
+          <ul>
+              {errors.map((error, idx) => (
+                <li key={idx} >{error}</li>
+                ))}
+          </ul>
           </form>
       </div>
 
@@ -293,28 +291,5 @@ function CreateMap({trail}){
 }
 
 
-//   function displayRoute(origin, destination, service, display) {
-//     service
-//       .route({
-//         origin: origin,
-//         destination: destination,
-//         /* waypoints: [
-//           { location: "Adelaide, SA" },
-//           { location: "Broken Hill, NSW" },
-//         ], */
-//         travelMode: google.maps.TravelMode.WALKING,
-//         avoidTolls: true,
-//       })
-//       .then((result) => {
-//         display.setDirections(result);
-//       })
-//       .catch((e) => {
-//         alert("Could not display directions due to: " + e);
-//       });
-//   }
 
-
-
-
-
-export default CreateMap;
+export default CreateActivity;

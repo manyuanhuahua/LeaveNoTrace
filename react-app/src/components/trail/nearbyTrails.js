@@ -16,7 +16,7 @@ function NearbyTrails({parkId,trailId}) {
         dispatch(getNearbyTrailsThunk(parkId,trailId)).then(() => setTrailsIsLoaded(true));
     }, [dispatch,parkId,trailId]);
 
-    
+
 
 
   return (trailsIsLoaded &&
@@ -27,12 +27,12 @@ function NearbyTrails({parkId,trailId}) {
                     <img className="trail-img" alt="" src={trail.preview_img}></img>
                 </div>
                 <div className='bot-text'>
-                    <p><span>{trail.difficulty}</span>
+                    <div><span>{trail.difficulty}</span>
                     <div className='trail-avg-rating'>
                         <Rating readonly={true} ratingValue={handleRating(trail.avgRating)} allowHalfIcon={true}/>
                             <span>{`Rating:${trail.avgRating}`}</span>
                     </div>
-                    <span>(</span>{trail.totalReviews}<span>)</span></p>
+                    <span>(</span>{trail.totalReviews}<span>)</span></div>
                     <p>{trail.park.name}</p>
                     <p>{trail.length}</p>
                 </div>

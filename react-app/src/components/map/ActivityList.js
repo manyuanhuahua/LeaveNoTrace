@@ -1,34 +1,63 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams} from "react-router-dom";
+import { NavLink, useHistory, useParams,Link, Route} from "react-router-dom";
 import {getActivitiesThunk} from "../../store/activity"
 
+import { Modal } from '../../context/Modal'
+import EditActivity from '../form/editActivity';
+import DeleteActivityAlarm from '../form/deleteActivity';
 
 
-function ActivityList() {
+
+
+function ActivityList({trailId}) {
     const dispatch = useDispatch();
-    const {trailId} = useParams()
-    const activities = useSelector(state => state.activities);
-    // const session = useSelector(state => state.session.user);
+    const history = useHistory()
+    const activities = useSelector(state => state.activity);
+    const session = useSelector(state => state.session.user);
     const [activityIsLoaded, setActivityIsLoaded] = useState(false);
-    const activityList = Object.values(activities);
+    const activityList = Object.values(activities).reverse();
+    const [editModal, setEditModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
+
+
 
 
     useEffect(() => {
         dispatch(getActivitiesThunk(trailId)).then(() => setActivityIsLoaded(true));
     }, [dispatch]);
-
-    return (activityIsLoaded &&
+    // console.log('activities--------',activityList)
+    return (activityIsLoaded
+        &&
         <div className='activityList-container'>
             {activityList.map(activity => (
                 <div className="img-container" key={activity.id}>
-                    <NavLink to={`/parks/${park.id}`}>
-                        <img className="park-img" alt="" src={park.preview_img}></img>
+                    <NavLink to={`/activities/${activity.id}`}>
+                        <img className="activity-img" alt="" src={activity.staticMap}></img>
                     </NavLink>
-                    <p><span>{park.avgRating}</span><span>(</span>{park.totalReviews}<span>)</span></p>
-                    <p>{park.name}</p>
-                    <p>{park.state}</p>
-                    <p>{park.acreage}</p>
+                    <img className="activity-user-profile" alt="" src={activity.user.profileImg}></img>
+                    <p>{activity.user.name}</p>
+                    <p>{activity.createdAt}</p>
+                    {(session.id == activity.user.id) && (
+                        <>
+                        {/* <Route path={`/trails/${trailId}/activities/${activity.id}`}>
+                            Edit
+                            <EditActivity />
+                        </Route> */}
+                        <Link to={{ pathname: `/trails/${trailId}/activities/${activity.id}`, state: { activity } }}
+                                    >Update</Link>
+
+
+                        <button onClick={()=>setDeleteModal(true)}>Delete</button>
+                                {deleteModal &&
+                                    <Modal onClose={()=>setDeleteModal(false)} >
+                                        <DeleteActivityAlarm hideModal={()=> setDeleteModal(false)} activity={activity} />
+                                    </Modal>
+                                }
+                        </>
+                    )}
+
+
                 </div>)
                 )
             }

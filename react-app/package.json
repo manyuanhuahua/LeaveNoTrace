@@ -16,7 +16,8 @@
     "react-simple-star-rating": "^4.0.5",
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "static-google-map": "^0.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

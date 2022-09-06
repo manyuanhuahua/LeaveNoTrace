@@ -20,8 +20,8 @@ class Trail(db.Model):
     length = db.Column(db.Float(precision=2, asdecimal=False))
     elevation = db.Column(db.Integer,nullable=False)
     difficulty = db.Column(db.String(100),nullable=False)
-    lat=db.Column(db.String(100),nullable=False)
-    log=db.Column(db.String(100),nullable=False)
+    lat=db.Column(db.Float(precision=12, asdecimal=False),nullable=False)
+    log=db.Column(db.Float(precision=12, asdecimal=False),nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 
