@@ -1,4 +1,5 @@
 const GET_ACTIVITY = "activity/GET_ACTIVITY"
+const GET_ACTIVITY_DETAIL = "activity/GET_ACTIVITY_DETAIL"
 const CREATE_ACTIVITY = "activity/CREATE_ACTIVITY"
 const DELETE_ACTIVITY = "activity/DELETE_ACTIVITY"
 const UPDATE_ACTIVITY = "activity/UPDATE_ACTIVITY"
@@ -9,6 +10,14 @@ const getActivities = (activities) =>{
       activities
     }
   }
+
+const getActivitYDetail = (activity) =>{
+    return {
+      type: GET_ACTIVITY_DETAIL,
+      activity
+    }
+  }
+
 
 const createActivity = (activity) =>{
     return {
@@ -37,6 +46,16 @@ export const getActivitiesThunk = (trailId) => async dispatch => {
     if (response.ok) {
       const activities = await response.json();
       dispatch(getActivities(activities))
+    }
+
+    return response
+  }
+
+export const getActivityDetailThunk = (trailId,activityId) => async dispatch => {
+    const response = await fetch(`/api/trails/${trailId}/activities/${activityId}`);
+    if (response.ok) {
+      const activity = await response.json();
+      dispatch(getActivitYDetail(activity))
     }
 
     return response
@@ -100,8 +119,13 @@ export const deleteActivityThunk = (trailId,activityId) => async dispatch => {
         let newState;
         switch (action.type) {
           case GET_ACTIVITY: {
-            newState = action.activities;
+            newState = action.activities.Activities;
             return newState;
+          }
+          case GET_ACTIVITY_DETAIL: {
+            newState = {}
+            newState[action.activity.id] = action.activity
+            return newState
           }
           case CREATE_ACTIVITY: {
             newState = {...state};

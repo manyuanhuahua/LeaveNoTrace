@@ -9,8 +9,8 @@ def seed_parks():
         contact = "209-372-0200",
         state = "California",
         country = "United States of America",
-        lat = "37.89579591469285",
-        log = "-119.53329183222338",
+        lat = 37.89579591469285,
+        log = -119.53329183222338,
         park_originlinks = "https://www.nps.gov/yose/index.htm",
         park_hours = "dawn - dusk"
     )
@@ -23,8 +23,8 @@ def seed_parks():
         contact = "360-569-6600",
         state = "Washington",
         country = "United States of America",
-        lat = "46.89872106336748",
-        log = "-121.728685937905",
+        lat = 46.89872106336748,
+        log = -121.728685937905,
         park_originlinks = "https://www.nps.gov/mora/index.htm",
         park_hours = "dawn - dusk"
     )

@@ -36,6 +36,7 @@ const NavBar = () => {
           <NavLink to='/trails' exact={true} activeClassName='active'>
             Trails
           </NavLink>
+          
         </li>
         <li>
           <LogoutButton />

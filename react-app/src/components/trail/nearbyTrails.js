@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {getNearbyTrailsThunk} from "../../store/trail"
+import { Rating } from 'react-simple-star-rating'
+import handleRating from '../../helper/StarConvert';
+
 
 function NearbyTrails({parkId,trailId}) {
     const dispatch = useDispatch();
@@ -15,6 +18,7 @@ function NearbyTrails({parkId,trailId}) {
 
 
 
+
   return (trailsIsLoaded &&
     <div className='trailList-container'>
         {trailsList.map(trail =>
@@ -23,7 +27,12 @@ function NearbyTrails({parkId,trailId}) {
                     <img className="trail-img" alt="" src={trail.preview_img}></img>
                 </div>
                 <div className='bot-text'>
-                    <p><span>{trail.difficulty}</span><span>{trail.avgRating}</span><span>(</span>{trail.totalReviews}<span>)</span></p>
+                    <div><span>{trail.difficulty}</span>
+                    <div className='trail-avg-rating'>
+                        <Rating readonly={true} ratingValue={handleRating(trail.avgRating)} allowHalfIcon={true}/>
+                            <span>{`Rating:${trail.avgRating}`}</span>
+                    </div>
+                    <span>(</span>{trail.totalReviews}<span>)</span></div>
                     <p>{trail.park.name}</p>
                     <p>{trail.length}</p>
                 </div>

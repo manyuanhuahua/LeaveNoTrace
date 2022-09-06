@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 896a9954147e
+Revision ID: 2bdca72db9aa
 Revises: 
-Create Date: 2022-09-01 14:19:42.849848
+Create Date: 2022-09-05 22:28:18.168542
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '896a9954147e'
+revision = '2bdca72db9aa'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,8 +27,8 @@ def upgrade():
     sa.Column('contact', sa.String(length=50), nullable=True),
     sa.Column('state', sa.String(length=50), nullable=True),
     sa.Column('country', sa.String(length=50), nullable=True),
-    sa.Column('lat', sa.String(length=100), nullable=False),
-    sa.Column('log', sa.String(length=100), nullable=False),
+    sa.Column('lat', sa.Float(precision=12), nullable=False),
+    sa.Column('log', sa.Float(precision=12), nullable=False),
     sa.Column('park_originlinks', sa.String(length=500), nullable=True),
     sa.Column('park_hours', sa.String(length=100), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
@@ -59,8 +59,8 @@ def upgrade():
     sa.Column('length', sa.Float(precision=2), nullable=True),
     sa.Column('elevation', sa.Integer(), nullable=False),
     sa.Column('difficulty', sa.String(length=100), nullable=False),
-    sa.Column('lat', sa.String(length=100), nullable=False),
-    sa.Column('log', sa.String(length=100), nullable=False),
+    sa.Column('lat', sa.Float(precision=12), nullable=False),
+    sa.Column('log', sa.Float(precision=12), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['park_id'], ['parks.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id'),
@@ -71,10 +71,13 @@ def upgrade():
     sa.Column('trail_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
-    sa.Column('ori_lat', sa.String(length=255), nullable=False),
-    sa.Column('ori_log', sa.String(length=255), nullable=False),
-    sa.Column('des_lat', sa.String(length=255), nullable=False),
-    sa.Column('des_log', sa.String(length=255), nullable=False),
+    sa.Column('ori_lat', sa.Float(precision=12), nullable=False),
+    sa.Column('ori_log', sa.Float(precision=12), nullable=False),
+    sa.Column('des_lat', sa.Float(precision=12), nullable=False),
+    sa.Column('des_log', sa.Float(precision=12), nullable=False),
+    sa.Column('distance', sa.String(length=100), nullable=False),
+    sa.Column('duration', sa.String(length=100), nullable=False),
+    sa.Column('static_url', sa.String(length=500), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['trail_id'], ['trails.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),

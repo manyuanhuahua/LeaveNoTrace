@@ -156,6 +156,23 @@ def get_all_activities(trailId):
     return {'Activities':res}
 
 
+#get an activity detail
+@trail_routes.route('/<int:trailId>/activities/<int:activityId>')
+@login_required
+def get_activity_detail(trailId,activityId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    activity= Activity.query.get(activityId)
+    if not activity:
+        return {'errors':['Activity can not be found']},404
+
+
+    activity_dict = activity.to_dict()
+    return activity_dict
+
+
 #create an activity
 @trail_routes.route('/<int:trailId>/activities/new', methods=["POST"])
 @login_required
@@ -173,7 +190,10 @@ def create_activity(trailId):
             ori_lat=form.data['ori_lat'],
             ori_log=form.data['ori_log'],
             des_lat=form.data['des_lat'],
-            des_log=form.data['des_log']
+            des_log=form.data['des_log'],
+            distance=form.data['distance'],
+            duration=form.data['duration'],
+            static_url=form.data['static_url']
         )
         activity.trail_id=trailId
         activity.user_id=current_user.id
@@ -184,7 +204,7 @@ def create_activity(trailId):
 
         res = activity.to_dict()
         return res
-    return {'errors':['rating is required']},400
+    return {'errors':['input error']},400
 
 
 #update an activity
@@ -211,12 +231,15 @@ def update_activity(trailId,activityId):
         activity.ori_log=form.data['ori_log']
         activity.des_lat=form.data['des_lat']
         activity.des_log=form.data['des_log']
+        activity.distance=form.data['distance']
+        activity.duration=form.data['duration']
+        activity.static_url=form.data['static_url']
 
         db.session.commit()
 
         res = activity.to_dict()
         return res
-    return {'errors':['rating is required']},400
+    return {'errors':['input error']},400
 
 #delete an activity
 @trail_routes.route('/<int:trailId>/activities/<int:activityId>', methods=["DELETE"])

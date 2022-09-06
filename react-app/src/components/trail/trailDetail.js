@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams} from "react-router-dom";
+import { NavLink, useParams,Link} from "react-router-dom";
 import {getTrailDetailThunk} from "../../store/trail"
+import CreateReviewModal from '../modals/CreateReviewModal';
 import ReviewList from '../review/reviewList';
 import NearbyTrails from './nearbyTrails';
+import ActivityList from '../map/ActivityList';
+import CreateActivity from '../form/createActivity';
 
 function TrailDetail() {
     const dispatch = useDispatch();
@@ -12,6 +15,7 @@ function TrailDetail() {
     const trail = Object.values(trailObj)[0];
     // const session = useSelector(state => state.session.user);
     const [trailIsLoaded, setTrailsIsLoaded] = useState(false);
+    const [createModal, setCreateModal] = useState(false);
 
 
 
@@ -19,14 +23,21 @@ function TrailDetail() {
         dispatch(getTrailDetailThunk(trailId)).then(() => setTrailsIsLoaded(true));
     }, [dispatch,trailId]);
 
-    console.log('tag--------',trail)
+    if(!trail){
+        return null
+    }
 
 
 
-    return (trailIsLoaded &&
+
+
+
+    return (trailIsLoaded && trail && (
         <div className='main-container'>
             <div className='top-box'>
-                <div className='pre-img'></div>
+                <div className='pre-img'>
+                    <img className='trail-preview' src={trail.preview_img} alt='' />
+                </div>
                 <h2>{trail.name}</h2>
                 <div className='rate'>
                 <p>{trail.difficulty}</p>
@@ -55,10 +66,9 @@ function TrailDetail() {
                             </div>
                         </div>
                         <div className='tags'>
-
-                            {/* {trail.tags.map((tag)=>(
-                                <p>{tag}</p>
-                            ))} */}
+                            {trail.tags.map((tag,index)=>(
+                                <p key={index}>{tag}</p>
+                            ))}
                         </div>
 
                     </div>
@@ -75,15 +85,20 @@ function TrailDetail() {
                             <h1>{trail.avgRating}</h1>
                             <p>{trail.totalReviews}Review(s)</p>
                         </div>
-                        <div className='write-review'>
-                                Write review
-                        </div>
+                        <CreateReviewModal trail={trail} createModal={createModal} setCreateModal={setCreateModal} />
+                        <Link to={`/trails/${trail.id}/activities/new`} trail={trail} exact={true} activeClassName='active'>
+                             Create map
+                        </Link>
+
 
                     </div>
+
                     <div className='review-list'>
                         <ReviewList trailId={trailId}/>
                     </div>
-
+                    <div className='activity-list'>
+                        <ActivityList trailId={trailId}/>
+                    </div>
                 </div>
                 <div className='mid-right'>
                     <div className='static-map'></div>
@@ -97,7 +112,7 @@ function TrailDetail() {
             </div>
         </div>
 
-      );
+    ));
 }
 
 export default TrailDetail;
