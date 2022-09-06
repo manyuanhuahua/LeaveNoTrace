@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from "../../context/Modal";
-import EditReviewForm from '../form/editReviewForm';
+import EditReviewForm from '../form/editReview';
 
 
 function EditReviewModal({review,editModal,setEditModal}){

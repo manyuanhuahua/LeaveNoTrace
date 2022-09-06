@@ -25,14 +25,14 @@ function TrailList() {
                 <NavLink to={`/trails/${trail.id}`}>
                     <img className="trail-img" alt="" src={trail.preview_img}></img>
                 </NavLink>
-                <p>
-
+                <div>
                     <div className='trail-avg-rating'>
                         <Rating readonly={true} ratingValue={handleRating(trail.avgRating)} allowHalfIcon={true}/>
                             <span>{`Rating:${trail.avgRating}`}</span>
 
                     </div>
-                <span>(</span>{trail.totalReviews}<span>)</span></p>
+                <span>(</span>{trail.totalReviews}<span>)</span>
+                </div>
                 <p>{trail.difficulty}</p>
                 <p>{trail.name}</p>
                 <p>{trail.length}</p>

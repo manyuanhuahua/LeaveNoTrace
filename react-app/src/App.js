@@ -9,10 +9,12 @@ import UsersList from './components/UsersList';
 import ParkList from './components/park/parkList';
 import TrailList from './components/trail/trailList';
 import ParkDetail from './components/park/parkDetail';
+import CreateActivity from './components/form/createActivity';
 
 import User from './components/User';
 import { authenticate } from './store/session';
 import TrailDetail from './components/trail/trailDetail';
+import EditActivity from './components/form/editActivity';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,6 +58,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/parks/:parkId' exact={true} >
           <ParkDetail />
+        </ProtectedRoute>
+        <ProtectedRoute path='/trails/:trailId/activities/new' exact={true} >
+          <CreateActivity />
+        </ProtectedRoute>
+        <ProtectedRoute path='/trails/:trailId/activities/:activityId' exact={true} >
+          <EditActivity />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>

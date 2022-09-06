@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from '../../context/Modal';
-import DeleteReviewAlarm from '../form/deleteAlarm';
+import DeleteReviewAlarm from '../form/deleteReview';
 
 
 function DeleteReviewModal({review,deleteModal,setDeleteModal}){

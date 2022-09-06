@@ -119,7 +119,7 @@ export const deleteActivityThunk = (trailId,activityId) => async dispatch => {
         let newState;
         switch (action.type) {
           case GET_ACTIVITY: {
-            newState = action.activities;
+            newState = action.activities.Activities;
             return newState;
           }
           case GET_ACTIVITY_DETAIL: {
