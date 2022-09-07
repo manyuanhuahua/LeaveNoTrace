@@ -1,25 +1,52 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
+  const history = useHistory()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+
+  const demo = {
+    email: "demo@aa.io",
+    password:"password"
+  }
+
+  const handleDemo = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(login(demo.email,demo.password)).catch(
+      async (res) => {
+        const data  = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      }
+      ).then(()=>history.push('/currentUser'));
+    };
+
+
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
+    return await dispatch(login(email, password)).catch(
+      async (res) => {
+        // console.log("in the catch")
+
+        const data  = await res.json();
+
+        // console.log("data.error", data.errors)
+
+        if (data && data.errors) setErrors(data.errors);
+
+      }).then(()=>history.push('/currentUser'));
     }
-  };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+
   };
 
   const updatePassword = (e) => {
@@ -57,7 +84,11 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
+        <button type="submit" onClick={handleDemo}>Demo User</button>
       </div>
+      <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
     </form>
   );
 };
