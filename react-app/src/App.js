@@ -67,7 +67,7 @@ function App() {
         <ProtectedRoute path='/trails/:trailId/activities/:activityId' exact={true} >
           <EditActivity />
         </ProtectedRoute>
-        <Route path='/home' exact={true} >
+        <Route path='/' exact={true} >
           <Main />
         </Route>
         <Route path='/explore' exact={true} >
