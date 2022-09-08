@@ -22,10 +22,13 @@ function ParkList() {
                 <NavLink to={`/parks/${park.id}`}>
                     <img className="park-img" alt="" src={park.preview_img}></img>
                 </NavLink>
-                <p><span>{park.avgRating}</span><span>(</span>{park.totalReviews}<span>)</span></p>
+                <div className='park-list-content'>
+                <p>Avg raing:{park.avgRating}</p>
+                <p>total ratings:{park.totalReviews}</p>
                 <p>{park.name}</p>
                 <p>{park.state}</p>
-                <p>{park.acreage}</p>
+                <p>{park.acreage} acres</p>
+                </div>
             </div>)
             )
         }

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory, useParams,Link, Route} from "react-router-dom";
+import { NavLink, Link} from "react-router-dom";
 import {getActivitiesThunk} from "../../store/activity"
 
 import { Modal } from '../../context/Modal'
-import EditActivity from '../form/editActivity';
+
 import DeleteActivityAlarm from '../form/deleteActivity';
 
 
@@ -12,12 +12,10 @@ import DeleteActivityAlarm from '../form/deleteActivity';
 
 function ActivityList({trailId}) {
     const dispatch = useDispatch();
-    const history = useHistory()
     const activities = useSelector(state => state.activity);
     const session = useSelector(state => state.session.user);
     const [activityIsLoaded, setActivityIsLoaded] = useState(false);
-    const activityList = Object.values(activities).reverse();
-    const [editModal, setEditModal] = useState(false);
+    const activityList = Object.values(activities).reverse()
     const [deleteModal, setDeleteModal] = useState(false);
 
 
@@ -25,7 +23,7 @@ function ActivityList({trailId}) {
 
     useEffect(() => {
         dispatch(getActivitiesThunk(trailId)).then(() => setActivityIsLoaded(true));
-    }, [dispatch]);
+    }, [dispatch,trailId]);
     // console.log('activities--------',activityList)
     return (activityIsLoaded
         &&
@@ -38,7 +36,7 @@ function ActivityList({trailId}) {
                     <img className="activity-user-profile" alt="" src={activity.user.profileImg}></img>
                     <p>{activity.user.name}</p>
                     <p>{activity.createdAt}</p>
-                    {(session.id == activity.user.id) && (
+                    {(session.id === activity.user.id) && (
                         <>
                         {/* <Route path={`/trails/${trailId}/activities/${activity.id}`}>
                             Edit

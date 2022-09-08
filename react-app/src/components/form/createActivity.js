@@ -17,7 +17,7 @@ import {getTrailDetailThunk} from "../../store/trail"
 
 function CreateActivity(){
     const history = useHistory()
-    const {trailId,activityId} = useParams()
+    const {trailId} = useParams()
     const {isLoaded} = useJsApiLoader({
       googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     })
@@ -55,6 +55,7 @@ function CreateActivity(){
     if(!isLoaded){
       return <MapLoading />
     }
+
 
 
 
@@ -159,7 +160,7 @@ function CreateActivity(){
           duration:duration,
           static_url:mapUrl
         };
-        console.log("newActivity------",newActivity)
+        // console.log("newActivity------",newActivity)
         dispatch(createActivityThunk(trailId,newActivity))
             .then(
                 async (res) => {
@@ -192,7 +193,6 @@ function CreateActivity(){
           onClick={(e)=> addMarker(e.latLng.toJSON())
             // console.log("markers--------",markers)
           }
-
         >
 
 
@@ -267,13 +267,19 @@ function CreateActivity(){
           </div>
 
           <div className='map-buttons'>
-              <button onClick={()=> displayRoute(markers[0].coords,markers[1].coords)}>Display</button>
+              <button type='button' onClick={()=>{
+                if(markers.length<2){
+                  setErrors(['Please click map to set your origin and destination points'])
+                }else{
+                  displayRoute(markers[0]?.coords,markers[1]?.coords)
+                }
+                }}>Display</button>
               <button type='submit'onClick={handleSubmit}>Create</button>
               {/* <button onClick={hancleClear}>Clear</button> */}
-              <button onClick={hancleCancel}>Cancel</button>
+              <button type='button' onClick={hancleCancel}>Cancel</button>
 
 
-              <button onClick={()=> map.panTo({lat:trail.lat,lng:trail.log})}>Reset Center</button>
+              <button type='button' onClick={()=> map.panTo({lat:trail.lat,lng:trail.log})}>Reset Center</button>
           </div>
           <ul>
               {errors.map((error, idx) => (
