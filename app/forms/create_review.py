@@ -5,4 +5,4 @@ from app.models import Review
 
 class CreateReviewForm(FlaskForm):
     content = StringField('content')
-    rating = IntegerField('rating',validators=[DataRequired()])
+    rating = IntegerField('rating',validators=[DataRequired(message='Rating is required')])
