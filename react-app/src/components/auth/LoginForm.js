@@ -27,7 +27,7 @@ const LoginForm = () => {
           setErrors(data.errors);
 
         }else{
-          history.push('/home')
+          history.push('/')
         }
       }
       )
@@ -47,7 +47,7 @@ const LoginForm = () => {
         if (res && res.errors){
           setErrors(res.errors)
         }else{
-          history.push('/home')
+          history.push('/')
         }
         // {
 
@@ -71,7 +71,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/home' />;
+    return <Redirect to='/' />;
   }
 
   return (
