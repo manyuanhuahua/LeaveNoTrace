@@ -50,7 +50,7 @@ export const login = (email, password) => async (dispatch) => {
     const data = await response.json();
     if (data.errors) {
       // console.log('in thunk---',data.errors)
-      return data.errors;
+      return data;
     }
   } else {
     return ['An error occurred. Please try again.']

@@ -40,18 +40,18 @@ const LoginForm = () => {
     setErrors([]);
         console.log("in the catch")
 
-    return await dispatch(login(email, password)).catch(
+    return await dispatch(login(email, password)).then(
       async (res) => {
-        console.log("in the catch", res)
-
-        const data  = await res.json();
-        console.log("in form data", data)
-
-
-        if (data && data.errors) setErrors(data.errors)
+        // const data  = await res.json();
+        // console.log("in form data", data)
+        if (res && res.errors){
+          setErrors(res.errors)
+        }else{
+          history.push('/home')
+        }
         // {
 
-          console.log("in form data.error", data.errors)
+          // console.log("in form data.error", res.errors)
           // console.log('error----',errors)
         // }else{
         //   history.push('/home')
@@ -102,8 +102,10 @@ const LoginForm = () => {
           required={true}
         />
         </label>
+        <div className='login-buttons'>
         <button className='submit' type='submit'>Login</button>
         <button className='demo' type="submit" onClick={handleDemo}>Demo User</button>
+        </div>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>

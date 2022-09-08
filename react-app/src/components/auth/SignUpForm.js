@@ -108,7 +108,7 @@ const SignUpForm = () => {
           required={true}
         ></input>
         </label>
-      <button className='submit' type='submit'>Sign Up</button>
+      <button className='signup-submit' type='submit'>Sign Up</button>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>

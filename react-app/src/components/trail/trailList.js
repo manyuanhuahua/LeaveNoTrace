@@ -28,9 +28,9 @@ function TrailList() {
                 <div className='park-list-content'>
                     <div className='trail-avg-rating'>
                         <Rating readonly={true} ratingValue={handleRating(trail.avgRating)} allowHalfIcon={true}/>
-                            <span>{`Rating:${trail.avgRating}`}</span>
+                            <span>{`${trail.avgRating}`}</span>
                     </div>
-                <span>(</span>{trail.totalReviews}<span>)</span>
+                <p>Total Reviews: {trail.totalReviews}</p>
                 <p>{trail.difficulty}</p>
                 <p>{trail.name}</p>
                 <p>{trail.length}</p>

@@ -28,6 +28,8 @@ function Explore() {
 
             </div>
             <div className='explore-trails'>
+                <h2>Explore Trails</h2>
+
                 <TrailList />
             </div>
 
