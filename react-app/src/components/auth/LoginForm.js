@@ -23,25 +23,42 @@ const LoginForm = () => {
     return dispatch(login(demo.email,demo.password)).catch(
       async (res) => {
         const data  = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        if (data && data.errors){
+          setErrors(data.errors);
+
+        }else{
+          history.push('/home')
+        }
       }
-      ).then(()=>history.push('/currentUser'));
+      )
+      // .then(()=>history.push('/home'));
     };
 
 
   const onLogin = async (e) => {
     e.preventDefault();
+    setErrors([]);
+        console.log("in the catch")
+
     return await dispatch(login(email, password)).catch(
       async (res) => {
-        // console.log("in the catch")
+        console.log("in the catch", res)
 
         const data  = await res.json();
+        console.log("in form data", data)
 
-        // console.log("data.error", data.errors)
 
-        if (data && data.errors) setErrors(data.errors);
+        if (data && data.errors) setErrors(data.errors)
+        // {
 
-      }).then(()=>history.push('/currentUser'));
+          console.log("in form data.error", data.errors)
+          // console.log('error----',errors)
+        // }else{
+        //   history.push('/home')
+        // } ;
+
+      })
+      // .then(()=>history.push('/home'));
     }
 
   const updateEmail = (e) => {
@@ -54,41 +71,43 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+    <form onSubmit={onLogin} className='form'>
+      <>
+        <h1>Log In</h1>
+        <label htmlFor='email'>
+          {/* <span>Email</span> */}
         <input
           name='email'
           type='text'
           placeholder='Email'
           value={email}
           onChange={updateEmail}
+          required={true}
         />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+        </label>
+
+
+        <label htmlFor='password'>
+          {/* <span>Password</span> */}
         <input
           name='password'
           type='password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
+          required={true}
         />
-        <button type='submit'>Login</button>
-        <button type="submit" onClick={handleDemo}>Demo User</button>
-      </div>
+        </label>
+        <button className='submit' type='submit'>Login</button>
+        <button className='demo' type="submit" onClick={handleDemo}>Demo User</button>
       <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-          </ul>
+        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul>
+    </>
     </form>
   );
 };

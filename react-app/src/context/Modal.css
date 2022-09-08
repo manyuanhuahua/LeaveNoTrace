@@ -7,7 +7,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 768px;
+  /* width: fit-content; */
 }
+
+
 
 #modal-background {
   position: fixed;
@@ -18,7 +22,7 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-#modal-content {
+/* #modal-content {
   position: absolute;
   background-color: rgb(255, 255, 255);
-}
+} */

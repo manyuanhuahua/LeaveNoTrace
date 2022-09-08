@@ -1,0 +1,17 @@
+.explore-parks{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 50px;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #333;
+}
+
+.explore-trails{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 50px;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #333;
+}

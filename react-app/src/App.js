@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -11,10 +9,14 @@ import TrailList from './components/trail/trailList';
 import ParkDetail from './components/park/parkDetail';
 import CreateActivity from './components/form/createActivity';
 
+
 import User from './components/User';
 import { authenticate } from './store/session';
 import TrailDetail from './components/trail/trailDetail';
 import EditActivity from './components/form/editActivity';
+
+import Main from './components/Home';
+import Explore from './components/explore/explore';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,12 +37,12 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
+        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
@@ -65,9 +67,12 @@ function App() {
         <ProtectedRoute path='/trails/:trailId/activities/:activityId' exact={true} >
           <EditActivity />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path='/home' exact={true} >
+          <Main />
+        </Route>
+        <Route path='/explore' exact={true} >
+          <Explore />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

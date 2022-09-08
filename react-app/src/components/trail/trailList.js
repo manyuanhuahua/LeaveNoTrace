@@ -21,21 +21,20 @@ function TrailList() {
   return (trailsIsLoaded &&
     <div className='trailList-container'>
         {trailsList.map(trail => (
-            <div className="trail-img" key={trail.id}>
+            <div className="img-container" key={trail.id}>
                 <NavLink to={`/trails/${trail.id}`}>
                     <img className="trail-img" alt="" src={trail.preview_img}></img>
                 </NavLink>
-                <div>
+                <div className='park-list-content'>
                     <div className='trail-avg-rating'>
                         <Rating readonly={true} ratingValue={handleRating(trail.avgRating)} allowHalfIcon={true}/>
                             <span>{`Rating:${trail.avgRating}`}</span>
-
                     </div>
                 <span>(</span>{trail.totalReviews}<span>)</span>
-                </div>
                 <p>{trail.difficulty}</p>
                 <p>{trail.name}</p>
                 <p>{trail.length}</p>
+                </div>
             </div>)
             )
         }

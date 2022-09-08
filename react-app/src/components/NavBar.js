@@ -1,69 +1,93 @@
-
 import React, {useState} from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
+import videoHome from "../assets/homeVideo.mp4"
 import LogoutButton from './auth/LogoutButton';
 import { Modal } from '../context/Modal';
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 import { useSelector } from 'react-redux';
+import SwitchForm from './auth/switchForm';
+import "./style/nav.css"
 
-const NavBar = () => {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
 
-  const user = useSelector(state => state.session.user);
+const NavBar = () =>{
+    const [showLogin, setShowLogin] = useState(false);
+    const [showSignup, setShowSignup] = useState(false);
+    const [showParks, setShowParks] = useState(false);
+    const [showTrails, setTrails] = useState(false);
+    const history = useHistory()
 
-  // const loggedIn = ()=>{
-  //   setShowModal(false)
-  // }
 
-  return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} >
-            Home
-          </NavLink>
-        </li>
-        <li>
-        <button className='login-button' onClick={() => setShowLogin(true)}>Log In</button>
-            {showLogin && (!user) && (!showSignup) && (
-              <Modal onClose={() => setShowLogin(false)}>
-                <LoginForm />
-              </Modal>
-            )}
+    const user = useSelector(state => state.session.user);
 
-        </li>
-        <li>
-        <button className='signup-button' onClick={() => setShowSignup(true)}>Sign up</button>
-            {showSignup && (!user) && (!showLogin) && (
-              <Modal onClose={() => setShowSignup(false)}>
-                <SignUpForm />
-              </Modal>
-            )}
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} >
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/parks' exact={true} >
-            Parks
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/trails' exact={true} >
-            Trails
-          </NavLink>
+    return (
+        <div className='main-container'>
+            <div className='nav-bar'>
+                <nav>
+                    <div onClick={() => history.push('/home')} exact={true} >
+                      <h3 className='logo'>LeaveNoTrace</h3>
+                    </div>
+                    <ul>
+                    <li>
+                      <Link className='button' to='/home' exact={true} >
+                        Home
+                      </Link>
 
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
-    </nav>
-  );
+                    </li>
+                    {(!user) && (
+                      <>
+
+                          <li className='forms-modal'>
+                            <div className='button' onClick={() => setShowLogin(true)}>Login</div>
+                                {showLogin && (!user) && (!showSignup) && (
+                                <Modal className='forms-modal' onClose={() => setShowLogin(false)}>
+                                    <SwitchForm />
+                                    {/* <LoginForm /> */}
+                                </Modal>
+                                )}
+
+                        </li>
+                        {/* <li>
+                            <div className='button' onClick={() => setShowSignup(true)}>Signup</div>
+                                {showSignup && (!user) && (!showLogin) && (
+                                <Modal onClose={() => setShowSignup(false)}>
+                                    <SignUpForm />
+                                </Modal>
+                                )}
+                        </li> */}
+                        {/* <li>
+                          <Link to='/switch'>
+                                  switch
+                          </Link>
+                          </li> */}
+
+                      </>
+                    )}
+                      {user && (
+                        <>
+                          <li>
+                              <Link className='button' to='/parks' exact={true} >
+                                  Parks
+                              </Link>
+                          </li>
+                          <li>
+
+                              <Link className='button' to='/trails' exact={true} >
+                                  Trails
+                              </Link>
+                          </li>
+                          <li>
+                            <div className='button'>
+                                <LogoutButton />
+                            </div>
+                          </li>
+                        </>)}
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    )
 }
 
-export default NavBar;
+export default NavBar

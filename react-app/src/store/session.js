@@ -49,6 +49,7 @@ export const login = (email, password) => async (dispatch) => {
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
+      // console.log('in thunk---',data.errors)
       return data.errors;
     }
   } else {
