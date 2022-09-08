@@ -23,6 +23,7 @@ function ActivityList({trailId}) {
 
 
 
+
   return (activitiesIsLoaded &&
     <div className='parkList-container'>
         {activityList.map(activity => (
