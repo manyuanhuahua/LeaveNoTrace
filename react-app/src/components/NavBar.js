@@ -24,12 +24,12 @@ const NavBar = () =>{
         <div className='main-container'>
             <div className='nav-bar'>
                 <nav>
-                    <div onClick={() => history.push('/home')} exact={true} >
+                    <div onClick={() => history.push('/')} exact={true} >
                       <h3 className='logo'>LeaveNoTrace</h3>
                     </div>
                     <ul>
                     <li>
-                      <Link className='button' to='/home' exact={true} >
+                      <Link className='button' to='/' exact={true} >
                         Home
                       </Link>
 
