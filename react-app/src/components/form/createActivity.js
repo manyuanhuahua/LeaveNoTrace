@@ -1,13 +1,14 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useJsApiLoader,GoogleMap,Marker,DirectionsRenderer } from "@react-google-maps/api"
+import { useJsApiLoader,GoogleMap,Marker,DirectionsRenderer, LoadScript } from "@react-google-maps/api"
 import MapLoading from '../map/mapLoading';
 import "./map.css"
 import { useHistory, useParams } from 'react-router-dom';
 
 import {createActivityThunk} from "../../store/activity"
 import {getTrailDetailThunk} from "../../store/trail"
+import {addApiThunk} from "../../store/session"
 
 
 
@@ -18,10 +19,9 @@ import {getTrailDetailThunk} from "../../store/trail"
 function CreateActivity(){
     const history = useHistory()
     const {trailId} = useParams()
-    const {isLoaded} = useJsApiLoader({
-      googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    })
-
+    const apiKey = useSelector(state => state.session.api)
+    const [apiLoad, setApiLoad] = useState(false)
+  
     const dispatch = useDispatch();
     const [map, setMap] = useState(/** @type google.maps.Map */ (null));
     const [directionsResponse,setDirectionsResponse] = useState(null)
@@ -41,10 +41,16 @@ function CreateActivity(){
     const trail = Object.values(trailObj)[0];
     const [trailIsLoaded, setTrailsIsLoaded] = useState(false);
 
+
     useEffect(() => {
         dispatch(getTrailDetailThunk(trailId)).then(() => setTrailsIsLoaded(true));
     }, [dispatch,trailId]);
 
+    useEffect(() => {
+      dispatch(addApiThunk()).then(() => setApiLoad(true));
+  }, [dispatch]);
+
+  // console.log('api------',apiKey)
 
     const addMarker = (coords) => {
       setId((id)=>id+1);
@@ -52,16 +58,16 @@ function CreateActivity(){
     }
 
 
-    if(!isLoaded){
-      return <MapLoading />
-    }
+    // if(!isLoaded){
+    //   return <MapLoading />
+    // }
 
 
 
 
     const staticMap = (res) =>{
       let image = `https://maps.googleapis.com/maps/api/staticmap?size=500x500`
-      let APIKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+      let APIKey = apiKey
       let route = res.routes[0]
       const color = `&path=weight:8%7Ccolor:red%7C`
       const path = route.overview_polyline
@@ -85,8 +91,7 @@ function CreateActivity(){
       // setShowMarker(false)
 
 
-      console.log("ori in route------",origin)
-      console.log("des in route------",destination)
+
       const directionsService = new google.maps.DirectionsService();
       await directionsService.route({
           origin: origin,
@@ -96,9 +101,6 @@ function CreateActivity(){
       }).then((res) => {
           setDirectionsResponse(res);
           setmapUrl(staticMap(res))
-          // console.log("STATIC MAP------",mapUrl)
-          console.log("ori in route------",origin)
-          console.log("des in route------",destination)
           setOriLat(origin.lat)
           setOriLog(origin.lng)
           setDesLat(destination.lat)
@@ -176,12 +178,14 @@ function CreateActivity(){
 
   }
 
-  return trailIsLoaded && (
+  return trailIsLoaded && apiLoad && (
     <div className='main-box'>
 
       <div className='right-map-box'>
         {/* initMap */}
-
+        <LoadScript
+        googleMapsApiKey={apiKey}
+        >
         <GoogleMap
           center={{lat:trail.lat,lng:trail.log}}
           zoom={12}
@@ -191,7 +195,7 @@ function CreateActivity(){
           }}
           onLoad={map=>setMap(map)}
           onClick={(e)=> addMarker(e.latLng.toJSON())
-            // console.log("markers--------",markers)
+
           }
         >
 
@@ -214,6 +218,7 @@ function CreateActivity(){
 
           {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
         </GoogleMap>
+        </LoadScript>
         <div className='left-input-box'>
         <form className="create-activity-form" onSubmit={handleSubmit}>
           <div className='marker-coords'>

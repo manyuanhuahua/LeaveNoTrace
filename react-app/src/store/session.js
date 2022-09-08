@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const ADD_API = 'session/ADD_API';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -11,7 +12,25 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
+const addApi = (api) =>({
+  type:ADD_API,
+  api
+})
+
 const initialState = { user: null };
+
+
+export const addApiThunk = () => async (dispatch) => {
+  const response = await fetch('/api/auth/apikeys');
+
+  if (response.ok) {
+    const api = await response.json();
+    dispatch(addApi(api))
+  }
+
+  return response
+}
+
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -99,11 +118,17 @@ export const signUp = (username, email, password) => async (dispatch) => {
 }
 
 export default function reducer(state = initialState, action) {
+  let newState
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case ADD_API: {
+      newState = {...state};
+      newState['api'] = action.api
+      return newState
+    }
     default:
       return state;
   }
