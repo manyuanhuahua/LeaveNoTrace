@@ -267,7 +267,7 @@ function EditActivity(){
           </div>
 
           <div className='map-buttons'>
-              <button onClick={()=> displayRoute(markers[0].coords,markers[1].coords)}>Display</button>
+              <button type='button' onClick={()=> displayRoute(markers[0].coords,markers[1].coords)}>Display</button>
               <button type='submit'onClick={handleSubmit}>Update</button>
 
               <button onClick={hancleCancel}>Cancel</button>
