@@ -15,7 +15,7 @@ function ReviewList({trailId}) {
     const [deleteModal, setDeleteModal] = useState(false);
 
 
-    const reviewsList = Object.values(reviews);
+    const reviewsList = Object.values(reviews).reverse();
 
     useEffect(() => {
         dispatch(getReviewsThunk(trailId)).then(() => setReviewsIsLoaded(true));

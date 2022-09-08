@@ -265,9 +265,11 @@ function EditActivity(){
           <div className='map-buttons'>
 
               <button type='button' onClick={()=> displayRoute(markers[0].coords,markers[1].coords)}>Display</button>
+
               <button type='submit' onClick={handleSubmit}>Update</button>
 
               <button type='button' onClick={hancleCancel}>Cancel</button>
+
 
               <button type='button' onClick={()=> map.panTo({lat:activity.trail.lat,lng:activity.trail.lng})}>Reset Center</button>
           </div>

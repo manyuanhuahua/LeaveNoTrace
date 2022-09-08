@@ -1,0 +1,22 @@
+.trailList-container{
+    display: grid;
+    width: 940px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    height: auto;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .parkList-container .img-container{
+    width: 136.66px;
+    height: 136.66px;
+    object-fit: cover;
+} */
+
+.trailList-container .img-container .trail-img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
