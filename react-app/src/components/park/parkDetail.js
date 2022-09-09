@@ -28,18 +28,25 @@ function ParkDetail() {
 
 
     return (parksIsLoaded &&
-        <div className='main-container'>
-            <div className='top-box'>
-                <div className='pre-img'></div>
-                <div className='detail-text'></div>
+        <div className='park-detail-container'>
+            <div className='park-detail-top-box'>
+                <div className='pre-img'>
+                    <img className='park-detail-preview-img' src={park.preview_img} alt=''/>
+                </div>
+                <h1>{park.name}</h1>
+                <div className='park-avg-rating-reviews'>
+                    <div className='park-avg-rating'>Rating:{park.avgRating}</div>
+                    <div className='park-reviews'>{park.totalReviews} Review(s)</div>
+                </div>
+                <div className='detail-text'>{park.description}</div>
                 <div className='static-map'></div>
             </div>
-            <div className='mid-box'>
+            <div className='park-detail-mid-box'>
                 <h2>Park information</h2>
-                <div className='infor-box'>
+                <div className='info-box'>
                     <div className='acrage'>
                         <h4>Acreage:</h4>
-                        <p>{park.acreage}</p>
+                        <p>{park.acreage} acres</p>
                     </div>
                     <div className='contact'>
                         <h4>Contact:</h4>
@@ -56,20 +63,25 @@ function ParkDetail() {
                     </div>
                 </div>
             </div>
-            <div className='bom-box'>
+            <div className='park-detail-bom-box'>
                 {trailsList.map((trail,indiex) => (
                     <div className="trail-box" key={trail.id}>
                     <NavLink to={`/trails/${trail.id}`}>
                         <div className='left-img'>
                             <img className="trail-img" alt="" src={trail.preview_img}></img>
                         </div>
-                        <div className='right-text'>
-                        <p><span>{trail.difficulty}</span><span>{trail.avgRating}</span><span>(</span>{trail.totalReviews}<span>)</span></p>
-                        <h4>#{indiex}-{trail.name}</h4>
-                        <p>{park.name}</p>
-                        <p>{trail.length}</p>
-                        </div>
                     </NavLink>
+                        <div className='body-text'>
+                            <h3>#{indiex + 1}- {trail.name}</h3>
+                            <h4>{park.name}</h4>
+                            <div className='content'>
+                                <p>Difficulty: {trail.difficulty}</p>
+                                <p>Avg Rating: {trail.avgRating}</p>
+                                <p>({trail.totalReviews} Review(s))</p>
+                                <p>Length: {trail.length} mi</p>
+                            </div>
+                        </div>
+
             </div>)
             )
         }
