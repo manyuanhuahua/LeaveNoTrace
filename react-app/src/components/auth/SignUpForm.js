@@ -48,6 +48,11 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+  
+
+
+
+
   return (
     <div className=''>
     <form onSubmit={onSignUp} action='#' className='form'>

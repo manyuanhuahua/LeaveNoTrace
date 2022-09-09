@@ -6,6 +6,7 @@ import CreateReviewModal from '../modals/CreateReviewModal';
 import ReviewList from '../review/reviewList';
 import NearbyTrails from './nearbyTrails';
 import ActivityList from '../map/ActivityList';
+import {getReviewsThunk} from "../../store/review"
 import "../style/trail.css"
 
 function TrailDetail() {
@@ -18,14 +19,18 @@ function TrailDetail() {
     const [createModal, setCreateModal] = useState(false);
     const [showReview, setShowReview] = useState(true);
     const [showActivity, setShowActivity] = useState(false);
+    const reviews = useSelector(state => state.review);
+    const [reviewsIsLoaded, setReviewsIsLoaded] = useState(false);
 
-
+    useEffect(() => {
+        dispatch(getReviewsThunk(trailId)).then(() => setReviewsIsLoaded(true));
+    }, [dispatch,trailId]);
 
 
 
     useEffect(() => {
         dispatch(getTrailDetailThunk(trailId)).then(() => setTrailsIsLoaded(true));
-    }, [dispatch,trailId]);
+    }, [dispatch,trailId,reviews]);
 
     if(!trail){
         return null
@@ -36,7 +41,7 @@ function TrailDetail() {
 
 
 
-    return (trailIsLoaded && trail && (
+    return (trailIsLoaded && trail && reviewsIsLoaded && (
         <div className='trail-detail-main-container'>
             <div className='trail-detail-top-box'>
                 <div className='trail-detail-pre-img'>
@@ -77,16 +82,16 @@ function TrailDetail() {
                 <div className='bot-left-box'>
                         <div className='review-activity-bar'>
                             <div className='bar-review' onClick={()=>{setShowReview(true); setShowActivity(false)}}>
-                                Reviews
+                                Reviews<span>({trail.totalReviews})</span>
                             </div>
                             <div className='bar-activity' onClick={()=>{setShowReview(false); setShowActivity(true)}}>
-                                Activities
+                                Activities<span>({trail.totalActivities})</span>
                             </div>
                         </div>
 
                         <div className='rate-create'>
                             <div className='rate-display'>
-                                <h1>{trail.avgRating}</h1>
+                                <h1>{(trail.avgRating).toFixed(2)}</h1>
                                 <p>{trail.totalReviews} Review(s)</p>
                             </div>
                             <div className='create-button'>
@@ -102,7 +107,7 @@ function TrailDetail() {
                         </div>
                         <div className='left-list-box'>
                         {showReview && <div className='review-list'>
-                            <ReviewList trailId={trailId}/>
+                            <ReviewList trailId={trailId} reviews={reviews}/>
                         </div>}
                         {showActivity && <div className='activity-list'>
                             <ActivityList trailId={trailId}/>

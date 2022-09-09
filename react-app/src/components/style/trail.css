@@ -79,7 +79,7 @@
 }
 
 .nearby-trailList-container .nearby-trail-box .img-box .detail-content{
-    z-index: 1;
+    /* z-index: 1; */
     position: absolute;
     top: 0;
     right: 0;
@@ -264,6 +264,12 @@
     margin-right: 50px;
     cursor: pointer;
 }
+
+.trail-detail-main-container .trail-detail-bot-box .review-activity-bar .bar-activity{
+    margin-right: 50px;
+    cursor: pointer;
+}
+
 .trail-detail-main-container .trail-detail-bot-box .bot-left-box {
     width:900px;
     margin-left: 50px
