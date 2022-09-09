@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch} from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {creatReviewThunk} from "../../store/review"
 import { Rating } from 'react-simple-star-rating'
-
+import "./reviewForm.css"
 
 
 const CreateReviewForm = ({ trail,hideModal }) => {
@@ -16,6 +16,8 @@ const CreateReviewForm = ({ trail,hideModal }) => {
     const [rating, setRating] = useState(0)
 
     const [errors, setErrors] = useState([])
+    const [contentErrors, setContentErrors] = useState([])
+
 
     const handleRating = (rate) => {
         let score;
@@ -34,6 +36,15 @@ const CreateReviewForm = ({ trail,hideModal }) => {
         setRating(score)
     }
 
+    // useEffect(()=>{
+    //     setErrors([])
+    //     const error = []
+    //     if(content.length>10){
+    //         error.push('Maximum is 500 characters')
+
+    //     }
+    //     setContentErrors(error);
+    // },[content])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,42 +73,53 @@ const CreateReviewForm = ({ trail,hideModal }) => {
         hideModal()
       };
 
-    return (
-        <div className="create-form-box">
-            <div className="create-form-header">
-                <h3>{trail.name}</h3>
-            </div>
-            <div className="form-stars">
-            </div>
-            <div className="form-content">
-                <form className="create-review-form" onSubmit={handleSubmit}>
-                    <div className="create-form-content">
-                        <div className="star-rating">
-                            <Rating
-                                onClick={handleRating}
-                                rating={rating}
-                                fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
-                            />
-                        </div>
-                        <input
-                            type={'textarea'}
-                            placeholder="Share your thoughts about the trail so others know what to expect"
-                            value={content}
-                            onChange={e => setContent(e.target.value)}
-                        />
-                    </div>
-                    <div className="create-form-buttons">
-                        <button id='submit-review-button' type="submit" onClick={handleSubmit}>Add Review</button>
-                        <button id='cancel-review-button' type="button" onClick={handleCancel} >Cancel</button>
 
+
+    return (
+        <div className="create-form-container">
+            <div className='create-form-container-box'>
+                <div className='box-left'></div>
+                <div className='box-right'>
+                    <div className="form-content">
+                        <h3>{trail.name}</h3>
+                        <form className="create-review-form" onSubmit={handleSubmit}>
+                            <div className="create-form-content">
+                                <div className="star-rating">
+                                    <Rating
+                                        onClick={handleRating}
+                                        rating={rating}
+                                        fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
+                                    />
+                                </div>
+                                <textarea
+                                    className='content-field'
+                                    placeholder="Share your thoughts about the trail so others know what to expect"
+                                    value={content}
+                                    onChange={e => setContent(e.target.value)}
+                                />
+                                {contentErrors && <ul>
+                                {contentErrors.map((error, idx) => (
+                                    <li key={idx} >{error}</li>
+                                ))}
+                                </ul>
+                                }
+                            </div>
+                            <div className="create-form-buttons">
+                                <button id='submit-review-button' type="submit" onClick={handleSubmit}>Add Review</button>
+                                <button id='cancel-review-button' type="button" onClick={handleCancel} >Cancel</button>
+
+                            </div>
+                        </form>
+                            <ul>
+                                {errors.map((error, idx) => (
+                                    <li key={idx} >{error}</li>
+                                ))}
+                            </ul>
                     </div>
-                    <ul>
-                        {errors.map((error, idx) => (
-                            <li key={idx} >{error}</li>
-                        ))}
-                    </ul>
-                </form>
+                </div>
+
             </div>
+
             <div>
                 {/* <button onClick={history.goBack}>Cancel</button> */}
             </div>

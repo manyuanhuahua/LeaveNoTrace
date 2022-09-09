@@ -1,0 +1,112 @@
+.reviewList-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewList-container .review-container{
+    width: 500px;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0,0.1);
+    background: #fff;
+    padding: 20px;
+    margin: 15px;
+}
+
+.reviewList-container .review-container .review-owner{
+    display: flex;
+    flex-direction: row;
+    border: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+
+}
+
+.reviewList-container .review-container .review-owner .user-pro{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+.reviewList-container .review-container .review-owner .user-pro .pro-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.reviewList-container .review-container .review-owner .user-pro{
+    display: flex;
+    align-items: center;
+}
+
+.reviewList-container .review-container .review-owner .user-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewList-container .review-container .review-owner .user-info p{
+    color: #3d3d3d;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.reviewList-container .review-container .review-owner .modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+
+}
+
+.reviewList-container .review-container .review-owner .modal .edit-button{
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    width: 80px;
+    font-weight: 600;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #B2C582;
+    font-size: 12px;
+
+}
+
+.reviewList-container .review-container .review-owner .modal .delete-button{
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    width: 80px;
+    font-weight: 600;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #6a7351;
+    font-size: 12px;
+
+}
+
+.reviewList-container .review-container .review-rate-content{
+    color: #333;
+}
+
+.reviewList-container .review-container .review-rate-content .top-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-direction: row;
+    height: 100px;
+}
+
+.reviewList-container .review-container .review-rate-content .review-content{
+    overflow-wrap: break-word;
+    max-width: 480px;
+}

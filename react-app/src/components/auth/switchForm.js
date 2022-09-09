@@ -1,11 +1,14 @@
 import React, { useState,useEffect } from 'react';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
+import "../../assets/authformbg.jpg"
 import"./switch.css"
 
 const SwitchForm = () => {
     const [loginErrors, setLoginErrors] = useState([])
     const [signupErrors, setSignupErrors] = useState([])
+    const [imgs, setImgs] = useState([])
+
 
 
         const handleAdd = ()=>{
@@ -35,6 +38,7 @@ const SwitchForm = () => {
                 </div>
                 <div className='overlay-container'>
                     <div className='overlay'>
+                        <img src='../../assets/authformbg.jpg' alt='' style={{'background-repeat': 'no-repeat','background-size': 'cover'}}/>
                         <div className='overlay-left'>
                             <h1>Welcome Back!</h1>
                             <p>Just log in. We've missed you!</p>

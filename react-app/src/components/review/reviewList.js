@@ -4,7 +4,7 @@ import EditReviewModal from '../modals/EditReviewModal';
 import DeleteReviewModal from '../modals/DeleteReviewModal';
 import {getReviewsThunk} from "../../store/review"
 import { Rating } from 'react-simple-star-rating'
-
+import "../style/review.css"
 
 function ReviewList({trailId}) {
     const dispatch = useDispatch();
@@ -40,6 +40,11 @@ function ReviewList({trailId}) {
             return res
         }
 
+    const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
+
+    const imgError = (e) =>{
+          e.target.src = defaultImg
+    }
 
 
 
@@ -48,9 +53,15 @@ function ReviewList({trailId}) {
     <div className='reviewList-container'>
         {reviewsList.map(review => (
             <div className="review-container">
-                <div className='review-owner'>
+                <div className='top-box'>
+                    <div className='review-owner'>
                     <div className='user-pro'>
-                        <img className='pro-img' alt='' src={review.user.profileImage}/>
+
+                        <img className='pro-img' alt=''
+                        src={review.user.profileImage? review.user.profileImage : defaultImg}
+                        style={{backgroundImage:'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'}}
+                        onError={imgError}
+                        />
                     </div>
                     <div className='user-info'>
                         <p>{review.user.username}</p>
@@ -62,17 +73,20 @@ function ReviewList({trailId}) {
                             <DeleteReviewModal review={review} deleteModal={deleteModal} setDeleteModal={setDeleteModal} />
                         </div>
                         )}
+                    </div>
                 </div>
-                <div className='review-rate'>
+                <div className='review-rate-content'>
+                    <div className='rating-box'>
                     <Rating
                         readonly={true}
                         ratingValue={handleRating(review.rating)}
                         fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
                         // style={{ maxWidth:180 }}
                         />
-                    {/* {`Rating:${review.rating}`} */}
                     </div>
-                <div className='review-content'>{review.content}</div>
+                    {/* {`Rating:${review.rating}`} */}
+                    <div className='review-content'>{review.content}</div>
+                </div>
 
             </div>)
             )

@@ -21,7 +21,11 @@ function ActivityList({trailId}) {
     }, [dispatch,trailId,editModal]);
 
 
+    const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
 
+    const imgError = (e) =>{
+          e.target.src = defaultImg
+    }
 
 
   return (activitiesIsLoaded &&
@@ -30,6 +34,11 @@ function ActivityList({trailId}) {
             <div className="activity-container">
                 <div className='activity-owner'>
                     <div className='user-pro'>
+                        <img className='pro-img' alt=''
+                        src={activity.user.profileImage? activity.user.profileImage : defaultImg}
+                        style={{backgroundImage:'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'}}
+                        onError={imgError}
+                        />
                         <img className='pro-img' alt='' src={activity.user.profileImage}/>
                     </div>
                     <div className='user-info'>

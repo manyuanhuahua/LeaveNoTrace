@@ -30,7 +30,7 @@ def password_checker(form, field):
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired(),password_checker])
-    profile_img = StringField('profile image', validators=[DataRequired()])
+        'username', validators=[DataRequired(message='Username is required'), username_exists])
+    email = StringField('email', validators=[DataRequired(message='Email is required'), user_exists])
+    password = StringField('password', validators=[DataRequired(message='Password is required'),password_checker])
+    profile_img = StringField('profile image')

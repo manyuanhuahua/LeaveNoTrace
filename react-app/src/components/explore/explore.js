@@ -15,6 +15,9 @@ import "../style/trail.css"
 function Explore() {
 
 
+    
+
+
 
     return (
         <>

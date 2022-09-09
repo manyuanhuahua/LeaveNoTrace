@@ -7,6 +7,7 @@
     margin-bottom: 20px;
     justify-content: center;
     align-items: center;
+
 }
 
 /* .parkList-container .img-container{
@@ -19,4 +20,291 @@
     width: 300px;
     height: 300px;
     object-fit: cover;
+}
+
+.trail-detail-main-container .mid-box .mid-right .nearby-trail {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    box-sizing: border-box;
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.nearby-trailList-container {
+    margin: 30px;
+}
+
+.nearby-trailList-container .nearby-trail-box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box{
+    background: #000000;
+    position: relative;
+    flex: 1;
+    width: 250px;
+    height: 200px;
+    margin: 20px;
+    overflow: hidden;
+
+}
+
+/* .nearby-trailList-container .nearby-trail-box .img-box .nearby-trail-img{
+    object-fit: contain;
+} */
+
+.nearby-trailList-container .nearby-trail-box .img-box img{
+    opacity: 1;
+    position: relative;
+    vertical-align: top;
+    transition: 0.6s;
+    transition-property: opacity;
+    height: 100%;
+    width: 100%;
+    object-fit: cover
+
+    /* background: #50A7FF; */
+
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box:hover img{
+    opacity: 0.5;
+
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box .detail-content{
+    /* z-index: 1; */
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box .detail-content h3{
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin: 70px 10px 0 10px;
+    text-shadow: 1px 1px #000000;
+    transition-property: transform;
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box:hover .detail-content h3{
+    transform: translateY(-30px);
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box .detail-content p{
+    margin-left: 10px;
+    font-size: 14px;
+    text-align: left;
+    opacity: 0;
+    font-weight: 500;
+    transition: 0.6s;
+    transition-property: opacity, transform;
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box:hover .detail-content p{
+    opacity: 1;
+    transform: translateY(-10px);
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box .detail-content .trail-avg-rating{
+    position: relative;
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+    transition: 0.6s;
+    bottom: -40px;
+    transition-property: bottom;
+}
+
+.nearby-trailList-container .nearby-trail-box .img-box:hover .detail-content .trail-avg-rating{
+    bottom: 0;
+    margin: 10px 10px 20px 10px;
+}
+
+
+
+.trail-detail-main-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 80px;
+    min-width: 950px;
+    justify-items: center;
+    background: rgb(243, 239, 239);
+    /* padding: 0 20px; */
+}
+
+.trail-detail-main-container .trail-detail-top-box{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(90, 90, 90, 0.3);
+    margin-bottom: 30px;
+}
+
+.trail-detail-main-container .trail-detail-top-box .trail-detail-pre-img .trail-preview{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.trail-detail-main-container .trail-detail-top-box h1{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.13;
+    color: #414141;
+    margin: 10px 20px;
+}
+
+.trail-detail-main-container .trail-detail-top-box .rate{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    margin: 0 20px 10px 20px;
+}
+
+.trail-detail-main-container .trail-detail-top-box .rate p{
+    margin-bottom: 3px;
+}
+
+.trail-detail-main-container .mid-box {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 10px 20px;
+    overflow-wrap: break-word;
+}
+
+.trail-detail-main-container .mid-box {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 10px 20px;
+    overflow-wrap: break-word;
+}
+
+.trail-detail-main-container .mid-box .description{
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
+}
+
+.trail-detail-main-container .mid-box .info{
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr;
+    grid-gap: 20px;
+}
+
+.trail-detail-main-container .mid-box .info-box .len{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.trail-detail-main-container .mid-box .info-box .ele{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.trail-detail-main-container .mid-box .info p{
+    margin:5px 0;
+}
+
+.trail-detail-main-container .mid-box .tags .tag{
+    width: 140px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background: #97a675;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.trail-detail-main-container .mid-box .tags{
+    display: flex;
+    flex-direction: row;
+}
+
+.trail-detail-main-container .trail-detail-bot-box{
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 20px;
+}
+
+.trail-detail-main-container .trail-detail-bot-box .review-activity-bar{
+    grid-column: 1/2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.trail-detail-main-container .trail-detail-bot-box .review-activity-bar .bar-review{
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.trail-detail-main-container .trail-detail-bot-box .review-activity-bar .bar-activity{
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.trail-detail-main-container .trail-detail-bot-box .bot-left-box {
+    width:900px;
+    margin-left: 50px
+}
+
+.trail-detail-main-container .trail-detail-bot-box .bot-left-box .rate-create{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.trail-detail-main-container .trail-detail-bot-box .bot-left-box .rate-create .create-button .create-review{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    width: 200px;
+    font-weight: 600;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #B2C582;
+}
+
+
+.left-list-box .review-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.trail-detail-bot-box .bot-right{
+    border-left: 1px solid rgb(237, 226, 226);
 }

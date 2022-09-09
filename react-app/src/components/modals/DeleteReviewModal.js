@@ -1,14 +1,14 @@
 import React from 'react';
 import { Modal } from '../../context/Modal';
 import DeleteReviewAlarm from '../form/deleteReview';
-
+import "../style/review.css"
 
 function DeleteReviewModal({review,deleteModal,setDeleteModal}){
 
 
     return(
         <>
-            <button onClick={()=>setDeleteModal(true)}>Delete</button>
+            <div className='delete-button' onClick={()=>setDeleteModal(true)}>Delete</div>
             {deleteModal &&
                 <Modal onClose={()=>setDeleteModal(false)} >
                     <DeleteReviewAlarm hideModal={()=> setDeleteModal(false)} review={review} />
