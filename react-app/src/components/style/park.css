@@ -39,7 +39,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid ;
+    border-bottom: 1px solid rgba(90, 90, 90, 0.3);
     margin-bottom: 30px;
     /* background: red; */
 }
@@ -80,7 +80,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid ;
+    border-bottom: 1px solid rgba(90, 90, 90, 0.3);
     margin-bottom: 30px;
     /* background: red; */
 }

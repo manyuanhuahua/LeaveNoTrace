@@ -6,7 +6,7 @@ import CreateReviewModal from '../modals/CreateReviewModal';
 import ReviewList from '../review/reviewList';
 import NearbyTrails from './nearbyTrails';
 import ActivityList from '../map/ActivityList';
-
+import "../style/trail.css"
 
 function TrailDetail() {
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ function TrailDetail() {
 
 
     return (trailIsLoaded && trail && (
-        <div className='main-container'>
+        <div className='trail-detail-main-container'>
             <div className='top-box'>
                 <div className='pre-img'>
                     <img className='trail-preview' src={trail.preview_img} alt='' />
