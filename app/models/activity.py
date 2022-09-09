@@ -15,7 +15,7 @@ class Activity(db.Model):
     des_log=db.Column(db.Float(precision=12, asdecimal=False),nullable=False)
     distance=db.Column(db.String(100),nullable=False)
     duration=db.Column(db.String(100),nullable=False)
-    static_url=db.Column(db.String(500),nullable=False)
+    static_url=db.Column(db.String(3000),nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 
