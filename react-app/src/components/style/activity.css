@@ -1,0 +1,94 @@
+.activityList-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.activityList-container .activity-container{
+    width: 500px;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0,0.1);
+    background: #fff;
+    padding: 20px;
+    margin: 15px;
+}
+
+.activityList-container .activity-container .top-box .activity-owner{
+    display: flex;
+    flex-direction: row;
+    border: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+
+}
+
+.activityList-container .activity-container .top-box .activity-owner .user-pro{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+.activityList-container .activity-container .activity-owner .user-pro .pro-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.activityList-container .activity-container .activity-owner .user-pro{
+    display: flex;
+    align-items: center;
+}
+
+.activityList-container .activity-container .activity-owner .user-info{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+.activityList-container .activity-container .activity-owner .user-info p{
+    color: #3d3d3d;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.activityList-container .activity-container .activity-owner .button-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+
+}
+
+
+.activityList-container .activity-container .activity-owner button{
+    margin-bottom: 6px;
+    margin-top:6px;
+    text-transform: uppercase;
+    width: 80px;
+    font-weight: 600;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #6a7351;
+    font-size: 12px;
+    border: none;
+
+}
+
+
+
+.activityList-container .activity-container .activity-route{
+    width: 100%;
+    height: 100%;
+}
+
+.activityList-container .activity-container .activity-route .activity-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}

@@ -95,3 +95,48 @@
     border: 1px solid #fff;
     margin-right: 10px;
 }
+
+
+.delete-form-box {
+    width: 700px;
+    height:150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    background: rgba(234, 238, 226, 0.7);
+}
+
+.delete-form-box h2{
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.delete-form-box p{
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.delete-form-box .button-group{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.delete-form-box .button-group button{
+    text-transform: uppercase;
+    width: 100px;
+    font-weight: 300;
+    height: 30px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #B2C582;
+    border: 1px solid #fff;
+    margin-right: 10px;
+}

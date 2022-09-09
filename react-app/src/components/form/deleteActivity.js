@@ -39,10 +39,10 @@ const DeleteActivityAlarm = ({ activity,hideModal }) => {
       };
 
     return (
-        <div className="create-form-box">
+        <div className="delete-form-box">
             <form className="delete-form" onSubmit={handleDelete}>
-            <div className='delete-album-form'>
-            <h2>Delete Review</h2>
+            <div className='delete-form-content'>
+            <h2>Delete Activity</h2>
             <p>Are you sure you want to delete this activity? This action cannot be undone.</p>
             <div className='button-group'>
               <button type="submit" onClick={handleDelete}>Delete</button>

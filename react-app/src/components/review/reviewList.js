@@ -55,14 +55,14 @@ function ReviewList({trailId}) {
             <div className="review-container">
                 <div className='top-box'>
                     <div className='review-owner'>
-                    <div className='user-pro'>
+                        <div className='user-pro'>
 
-                        <img className='pro-img' alt=''
-                        src={review.user.profileImage? review.user.profileImage : defaultImg}
-                        style={{backgroundImage:'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'}}
-                        onError={imgError}
-                        />
-                    </div>
+                            <img className='pro-img' alt=''
+                            src={review.user.profileImage? review.user.profileImage : defaultImg}
+                            style={{backgroundImage:'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'}}
+                            onError={imgError}
+                            />
+                        </div>
                     <div className='user-info'>
                         <p>{review.user.username}</p>
                         <p>{review.createdAt}</p>

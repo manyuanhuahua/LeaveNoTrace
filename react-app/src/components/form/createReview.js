@@ -97,15 +97,15 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                                     value={content}
                                     onChange={e => setContent(e.target.value)}
                                 />
-                                {contentErrors && <ul>
+                                {/* {contentErrors && <ul>
                                 {contentErrors.map((error, idx) => (
                                     <li key={idx} >{error}</li>
                                 ))}
                                 </ul>
-                                }
+                                } */}
                             </div>
                             <div className="create-form-buttons">
-                                <button id='submit-review-button' type="submit" onClick={handleSubmit}>Add Review</button>
+                                <button id='submit-review-button' type="submit" onClick={handleSubmit}>Create</button>
                                 <button id='cancel-review-button' type="button" onClick={handleCancel} >Cancel</button>
 
                             </div>

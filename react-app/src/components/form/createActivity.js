@@ -16,12 +16,13 @@ import {addApiThunk} from "../../store/session"
 
 
 
+
 function CreateActivity(){
     const history = useHistory()
     const {trailId} = useParams()
     const apiKey = useSelector(state => state.session.api)
     const [apiLoad, setApiLoad] = useState(false)
-  
+
     const dispatch = useDispatch();
     const [map, setMap] = useState(/** @type google.maps.Map */ (null));
     const [directionsResponse,setDirectionsResponse] = useState(null)
@@ -180,52 +181,27 @@ function CreateActivity(){
 
   return trailIsLoaded && apiLoad && (
     <div className='main-box'>
+      <div className='left-map-box'>
+        <div className='map-use-instruction'>
+          <h3>Create activity intruction:</h3>
+          <p>1.Click on the map to set your origin and destination points.</p>
+          <p>2.Enter your activity name.</p>
+          <p>3.Click the 'Display' button to show your activity route.</p>
+          <p>4.Click the 'Create' button to create your activity.</p>
+          <p>*.Click the 'Cancel' button to cancel your activity creation.</p>
+          <p>*.Click the 'ReCenter' button to relocate to the trail.</p>
 
-      <div className='right-map-box'>
-        {/* initMap */}
-        <LoadScript
-        googleMapsApiKey={apiKey}
-        >
-        <GoogleMap
-          center={{lat:trail.lat,lng:trail.log}}
-          zoom={12}
-          mapContainerStyle={{width:'800px', height:'800px'}}
-          options={{
-            streetViewControl:false
-          }}
-          onLoad={map=>setMap(map)}
-          onClick={(e)=> addMarker(e.latLng.toJSON())
-
-          }
-        >
-
-
-            {markers ? (
-                markers.filter((marker)=> marker.id <2).map((marker) => {
-                  return showMarker && (
-                    <Marker
-                      key={marker.id}
-                      draggable={false}
-                      position={marker.coords}
-                      // onDragEnd={e => marker.coords = e.latLng.toJSON()}
-                    />
-                  )
-                })) : null
-                }
-
-
-
-
-          {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
-        </GoogleMap>
-        </LoadScript>
+        </div>
         <div className='left-input-box'>
         <form className="create-activity-form" onSubmit={handleSubmit}>
           <div className='marker-coords'>
                 <label>Name: </label>
                 <input type='text'
                   value={name}
-                  onChange={e => setName(e.target.value)}/>
+                  // placeholder='Please enter activity name'
+                  onChange={e => setName(e.target.value)}
+                  style={{overflowWrap:'break-word'}}
+                  />
 
 
               <div className='input-ori'>
@@ -235,6 +211,7 @@ function CreateActivity(){
                   placeholder='Latitude'
                   value={oriLat}
                   readOnly
+
                   // onChange={e => setOriLat(e.target.value)}
                   />
                 <input
@@ -284,7 +261,7 @@ function CreateActivity(){
               <button type='button' onClick={hancleCancel}>Cancel</button>
 
 
-              <button type='button' onClick={()=> map.panTo({lat:trail.lat,lng:trail.log})}>Reset Center</button>
+              <button type='button' onClick={()=> map.panTo({lat:trail.lat,lng:trail.log})}>ReCenter</button>
           </div>
           <ul>
               {errors.map((error, idx) => (
@@ -293,6 +270,46 @@ function CreateActivity(){
           </ul>
           </form>
       </div>
+      </div>
+      <div className='right-map-box'>
+        {/* initMap */}
+        <LoadScript
+        googleMapsApiKey={apiKey}
+        >
+        <GoogleMap
+          center={{lat:trail.lat,lng:trail.log}}
+          zoom={12}
+          mapContainerStyle={{width:'600px', height:'600px'}}
+          options={{
+            streetViewControl:false
+          }}
+          onLoad={map=>setMap(map)}
+          onClick={(e)=> addMarker(e.latLng.toJSON())
+
+          }
+        >
+
+
+            {markers ? (
+                markers.filter((marker)=> marker.id <2).map((marker) => {
+                  return showMarker && (
+                    <Marker
+                      key={marker.id}
+                      draggable={false}
+                      position={marker.coords}
+                      // onDragEnd={e => marker.coords = e.latLng.toJSON()}
+                    />
+                  )
+                })) : null
+                }
+
+
+
+
+          {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
+        </GoogleMap>
+        </LoadScript>
+
 
       </div>
 
