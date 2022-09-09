@@ -16,6 +16,10 @@ function TrailDetail() {
     // const session = useSelector(state => state.session.user);
     const [trailIsLoaded, setTrailsIsLoaded] = useState(false);
     const [createModal, setCreateModal] = useState(false);
+    const [showReview, setShowReview] = useState(true);
+    const [showActivity, setShowActivity] = useState(false);
+
+
 
 
 
@@ -34,82 +38,87 @@ function TrailDetail() {
 
     return (trailIsLoaded && trail && (
         <div className='trail-detail-main-container'>
-            <div className='top-box'>
-                <div className='pre-img'>
+            <div className='trail-detail-top-box'>
+                <div className='trail-detail-pre-img'>
                     <img className='trail-preview' src={trail.preview_img} alt='' />
                 </div>
-                <h2>{trail.name}</h2>
+                <h1>{trail.name}</h1>
                 <div className='rate'>
-                <p>{trail.difficulty}</p>
-                <p><span>(</span>{trail.totalReviews}<span>)</span></p>
+                    <p>Difficulty: {trail.difficulty}</p>
+                    <p>Total Reviews: {trail.totalReviews}</p>
+                    <p>{trail.parkName}</p>
                 </div>
-                <p>{trail.parkName}</p>
             </div>
             <div className='mid-box'>
-                <div className='mid-left'>
-                    <div className='trail-content'>
+
+
                         <div className='description'>
                             <p>{trail.description}</p>
                         </div>
                         <div className='info'>
                             <div className='len'>
-                                <p>Length</p>
+                                <p className='p-title'>Length</p>
                                 <p>{trail.length}mi</p>
                             </div>
                             <div className='ele'>
-                                <p>Elevation gain</p>
-                                <p>{trail.elevation}ft</p>
-                            </div>
-                            <div className='diff'>
-                                <p>Difficulty</p>
-                                <p>{trail.difficulty}</p>
+                                    <p className='p-title'>Elevation gain</p>
+                                    <p>{trail.elevation}ft</p>
                             </div>
                         </div>
                         <div className='tags'>
+
                             {trail.tags.map((tag,index)=>(
-                                <p key={index}>{tag}</p>
+                                <p className='tag' key={index}>{tag}</p>
                             ))}
                         </div>
 
-                    </div>
-                    <div className='review-activity-bar'>
-                        <div className='nav-bar'>
-                            <div className='bar-review'>
-                                <p>Review(<span>{trail.totalReviews}</span>)</p>
+            </div>
+            <div className='trail-detail-bot-box'>
+                <div className='bot-left-box'>
+                        <div className='review-activity-bar'>
+                            <div className='bar-review' onClick={()=>{setShowReview(true); setShowActivity(false)}}>
+                                Reviews
                             </div>
-                            <div className='bar-activity'>
-                                <p>Activities(<span>{trail.totalActivities}</span>)</p>
+                            <div className='bar-activity' onClick={()=>{setShowReview(false); setShowActivity(true)}}>
+                                Activities
                             </div>
                         </div>
-                        <div className='rate-display'>
-                            <h1>{trail.avgRating}</h1>
-                            <p>{trail.totalReviews}Review(s)</p>
+
+                        <div className='rate-create'>
+                            <div className='rate-display'>
+                                <h1>{trail.avgRating}</h1>
+                                <p>{trail.totalReviews} Review(s)</p>
+                            </div>
+                            <div className='create-button'>
+                                <div className='create-review'>
+                                    <CreateReviewModal trail={trail} createModal={createModal} setCreateModal={setCreateModal} />
+                                </div>
+                                <div className='create-review'>
+                                    <Link to={`/trails/${trail.id}/activities/new`} trail={trail} exact="true" style={{textDecoration: 'none', color:'#fff'}} >
+                                        Create map
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-                        <CreateReviewModal trail={trail} createModal={createModal} setCreateModal={setCreateModal} />
-                        <Link to={`/trails/${trail.id}/activities/new`} trail={trail} exact="true" >
-                             Create map
-                        </Link>
-
-
-                    </div>
-
-                    <div className='review-list'>
-                        <ReviewList trailId={trailId}/>
-                    </div>
-                    <div className='activity-list'>
-                        <ActivityList trailId={trailId}/>
-                    </div>
+                        <div className='left-list-box'>
+                        {showReview && <div className='review-list'>
+                            <ReviewList trailId={trailId}/>
+                        </div>}
+                        {showActivity && <div className='activity-list'>
+                            <ActivityList trailId={trailId}/>
+                        </div>}
+                        </div>
                 </div>
-                <div className='mid-right'>
+                <div className='bot-right'>
                     <div className='static-map'></div>
                     <div className='nearby-trail'>
                         <NearbyTrails parkId={trail.parkId} trailId={trailId}/>
                     </div>
-
-
-
                 </div>
+
+
             </div>
+
         </div>
 
     ));

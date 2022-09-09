@@ -5,12 +5,12 @@ import videoHome from "../assets/homeVideo.mp4"
 import "./style/homepage.css"
 
 const Main = () =>{
-
+    
 
     return (
         <div className='main-container'>
             <div className='loading'>
-                
+
             </div>
             <div className='overlay'></div>
 

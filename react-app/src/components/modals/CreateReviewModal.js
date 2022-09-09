@@ -7,7 +7,7 @@ function CreateReviewModal({ trail,createModal,setCreateModal }) {
 
     return (
         <>
-        <button onClick={()=>setCreateModal(true)}>Write review</button>
+        <div onClick={()=>setCreateModal(true)}>Write review</div>
             {createModal &&
                 (
                     <Modal onClose={() => setCreateModal(false)}>
