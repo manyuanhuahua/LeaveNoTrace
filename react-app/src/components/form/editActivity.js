@@ -1,11 +1,12 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
-import { useJsApiLoader,GoogleMap,Marker,DirectionsRenderer } from "@react-google-maps/api"
+import { useJsApiLoader,GoogleMap,Marker,DirectionsRenderer,LoadScript  } from "@react-google-maps/api"
 import MapLoading from '../map/mapLoading';
 import "./map.css"
 import { useHistory, useLocation } from 'react-router-dom';
-import { useDispatch} from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import {updateActivityThunk,getActivityDetailThunk} from "../../store/activity"
+import {addApiThunk} from "../../store/session"
 
 
 
@@ -13,10 +14,13 @@ import {updateActivityThunk,getActivityDetailThunk} from "../../store/activity"
 function EditActivity(){
     const history = useHistory()
     let location = useLocation();
+    const apiKey = useSelector(state => state.session.api)
+    const [apiLoad, setApiLoad] = useState(false)
+
     const activity = location.state.activity
-    const {isLoaded} = useJsApiLoader({
-      googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    })
+    // const {isLoaded} = useJsApiLoader({
+    //   googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    // })
 
     const dispatch = useDispatch();
 
@@ -51,17 +55,19 @@ function EditActivity(){
       dispatch(getActivityDetailThunk(activity.trail.id,activity.id)).then(() => setActivityIsLoaded(true));
   }, [dispatch,activity.id,activity.trail.id]);
 
+  useEffect(() => {
+    dispatch(addApiThunk()).then(() => setApiLoad(true));
+  }, [dispatch]);
 
 
-
-    if(!isLoaded){
-      return <MapLoading />
-    }
+    // if(!isLoaded){
+    //   return <MapLoading />
+    // }
 
 
     const staticMap = (res) =>{
       let image = `https://maps.googleapis.com/maps/api/staticmap?size=500x500`
-      let APIKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+      let APIKey = apiKey
       let route = res.routes[0]
       const color = `&path=weight:8%7Ccolor:red%7C`
       const path = route.overview_polyline
@@ -102,8 +108,8 @@ function EditActivity(){
           // setOriLat()
           setDistance(res.routes[0].legs[0].distance.text)
           setDuration(res.routes[0].legs[0].duration.text)
-          console.log("distance--------",distance)
-          console.log("duration--------",duration)
+          // console.log("distance--------",distance)
+          // console.log("duration--------",duration)
 
 
         }).catch((e) => {
@@ -174,16 +180,104 @@ function EditActivity(){
 
   }
 
-  return activityIsLoaded && (
+  return activityIsLoaded && apiLoad && (
     <div className='main-box'>
+      <div className='left-map-box'>
+        <div className='map-use-instruction'>
+          <h3>Create activity intruction:</h3>
+          <p>1.Draggle markers on the map to change your origin and destination points.</p>
+          <p>2.Enter your activity name.</p>
+          <p>3.Click the 'Display' button to show your activity route.</p>
+          <p>4.Click the 'Update' button to update your activity.</p>
+          <p>*.Click the 'Cancel' button to cancel your activity creation.</p>
+          <p>*.Click the 'ReCenter' button to relocate to the trail.</p>
+        </div>
+        <div className='left-input-box'>
 
+          <form className="create-activity-form" onSubmit={handleSubmit}>
+            <div className='marker-coords'>
+                  <label>Name: </label>
+                  <input type='text'
+                    value={name}
+                    style={{overflowWrap:'break-word'}}
+                    onChange={e => setName(e.target.value)}/>
+
+
+                <div className='input-ori'>
+                  <label>Origin: </label>
+                  <input
+                    type='text'
+                    placeholder='Latitude'
+                    value={oriLat}
+                    readOnly
+
+                    />
+                  <input
+                    type='text'
+                    placeholder='longtitude'
+                    value={oriLog}
+                    readOnly
+
+                    />
+                </div>
+                <div className='input-des'>
+                  <label>Destination: </label>
+                  <input
+                    type='text'
+                    placeholder='Latitude'
+                    value={desLat}
+                    readOnly
+
+                    />
+                  <input
+                    type='text'
+                    placeholder='longtitude'
+                    value={desLog}
+                    readOnly
+
+                    />
+                </div>
+            </div>
+            <div className='statistics'>
+                <div>Distance: {distance}</div>
+
+                <div>Duration: {duration}</div>
+
+
+            </div>
+
+            <div className='map-buttons'>
+
+                <button type='button' onClick={()=>{
+                if(markers.length<2){
+                  setErrors(['Please click map to set your origin and destination points'])
+                }else{
+                  displayRoute(markers[0]?.coords,markers[1]?.coords)
+                }}}>Display</button>
+
+                <button type='submit' onClick={handleSubmit}>Update</button>
+
+                <button type='button' onClick={hancleCancel}>Cancel</button>
+
+                <button type='button' onClick={()=> map.panTo({lat:activity.trail.lat,lng:activity.trail.lng})}>ReCenter</button>
+            </div>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx} >{error}</li>
+              ))}
+            </ul>
+            </form>
+        </div>
+        </div>
       <div className='right-map-box'>
-
+        <LoadScript
+            googleMapsApiKey={apiKey}
+            >
 
         <GoogleMap
           center={{lat:activity.trail.lat,lng:activity.trail.lng}}
           zoom={12}
-          mapContainerStyle={{width:'800px', height:'800px'}}
+          mapContainerStyle={{width:'600px', height:'600px'}}
           options={{
             streetViewControl:false
           }}
@@ -193,7 +287,7 @@ function EditActivity(){
 
             {markers &&
                 markers.map((marker) => {
-                  console.log('marker-----',marker)
+                  // console.log('marker-----',marker)
                   return showMarker && (
                     <Marker
                       key={marker.id}
@@ -210,80 +304,13 @@ function EditActivity(){
 
           {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
         </GoogleMap>
-        <div className='left-input-box'>
-        <form className="create-activity-form" onSubmit={handleSubmit}>
-          <div className='marker-coords'>
-                <label>Name: </label>
-                <input type='text'
-                  value={name}
-                  onChange={e => setName(e.target.value)}/>
+        </LoadScript>
 
-
-              <div className='input-ori'>
-                <label>Origin: </label>
-                <input
-                  type='text'
-                  placeholder='Latitude'
-                  value={oriLat}
-                  readOnly
-
-                  />
-                <input
-                  type='text'
-                  placeholder='longtitude'
-                  value={oriLog}
-                  readOnly
-
-                  />
-              </div>
-              <div className='input-des'>
-                <label>Destination: </label>
-                <input
-                  type='text'
-                  placeholder='Latitude'
-                  value={desLat}
-                  readOnly
-
-                  />
-                <input
-                  type='text'
-                  placeholder='longtitude'
-                  value={desLog}
-                  readOnly
-
-                  />
-              </div>
-          </div>
-          <div className='statistics'>
-              <div>Distance: {distance}</div>
-
-              <div>Duration: {duration}</div>
-
-
-          </div>
-
-          <div className='map-buttons'>
-
-              <button type='button' onClick={()=> displayRoute(markers[0].coords,markers[1].coords)}>Display</button>
-
-              <button type='submit' onClick={handleSubmit}>Update</button>
-
-              <button type='button' onClick={hancleCancel}>Cancel</button>
-
-
-              <button type='button' onClick={()=> map.panTo({lat:activity.trail.lat,lng:activity.trail.lng})}>Reset Center</button>
-          </div>
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx} >{error}</li>
-            ))}
-          </ul>
-          </form>
       </div>
 
       </div>
 
-    </div>
+
   )
 
 }

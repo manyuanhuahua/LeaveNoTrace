@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {deleteReviewThunk} from "../../store/review"
-
+import "./reviewForm.css"
 
 
 const DeleteReviewAlarm = ({ review,hideModal }) => {
@@ -38,9 +38,9 @@ const DeleteReviewAlarm = ({ review,hideModal }) => {
       };
 
     return (
-        <div className="create-form-box">
+        <div className="delete-form-box">
             <form className="delete-form" onSubmit={handleDelete}>
-            <div className='delete-album-form'>
+            <div className='delete-form-content'>
             <h2>Delete Review</h2>
             <p>Are you sure you want to delete this review? This action cannot be undone.</p>
             <div className='button-group'>

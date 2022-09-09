@@ -1,12 +1,12 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField,DecimalField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError,Length
 from app.models import Activity
 
 class CreateActivityForm(FlaskForm):
     # trail_id = IntegerField('trail id',validators=[DataRequired()])
     # user_id = IntegerField('user id',validators=[DataRequired()])
-    name = StringField('name',validators=[DataRequired(message='Name is required')])
+    name = StringField('name',validators=[DataRequired(message='Name is required'),Length(max=100,message='Maximum Name length is 100')])
     ori_lat = DecimalField('start latitude',validators=[DataRequired(message='Origin latitude is required')])
     ori_log = DecimalField('start longtitude',validators=[DataRequired(message='Origin longtitude is required')])
     des_lat = DecimalField('destination latitude',validators=[DataRequired(message='Destination latitude is required')])

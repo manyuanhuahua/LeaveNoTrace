@@ -6,6 +6,7 @@ import {getActivitiesThunk} from "../../store/activity"
 import { Modal } from '../../context/Modal'
 
 import DeleteActivityAlarm from '../form/deleteActivity';
+import "../style/activity.css"
 
 
 
@@ -24,26 +25,54 @@ function ActivityList({trailId}) {
     useEffect(() => {
         dispatch(getActivitiesThunk(trailId)).then(() => setActivityIsLoaded(true));
     }, [dispatch,trailId]);
+
+    const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
+
+    const imgError = (e) =>{
+          e.target.src = defaultImg
+    }
+
+
+
     // console.log('activities--------',activityList)
     return (activityIsLoaded
         &&
         <div className='activityList-container'>
             {activityList.map(activity => (
-                <div className="img-container" key={activity.id}>
-                    <NavLink to={`/activities/${activity.id}`}>
-                        <img className="activity-img" alt="" src={activity.staticMap}></img>
-                    </NavLink>
-                    <img className="activity-user-profile" alt="" src={activity.user.profileImg}></img>
-                    <p>{activity.user.name}</p>
-                    <p>{activity.createdAt}</p>
+                <div className="activity-container">
+                    <div className='top-box'>
+                        <div className='activity-owner'>
+                            <div className='user-pro'>
+                                <img className="pro-img"
+                                alt=""
+                                src={activity.user.profileImg? activity.user.profileImg : defaultImg}
+                                style={{backgroundImage:'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'}}
+                                onError={imgError}
+                                />
+                            </div>
+                            <div className='user-info'>
+                                <p>{activity.user.username}</p>
+                                <p>{activity.createdAt}</p>
+                            </div>
                     {(session.id === activity.user.id) && (
-                        <>
+                        <div className='button-group'>
                         {/* <Route path={`/trails/${trailId}/activities/${activity.id}`}>
                             Edit
                             <EditActivity />
                         </Route> */}
-                        <Link to={{ pathname: `/trails/${trailId}/activities/${activity.id}`, state: { activity } }}
-                                    >Update</Link>
+                        <Link className='link-tag' to={{ pathname: `/trails/${trailId}/activities/${activity.id}`, state: { activity } }}
+                                    style={{
+                                        textDecoration:'none',
+                                        width:'80px',
+                                        height:'25px',
+                                        color:'#fff',
+                                        background: '#B2C582',
+                                        borderRadius:'10px',
+                                        textAlign:'center',
+                                        display:'flex',
+                                        alignItems:'center',
+                                        justifyContent: 'center'
+                                        }}>Update</Link>
 
 
                         <button onClick={()=>setDeleteModal(true)}>Delete</button>
@@ -52,14 +81,22 @@ function ActivityList({trailId}) {
                                         <DeleteActivityAlarm hideModal={()=> setDeleteModal(false)} activity={activity} />
                                     </Modal>
                                 }
-                        </>
+                        </div>
                     )}
+                    </div>
+                </div>
+                <div className='activity-route'>
+                    <div className='rating-box'>
+                    {/* <NavLink to={`/activities/${activity.id}`}> */}
+                        <img className="activity-img" alt="" src={activity.staticMap}></img>
+                    {/* </NavLink> */}
+                    </div>
+
+                </div>
 
 
-                </div>)
-                )
-            }
-        </div>
+        </div>))}
+    </div>
       );
 
 

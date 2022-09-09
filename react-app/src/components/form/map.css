@@ -1,4 +1,106 @@
-.right-map-box {
-    width: 100%;
-    height: 100%;
+.main-box{
+    width:1200px;
+    height:600px;
+    /* background: red; */
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+}
+
+
+.main-box .left-map-box {
+    width: 50%;
+    height:100%;
+    /* border: 1px solid #333; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    padding:50px;
+    background: rgba(231, 239, 223, 0.3);
+}
+
+
+.main-box .left-map-box .map-use-instruction h3{
+    padding-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.main-box .left-map-box .map-use-instruction p{
+    margin: 5px 10px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.main-box .left-map-box .map-use-instruction {
+   margin-bottom: 20px;
+}
+
+/* .main-box .left-map-box .left-input-box .create-activity-form .marker-coords {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+
+} */
+
+.main-box .left-map-box .left-input-box .create-activity-form .marker-coords labal{
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.main-box .left-map-box .left-input-box .create-activity-form .marker-coords .input-ori input{
+    border: 0;
+    background: rgba(237, 238, 236,0.5);
+    margin-right: 10px;
+    text-align: center;
+}
+
+.main-box .left-map-box .left-input-box .create-activity-form .marker-coords .input-ori input:focus{
+    border: 0;
+    outline: none;
+}
+
+
+.main-box .left-map-box .left-input-box .create-activity-form .marker-coords .input-des input{
+    border: 0;
+    background: rgba(237, 238, 236,0.5);
+    margin-right: 10px;
+    text-align: center;
+
+}
+
+
+.main-box .left-map-box .left-input-box .create-activity-form .marker-coords .input-des input:focus{
+    border: 0;
+    outline: none;
+
+}
+
+
+.main-box .left-map-box .map-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.main-box .left-map-box .map-buttons button{
+    margin: 10px;
+    text-transform: uppercase;
+    width: 100px;
+    font-weight: 300;
+    height: 30px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #B2C582;
+    border: 1px solid #fff;
+    margin-right: 10px;
+
 }

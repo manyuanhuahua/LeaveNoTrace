@@ -3,6 +3,7 @@ import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 import {updateReviewThunk} from "../../store/review";
 import { Rating } from 'react-simple-star-rating'
+import "./reviewForm.css"
 
 
 
@@ -84,13 +85,13 @@ const EditReviewForm = ({ review,hideModal }) => {
       };
 
     return (
-        <div className="create-form-box">
-            <div className="create-form-header">
+        <div className="create-form-container">
+        <div className='create-form-container-box'>
+        <div className='box-left'></div>
+        <div className='box-right'>
+            <div className="form-content">
                 <h3>{review.trailName}</h3>
             </div>
-            <div className="form-stars">
-            </div>
-            <div className="form-content">
                 <form className="create-review-form" onSubmit={handleSubmit}>
                     <div className="create-form-content">
                         <div className="star-rating">
@@ -101,15 +102,21 @@ const EditReviewForm = ({ review,hideModal }) => {
                                 fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
                             />
                         </div>
-                        <input
-                            type={'textarea'}
+                        <textarea
+                            className='content-field'
                             placeholder="Share your thoughts about the trail so others know what to expect"
                             value={content}
                             onChange={e => setContent(e.target.value)}
                         />
+                         {/* {contentErrors && <ul>
+                                {contentErrors.map((error, idx) => (
+                                    <li key={idx} >{error}</li>
+                                ))}
+                                </ul>
+                                } */}
                     </div>
                     <div className="create-form-buttons">
-                        <button id='submit-review-button' type="submit" onClick={handleSubmit}>Update Review</button>
+                        <button id='submit-review-button' type="submit" onClick={handleSubmit}>Update</button>
                         <button id='cancel-review-button' type="button" onClick={handleCancel} >Cancel</button>
 
                     </div>
@@ -124,6 +131,10 @@ const EditReviewForm = ({ review,hideModal }) => {
                 {/* <button onClick={history.goBack}>Cancel</button> */}
             </div>
         </div>
+    </div>
+
+
+
     )
 
 
