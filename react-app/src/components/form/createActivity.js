@@ -186,10 +186,10 @@ function CreateActivity(){
           <h3>Create activity intruction:</h3>
           <p>1.Click on the map to set your origin and destination points.</p>
           <p>2.Enter your activity name.</p>
-          <p>3.Click the 'Display' button to show your activity route.</p>
-          <p>4.Click the 'Create' button to create your activity.</p>
+          <p>3.Click the 'Display' button to generate your activity route.</p>
+          <p>4.Click the 'Save' button to save your activity.</p>
           <p>*.Click the 'Cancel' button to cancel your activity creation.</p>
-          <p>*.Click the 'ReCenter' button to relocate to the trail.</p>
+          <p>*.Click the 'ReCenter' button to recenter the map according to the trail.</p>
 
         </div>
         <div className='left-input-box'>
@@ -197,10 +197,11 @@ function CreateActivity(){
           <div className='marker-coords'>
                 <label>Name: </label>
                 <input type='text'
-                  value={name}
+                  value={name.trim()}
                   // placeholder='Please enter activity name'
                   onChange={e => setName(e.target.value)}
                   style={{overflowWrap:'break-word'}}
+                  maxLength={101}
                   />
 
 
@@ -256,7 +257,7 @@ function CreateActivity(){
                   displayRoute(markers[0]?.coords,markers[1]?.coords)
                 }
                 }}>Display</button>
-              <button type='submit'onClick={handleSubmit}>Create</button>
+              <button type='submit'onClick={handleSubmit}>Save</button>
               {/* <button onClick={hancleClear}>Clear</button> */}
               <button type='button' onClick={hancleCancel}>Cancel</button>
 

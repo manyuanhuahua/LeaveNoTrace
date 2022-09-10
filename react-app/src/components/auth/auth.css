@@ -260,3 +260,9 @@ form .sign-up {
     -webkit-transform: translate3d(-900px,0,0);
             transform: translate3d(-900px,0,0)
 }
+
+ul li{
+    font-size: 9px;
+    font-family: 'Poppins', sans-serif;
+    color:red
+}

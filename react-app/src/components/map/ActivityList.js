@@ -86,6 +86,7 @@ function ActivityList({trailId}) {
                     </div>
                 </div>
                 <div className='activity-route'>
+                    <p style={{overflowWrap:'break-word'}}>{activity.name}</p>
                     <div className='rating-box'>
                     {/* <NavLink to={`/activities/${activity.id}`}> */}
                         <img className="activity-img" alt="" src={activity.staticMap}></img>

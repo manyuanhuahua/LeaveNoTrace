@@ -7,6 +7,8 @@ import ReviewList from '../review/reviewList';
 import NearbyTrails from './nearbyTrails';
 import ActivityList from '../map/ActivityList';
 import {getReviewsThunk} from "../../store/review"
+import {getActivitiesThunk} from "../../store/activity"
+
 import "../style/trail.css"
 
 function TrailDetail() {
@@ -21,16 +23,23 @@ function TrailDetail() {
     const [showActivity, setShowActivity] = useState(false);
     const reviews = useSelector(state => state.review);
     const [reviewsIsLoaded, setReviewsIsLoaded] = useState(false);
+    const activities = useSelector(state => state.activity);
+    const [activityIsLoaded, setActivityIsLoaded] = useState(false);
+
+
 
     useEffect(() => {
         dispatch(getReviewsThunk(trailId)).then(() => setReviewsIsLoaded(true));
     }, [dispatch,trailId]);
 
 
+    useEffect(() => {
+        dispatch(getActivitiesThunk(trailId)).then(() => setActivityIsLoaded(true));
+    }, [dispatch,trailId]);
 
     useEffect(() => {
         dispatch(getTrailDetailThunk(trailId)).then(() => setTrailsIsLoaded(true));
-    }, [dispatch,trailId,reviews]);
+    }, [dispatch,trailId,reviews,activities]);
 
     if(!trail){
         return null
@@ -41,7 +50,7 @@ function TrailDetail() {
 
 
 
-    return (trailIsLoaded && trail && reviewsIsLoaded && (
+    return (trailIsLoaded && trail && reviewsIsLoaded && activityIsLoaded &&(
         <div className='trail-detail-main-container'>
             <div className='trail-detail-top-box'>
                 <div className='trail-detail-pre-img'>

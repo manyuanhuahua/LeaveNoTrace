@@ -112,7 +112,7 @@
 .park-detail-container .park-detail-bom-box{
     box-sizing: border-box;
     color: #54677c;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
     width: 100%;
     background: #e4e4e4;
     display: flex;

@@ -105,7 +105,7 @@ const EditReviewForm = ({ review,hideModal }) => {
                         <textarea
                             className='content-field'
                             placeholder="Share your thoughts about the trail so others know what to expect"
-                            value={content}
+                            value={content.trim()}
                             onChange={e => setContent(e.target.value)}
                         />
                          {/* {contentErrors && <ul>

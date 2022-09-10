@@ -198,9 +198,12 @@ function EditActivity(){
             <div className='marker-coords'>
                   <label>Name: </label>
                   <input type='text'
-                    value={name}
+                    value={name.trim()}
                     style={{overflowWrap:'break-word'}}
-                    onChange={e => setName(e.target.value)}/>
+                    onChange={e => setName(e.target.value)}
+                    maxLength={101}
+
+                    />
 
 
                 <div className='input-ori'>

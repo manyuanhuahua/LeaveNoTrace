@@ -24,7 +24,7 @@ function NearbyTrails({parkId,trailId}) {
 
   return (trailsIsLoaded &&
     <div className='nearby-trailList-container'>
-        <h2>Nearby Trails</h2>
+        <h2>Nearby Trails({trailsList.length})</h2>
         {trailsList.map(trail =>
             (<div className="nearby-trail-box" key={trail.id} onClick={() => history.push(`/trails/${trail.id}`)}>
                 <div className='img-box'>
