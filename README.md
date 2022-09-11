@@ -5,19 +5,19 @@ Are you worried about your next hiking plan? Do you want to record what you have
 LeaveNoTrace is clone of AllTrails, a platform for outdoor lovers to explore parks and trail. It provides detailed info, maps, reviews, and photos curated by millions of hiker, campers and nature lovers. LeaveNoTrace is used as a guildebook or sharing platform for outdoor reacreational activities. It allows users to search for various pakrs and trails, view related info about the site, view others reviews and activities. Also it allows users to create, edit, and delete their own reviews and activites.
 
 ## Languages & Technologies Used
-   1.Languages: Javascript, Python, SCSS, HTML5
-   2.Frontend: React/Redux
-   3.Backend: Python
-   4.Database: Sqlite3
-   5.Hosting: Heroku
-   6.Google Maps API
+   * Languages: Javascript, Python, SCSS, HTML5
+   * Frontend: React/Redux
+   * Backend: Python
+   * Database: Sqlite3
+   * Hosting: Heroku
+   * Google Maps API
 
 ## Functionality & MVP's
-   1.Splash Page / User Authentication: Users can sign up, login and logout.
-   2.Trail page - READ: View detailed trail information, associated reviews and activities, and nearby trails.
-   3.Reviews - CRUD: Create/edit/delete/view full functionality for logged in user.
-   4.Activity - CRUD: Create/edit/delete/view full functionality for logged in user.
-   6.Park page - READ: View detailed park information and trails within the specified park.
+   * Splash Page / User Authentication: Users can sign up, login and logout.
+   * Trail page - READ: View detailed trail information, associated reviews and activities, and nearby trails.
+   * Reviews - CRUD: Create/edit/delete/view full functionality for logged in user.
+   * Activity - CRUD: Create/edit/delete/view full functionality for logged in user.
+   * Park page - READ: View detailed park information and trails within the specified park.
    
 ### Splash Page
 ![image](https://user-images.githubusercontent.com/101086307/189551831-44e219e0-9d5c-4077-bde3-9cb0b03581f7.png)
@@ -35,5 +35,3 @@ LeaveNoTrace is clone of AllTrails, a platform for outdoor lovers to explore par
 ![image](https://user-images.githubusercontent.com/101086307/189551938-2b1a3b8c-0bbf-4f47-b7cc-8f65c51bdb37.png)
 
 
-# LeaveNoTrace
-# LeaveNoTrace
