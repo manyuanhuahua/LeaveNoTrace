@@ -21,6 +21,7 @@ function Footer() {
             </a>
             <p>LinkedIn</p>
             </div>
+            
             {/* <div className='portfolio'>
 
                 <p>Portfolio</p>
