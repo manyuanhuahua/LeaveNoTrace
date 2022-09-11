@@ -8,7 +8,7 @@ function EditReviewModal({review,editModal,setEditModal}){
 
     return(
         <>
-        <div className='edit-button'onClick={()=>setEditModal(true)}>Edit</div>
+        <div className='edit-button'onClick={()=>setEditModal(true)}>UPDATE</div>
             {editModal &&
                 (
                 <Modal onClose={()=>setEditModal(false)}>

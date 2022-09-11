@@ -25,6 +25,7 @@ const DeleteReviewAlarm = ({ review,hideModal }) => {
                     }
                     else {
                         hideModal()
+                       
                         history.push(`/trails/${trailId}`);
                     }
 

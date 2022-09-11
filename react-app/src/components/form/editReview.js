@@ -3,6 +3,7 @@ import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 import {updateReviewThunk} from "../../store/review";
 import { Rating } from 'react-simple-star-rating'
+import StarRating from '../../helper/Rating';
 import "./reviewForm.css"
 
 
@@ -13,45 +14,10 @@ const EditReviewForm = ({ review,hideModal }) => {
     let trailId = review.trailId
 
     const [content, setContent] = useState(review.content)
-    // const [hover, setHover] = useState(0);
 
     const [errors, setErrors] = useState([])
     const [rating, setRating] = useState(review.rating)
 
-    let res;
-    const ratingConvert = (rating) =>{
-        if (rating === 5){
-            res = 100
-        }else if(rating === 4){
-            res = 80
-        }else if(rating === 3){
-            res = 60
-        }else if(rating === 2){
-            res = 40
-        }else{
-            res = 20
-        }
-        return res
-    }
-
-
-
-    const handleRating = (rate) => {
-        let score;
-        if (rate === 100){
-            score = 5
-        }else if(rate === 80){
-            score = 4
-        }else if(rate === 60){
-            score = 3
-        }else if(rate === 40){
-            score = 2
-        }else{
-            score = 1
-        }
-
-        setRating(score)
-    }
 
 
     const handleSubmit = async (e) => {
@@ -95,12 +61,7 @@ const EditReviewForm = ({ review,hideModal }) => {
                 <form className="create-review-form" onSubmit={handleSubmit}>
                     <div className="create-form-content">
                         <div className="star-rating">
-                            <Rating
-                                onClick={handleRating}
-                                ratingValue={ratingConvert(review.rating)}
-                                onChange={e => setRating(e.target.value)}
-                                fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
-                            />
+                            <StarRating rating={rating} setRating={setRating}/>
                         </div>
                         <textarea
                             className='content-field'
@@ -108,12 +69,7 @@ const EditReviewForm = ({ review,hideModal }) => {
                             value={content.trim()}
                             onChange={e => setContent(e.target.value)}
                         />
-                         {/* {contentErrors && <ul>
-                                {contentErrors.map((error, idx) => (
-                                    <li key={idx} >{error}</li>
-                                ))}
-                                </ul>
-                                } */}
+
                     </div>
                     <div className="create-form-buttons">
                         <button id='submit-review-button' type="submit" onClick={handleSubmit}>Update</button>

@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import {creatReviewThunk} from "../../store/review"
 import { Rating } from 'react-simple-star-rating'
 import "./reviewForm.css"
+import StarRating from '../../helper/Rating';
 
 
 const CreateReviewForm = ({ trail,hideModal }) => {
@@ -13,28 +14,29 @@ const CreateReviewForm = ({ trail,hideModal }) => {
 
     const [content, setContent] = useState("")
     // const [hover, setHover] = useState(0);
-    const [rating, setRating] = useState(0)
+    // const [rating, setRating] = useState(0)
+    const [rating, setRating] = useState(null)
 
     const [errors, setErrors] = useState([])
     const [contentErrors, setContentErrors] = useState([])
+    console.log('rating------',rating)
 
+    // const handleRating = (rate) => {
+    //     let score;
+    //     if (rate === 100){
+    //         score = 5
+    //     }else if(rate === 80){
+    //         score = 4
+    //     }else if(rate === 60){
+    //         score = 3
+    //     }else if(rate === 40){
+    //         score = 2
+    //     }else{
+    //         score = 1
+    //     }
 
-    const handleRating = (rate) => {
-        let score;
-        if (rate === 100){
-            score = 5
-        }else if(rate === 80){
-            score = 4
-        }else if(rate === 60){
-            score = 3
-        }else if(rate === 40){
-            score = 2
-        }else{
-            score = 1
-        }
-
-        setRating(score)
-    }
+    //     setRating(score)
+    // }
 
     // useEffect(()=>{
     //     setErrors([])
@@ -61,7 +63,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                     }
                     else {
                         hideModal()
-                        history.push(`/trails/${trailId}`);
+                        history.goBack();
                     }
 
                 })
@@ -85,11 +87,12 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                         <form className="create-review-form" onSubmit={handleSubmit}>
                             <div className="create-form-content">
                                 <div className="star-rating">
-                                    <Rating
+                                    <StarRating rating={rating} setRating={setRating}/>
+                                    {/* <Rating
                                         onClick={handleRating}
                                         rating={rating}
                                         fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
-                                    />
+                                    /> */}
                                 </div>
                                 <textarea
                                     className='content-field'

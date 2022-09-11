@@ -113,7 +113,13 @@ function EditActivity(){
 
 
         }).catch((e) => {
-            alert("Could not display directions due to: " + e);
+          const emsg= e.message
+          console.log('error--------',e.message)
+          const msgArr= emsg.split(':')
+          const last = msgArr[msgArr.length-1]
+          console.log('last--------',last)
+
+            setErrors(["Could not display directions due to: " + last]);
         });
 
     //     result.addListener("directions_changed", () => {
@@ -123,6 +129,36 @@ function EditActivity(){
     //     computeTotalDistance(directions);
     //   }
     // });
+
+  }
+
+  const hancleClear = () =>{
+    setDirectionsResponse(null)
+    setDistance(activity.distance)
+    setDuration(activity.duration)
+    setOriLat(activity.oriLat)
+    setOriLog(activity.oriLog)
+    setDesLat(activity.desLat)
+    setDesLog(activity.desLog)
+    setName(activity.name)
+    setmapUrl(activity.staticMap)
+    setErrors([])
+
+
+    setShowMarker(true)
+    setMarkers([
+      {
+        id: 1,
+        coords: {lat:activity.oriLat,lng:activity.oriLog}
+      },
+      {
+        id: 2,
+        coords: {lat:activity.desLat,lng:activity.desLog}
+      }
+    ])
+
+
+
 
   }
 
@@ -140,7 +176,8 @@ function EditActivity(){
     setDesLog('')
     setName('')
     // hideModal()
-    history.push(`/trails/${activity.trail.id}`)
+    // history.push(`/trails/${activity.trail.id}`)
+    history.goBack();
 
   }
 
@@ -162,7 +199,7 @@ function EditActivity(){
           duration:duration,
           static_url:mapUrl
         };
-        console.log("updatedActivity--------",updatedActivity)
+        // console.log("updatedActivity--------",updatedActivity)
 
 
         dispatch(updateActivityThunk(activity.trail.id,updatedActivity))
@@ -172,8 +209,9 @@ function EditActivity(){
                         setErrors(res.errors)
                     }
                     else {
-                        console.log("res------",res)
-                        history.push(`/trails/${res.trail.id}`);
+                        // console.log("res------",res)
+                        history.goBack();
+                        // history.push(`/trails/${res.trail.id}`);
                     }
 
                 })
@@ -190,6 +228,8 @@ function EditActivity(){
           <p>3.Click the 'Display' button to show your activity route.</p>
           <p>4.Click the 'Update' button to update your activity.</p>
           <p>*.Click the 'Cancel' button to cancel your activity creation.</p>
+          <p>*.If you accidently drop your markers, or after you click display, you change your mind,
+            you can click 'Clear' button to clear the points on map.</p>
           <p>*.Click the 'ReCenter' button to relocate to the trail.</p>
         </div>
         <div className='left-input-box'>
@@ -259,7 +299,7 @@ function EditActivity(){
                 }}}>Display</button>
 
                 <button type='submit' onClick={handleSubmit}>Update</button>
-
+                <button type='button' onClick={hancleClear}>Clear</button>
                 <button type='button' onClick={hancleCancel}>Cancel</button>
 
                 <button type='button' onClick={()=> map.panTo({lat:activity.trail.lat,lng:activity.trail.lng})}>ReCenter</button>

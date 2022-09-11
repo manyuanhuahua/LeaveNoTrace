@@ -41,6 +41,7 @@ function CreateActivity(){
     const trailObj = useSelector(state => state.trail);
     const trail = Object.values(trailObj)[0];
     const [trailIsLoaded, setTrailsIsLoaded] = useState(false);
+    // const [clear, setClear] = useState(false)
 
 
     useEffect(() => {
@@ -118,20 +119,28 @@ function CreateActivity(){
   }
   // console.log("STATIC MAP------",mapUrl)
 
-  // const hancleClear = () =>{
-  //   setDirectionsResponse(null)
-  //   setDistance('')
-  //   setDuration('')
-  //   setMarkers([])
-  //   setOriLat('')
-  //   setOriLog('')
-  //   setDesLat('')
-  //   setDesLog('')
-  //   setName('')
-  //   history.push('/maps/new')
+  const hancleClear = () =>{
+    setDirectionsResponse(null)
+    setDistance('')
+    setDuration('')
+    setMarkers([])
+    setOriLat('')
+    setOriLog('')
+    setDesLat('')
+    setDesLog('')
+    setName('')
+    setmapUrl('')
+    setErrors([])
+
+    setId(0)
+    setShowMarker(true)
+    // setClear(!clear)
+    // window.location.reload()
+
+    // history.push('/maps/new')
 
 
-  // }
+  }
 
   const hancleCancel = () =>{
     // hancleClear()
@@ -144,7 +153,7 @@ function CreateActivity(){
     setDesLat('')
     setDesLog('')
     setName('')
-    history.push('/trails')
+    history.goBack();
   }
 
 
@@ -172,7 +181,7 @@ function CreateActivity(){
                     }
                     else {
                         // hideModal()
-                        history.push(`/trails/${trail.id}`);
+                        history.goBack();
                     }
 
                 })
@@ -189,6 +198,8 @@ function CreateActivity(){
           <p>3.Click the 'Display' button to generate your activity route.</p>
           <p>4.Click the 'Save' button to save your activity.</p>
           <p>*.Click the 'Cancel' button to cancel your activity creation.</p>
+          <p>*.If you accidently drop your markers, or after you click display, you change your mind,
+            you can click 'Clear' button to clear the points on map.</p>
           <p>*.Click the 'ReCenter' button to recenter the map according to the trail.</p>
 
         </div>
@@ -258,7 +269,7 @@ function CreateActivity(){
                 }
                 }}>Display</button>
               <button type='submit'onClick={handleSubmit}>Save</button>
-              {/* <button onClick={hancleClear}>Clear</button> */}
+              <button type='button' onClick={hancleClear}>Clear</button>
               <button type='button' onClick={hancleCancel}>Cancel</button>
 
 
@@ -296,9 +307,9 @@ function CreateActivity(){
                   return showMarker && (
                     <Marker
                       key={marker.id}
-                      draggable={false}
+                      draggable={true}
                       position={marker.coords}
-                      // onDragEnd={e => marker.coords = e.latLng.toJSON()}
+                      onDragEnd={e => marker.coords = e.latLng.toJSON()}
                     />
                   )
                 })) : null

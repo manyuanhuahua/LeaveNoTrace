@@ -22,7 +22,8 @@
     align-content: center;
     justify-content: center;
     padding:50px;
-    background: rgba(231, 239, 223, 0.3);
+    background: rgba(179, 181, 156, 0.1);
+
 }
 
 
@@ -47,7 +48,7 @@
 
 } */
 
-.main-box .left-map-box .left-input-box .create-activity-form .marker-coords labal{
+.main-box .left-map-box .left-input-box .create-activity-form .marker-coords label{
     font-size: 14px;
     letter-spacing: 1px;
 }
@@ -99,7 +100,7 @@
     color: #fff;
     cursor: pointer;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background: #B2C582;
+    background: #868c4e;
     border: 1px solid #fff;
     margin-right: 10px;
 
