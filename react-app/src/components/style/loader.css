@@ -1,0 +1,19 @@
+.loader-container{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    /* width: 50%;
+    height: 50%; */
+    top: 50%;
+    left: 50%;
+}
+
+.loader-img {
+
+    /* top: 50%;
+    left: 50%;
+    margin: auto; */
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+}

@@ -7,7 +7,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch,useSelector} from "react-redux";
 import {updateActivityThunk,getActivityDetailThunk} from "../../store/activity"
 import {addApiThunk} from "../../store/session"
-
+import LoaderSecond from '../loader/Loader2';
 
 
 
@@ -16,7 +16,7 @@ function EditActivity(){
     let location = useLocation();
     const apiKey = useSelector(state => state.session.api)
     const [apiLoad, setApiLoad] = useState(false)
-
+    const [loading,setLoading] = useState(false)
     const activity = location.state.activity
     // const {isLoaded} = useJsApiLoader({
     //   googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -218,7 +218,25 @@ function EditActivity(){
 
   }
 
-  return activityIsLoaded && apiLoad && (
+
+  useEffect(()=>{
+      setLoading(true)
+      setTimeout(()=>{
+          setLoading(false);
+      },2000)
+  },[]);
+
+
+
+  return activityIsLoaded && apiLoad &&
+    (
+      <>
+      {loading? (
+          <div className='loader-container'>
+              <LoaderSecond />
+          </div>
+          ) : (
+          <>
     <div className='main-box'>
       <div className='left-map-box'>
         <div className='map-use-instruction'>
@@ -352,6 +370,9 @@ function EditActivity(){
       </div>
 
       </div>
+      </>)
+  }
+  </>
 
 
   )

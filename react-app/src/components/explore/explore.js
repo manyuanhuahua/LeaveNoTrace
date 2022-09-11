@@ -6,6 +6,9 @@ import TrailList from '../trail/trailList';
 import "../style/park.css"
 import "../style/explore.css"
 import "../style/trail.css"
+import Loader from '../loader/Loader';
+import "../style/loader.css"
+
 
 
 
@@ -13,14 +16,24 @@ import "../style/trail.css"
 
 
 function Explore() {
+    const [loading,setLoading] = useState(false)
 
-
-    
-
+    useEffect(()=>{
+        setLoading(true)
+        setTimeout(()=>{
+            setLoading(false);
+        },2000)
+    },[]);
 
 
     return (
         <>
+        {loading? (
+            <div className='loader-container'>
+                <Loader />
+            </div>
+            ) : (
+            <div className='explore-container'>
             <div className='explore-parks'>
                 <div className='park-list'>
                     <h2>Explore Parks</h2>
@@ -35,9 +48,13 @@ function Explore() {
 
                 <TrailList />
             </div>
+            </div>)
+            
 
-        </>
-    )
-}
+
+
+        }
+    </>
+    )}
 
 export default Explore

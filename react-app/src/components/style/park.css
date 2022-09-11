@@ -1,24 +1,89 @@
 .parkList-container{
-    display: grid;
-    width: 940px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
-    height: auto;
-    margin-bottom: 20px;
-    justify-content: center;
+    margin: auto;
+    position: relative;
+    width: 1300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    justify-items: center;
+    align-items: center;
+    padding: 30px;
+    padding-top: 30px;
+    background: rgb(243, 239, 239);
+
+    /* background: #e4e4e4; */
+    /* justify-content: center; */
 }
 
-/* .parkList-container .img-container{
-    width: 136.66px;
-    height: 136.66px;
-    object-fit: cover;
-} */
+.parkList-container .card-container{
+    position: relative;
+    max-width: 300px;
+    height: 180px;
+    background: #fff;
+    margin: 50px 10px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
 
-.parkList-container .img-container .park-img{
-    width: 300px;
-    height: 300px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    transition: 0.5s ease-in-out;
+}
+
+
+
+.parkList-container .card-container:hover{
+    height: 280px;
+}
+
+.parkList-container .card-container .img-box{
+    position: relative;
+    width: 260px;
+    height: 160px;
+    /* height: 260px; */
+    top: -60px;
+    /* left: 20px; */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    margin: auto;
+    font-size: 16px;
+
+}
+
+.parkList-container .card-container .img-box .park-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
     object-fit: cover;
 }
+
+.parkList-container .card-container .park-list-content{
+    position: relative;
+    margin-top: -140px;
+    padding: 10px 15px;
+    text-align: center;
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    font-size: 14px;
+}
+
+.parkList-container .card-container .park-list-content p{
+    margin-bottom: 5px;
+}
+
+
+.parkList-container .card-container:hover .park-list-content{
+    opacity: 1;
+    visibility: visible;
+    margin-top: -25px;
+    transition-delay: 0.3s;
+}
+
+
+
+
+
+
 
 
 

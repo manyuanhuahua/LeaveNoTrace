@@ -1,6 +1,7 @@
 .activityList-container{
     display: flex;
     flex-direction: column;
+   
 }
 
 .activityList-container .activity-container{
@@ -9,6 +10,7 @@
     background: #fff;
     padding: 20px;
     margin: 15px;
+
 }
 
 .activityList-container .activity-container .top-box .activity-owner{

@@ -19,7 +19,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
 
     const [errors, setErrors] = useState([])
     const [contentErrors, setContentErrors] = useState([])
-    console.log('rating------',rating)
+    // console.log('rating------',rating)
 
     // const handleRating = (rate) => {
     //     let score;

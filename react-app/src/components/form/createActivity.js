@@ -9,6 +9,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import {createActivityThunk} from "../../store/activity"
 import {getTrailDetailThunk} from "../../store/trail"
 import {addApiThunk} from "../../store/session"
+import LoaderSecond from '../loader/Loader2';
 
 
 
@@ -59,6 +60,14 @@ function CreateActivity(){
       setMarkers((markers) => markers.concat([{coords, id}]) )
     }
 
+    const [loading,setLoading] = useState(false)
+
+    useEffect(()=>{
+        setLoading(true)
+        setTimeout(()=>{
+            setLoading(false);
+        },2000)
+    },[]);
 
     // if(!isLoaded){
     //   return <MapLoading />
@@ -189,6 +198,13 @@ function CreateActivity(){
   }
 
   return trailIsLoaded && apiLoad && (
+    <>
+        {loading? (
+            <div className='loader-container'>
+                <LoaderSecond />
+            </div>
+            ) : (
+            <>
     <div className='main-box'>
       <div className='left-map-box'>
         <div className='map-use-instruction'>
@@ -326,6 +342,9 @@ function CreateActivity(){
       </div>
 
     </div>
+    </>)
+  }
+  </>
   )
 
 }
