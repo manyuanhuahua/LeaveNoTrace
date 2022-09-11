@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+
 import github from "../assets/git.png"
 import linkedin from "../assets/linkdin.png"
 
@@ -21,7 +21,7 @@ function Footer() {
             </a>
             <p>LinkedIn</p>
             </div>
-            
+
             {/* <div className='portfolio'>
 
                 <p>Portfolio</p>

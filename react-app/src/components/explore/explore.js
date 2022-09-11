@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Link} from "react-router-dom";
+
 import ParkList from '../park/parkList';
 import TrailList from '../trail/trailList';
 import "../style/park.css"
@@ -8,6 +8,7 @@ import "../style/explore.css"
 import "../style/trail.css"
 import Loader from '../loader/Loader';
 import "../style/loader.css"
+
 
 
 
@@ -49,7 +50,7 @@ function Explore() {
                 <TrailList />
             </div>
             </div>)
-            
+
 
 
 

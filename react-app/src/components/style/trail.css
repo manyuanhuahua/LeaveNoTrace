@@ -183,9 +183,10 @@
     transition-property: opacity, transform;
 }
 
+
 .nearby-trailList-container .nearby-trail-box .img-box:hover .detail-content p{
     opacity: 1;
-    transform: translateY(-10px);
+    transform: translateY(-20px);
 }
 
 .nearby-trailList-container .nearby-trail-box .img-box .detail-content .trail-avg-rating{
@@ -193,14 +194,16 @@
     /* display: flex; */
     /* justify-content: center;
     align-items: center; */
+    display: flex;
+    align-items: center;
     transition: 0.6s;
     bottom: -40px;
     transition-property: bottom;
 }
 
 .nearby-trailList-container .nearby-trail-box .img-box:hover .detail-content .trail-avg-rating{
-    bottom: 0;
-    margin: 10px 10px 20px 10px;
+    bottom: 15px;
+    /* margin: 10px 10px 20px 10px; */
 }
 
 
@@ -398,6 +401,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+}
+
+.trail-detail-main-container .trail-detail-bot-box .bot-left-box .rate-create .trail-avg-rage{
+    display: flex;
+    flex-direction: row;
     align-items: center;
 }
 

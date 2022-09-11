@@ -5,6 +5,7 @@ import { Rating } from 'react-simple-star-rating'
 import handleRating from '../../helper/StarConvert';
 import "../style/trail.css"
 import { useHistory } from 'react-router-dom';
+import DisplayRating from '../../helper/displayRating';
 
 
 function NearbyTrails({parkId,trailId}) {
@@ -35,11 +36,12 @@ function NearbyTrails({parkId,trailId}) {
                         <h3>{trail.name}</h3>
                         <p>Difficulty: {trail.difficulty}</p>
                         <p>Length: {trail.length} mi</p>
-                        <p>({trail.totalReviews} Review(s))</p>
-                        <div className='trail-avg-rating'>
+                        <div className='trail-avg-rating' style={{margin:'0px 0px 3px 10px'}}>
+                            <DisplayRating rating={trail.avgRating} />
                             {/* <Rating readonly={true} ratingValue={handleRating(trail.avgRating)} allowHalfIcon={true}/> */}
-                                <span>{`Rating:${trail.avgRating}`}</span>
+                            <span style={{marginLeft:'5px'}}>{(trail.avgRating).toFixed(2)}</span>
                         </div>
+                        <p>{trail.totalReviews} Review(s)</p>
                     </div>
                 </div>
             </div>)
