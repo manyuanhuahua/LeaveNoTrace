@@ -38,7 +38,7 @@ const SwitchForm = () => {
                 </div>
                 <div className='overlay-container'>
                     <div className='overlay'>
-                        <img src='../../assets/authformbg.jpg' alt='' style={{'background-repeat': 'no-repeat','background-size': 'cover'}}/>
+                        <img src='../../assets/authformbg.jpg' alt='' style={{'backgroundRepeat': 'no-repeat','backgroundSize': 'cover'}}/>
                         <div className='overlay-left'>
                             <h1>Welcome Back!</h1>
                             <p>Just log in. We've missed you!</p>

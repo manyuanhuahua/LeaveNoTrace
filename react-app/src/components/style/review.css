@@ -70,7 +70,7 @@
     color: #fff;
     cursor: pointer;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background: #B2C582;
+    background: #868c4e;
     font-size: 12px;
 
 }
@@ -87,8 +87,8 @@
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background: #6a7351;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    background: #D4D3CA;
     font-size: 12px;
 
 }

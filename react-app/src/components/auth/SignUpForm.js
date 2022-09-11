@@ -15,12 +15,15 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    const data = await dispatch(signUp(username, email, password,profile));
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-
+      console.log('repeat----',data)
       if (data) {
         setErrors(data)
       }
+    }else{
+
+      setErrors(['Repeat password does not match'])
     }
   };
 
@@ -48,8 +51,10 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
-  
 
+  // if (!(profile.includes('.jpg') || profile.includes('.png') || profile.includes('.jpeg'))){
+  //   errors.push('Profile type should be jpg/png/jpeg')
+  // }
 
 
 
@@ -65,14 +70,14 @@ const SignUpForm = () => {
           name='username'
           placeholder='Username'
           onChange={updateUsername}
-          value={username}
+          value={username.trim()}
         ></input>
         </label>
 
         <label>
           {/* <span>Email</span> */}
         <input
-          type='text'
+          type='email'
           name='email'
           placeholder='Email'
           onChange={updateEmail}
@@ -87,7 +92,7 @@ const SignUpForm = () => {
           name='profileImage'
           placeholder='Profile Image'
           onChange={updateProfile}
-          value={profile}
+          value={profile.trim()}
         ></input>
         </label>
 
@@ -98,7 +103,7 @@ const SignUpForm = () => {
           name='password'
           placeholder='Password'
           onChange={updatePassword}
-          value={password}
+          value={password.trim()}
         ></input>
         </label>
 
@@ -109,16 +114,16 @@ const SignUpForm = () => {
           name='repeat_password'
           placeholder='Repeat Password'
           onChange={updateRepeatPassword}
-          value={repeatPassword}
+          value={repeatPassword.trim()}
           required={true}
         ></input>
         </label>
       <button className='signup-submit' type='submit'>Sign Up</button>
-      <div>
+      <ul>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <li key={ind}>{error}</li>
         ))}
-      </div>
+      </ul>
     </form>
     </div>
   );

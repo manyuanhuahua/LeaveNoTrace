@@ -8,6 +8,7 @@ import SignUpForm from './auth/SignUpForm';
 import { useSelector } from 'react-redux';
 import SwitchForm from './auth/switchForm';
 import "./style/nav.css"
+import logo from "../assets/logo.jpg"
 
 
 const NavBar = () =>{
@@ -20,12 +21,20 @@ const NavBar = () =>{
 
     const user = useSelector(state => state.session.user);
 
+    const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
+
+    const imgError = (e) =>{
+          e.target.src = defaultImg
+    }
+
+
     return (
         <div className='main-container'>
             <div className='nav-bar'>
                 <nav>
-                    <div onClick={() => history.push('/')} exact={true} >
-                      <h3 className='logo'>LeaveNoTrace</h3>
+                    <div onClick={() => history.push('/')} exact={true} style={{cursor:'pointer'}}>
+                      <img src={logo} alt='' className='logo'  />
+                      {/* <h3 className='logo'>LeaveNoTrace</h3> */}
                     </div>
                     <ul>
                     <li>
@@ -38,7 +47,7 @@ const NavBar = () =>{
                       <>
 
                           <li className='forms-modal'>
-                            <div className='button' onClick={() => setShowLogin(true)}>Login</div>
+                            <div className='button' onClick={() => setShowLogin(true)}>User</div>
                                 {showLogin && (!user) && (!showSignup) && (
                                 <Modal className='forms-modal' onClose={() => setShowLogin(false)}>
                                     <SwitchForm />
@@ -75,6 +84,24 @@ const NavBar = () =>{
                               <Link className='button' to='/trails' exact={true} >
                                   Trails
                               </Link>
+                          </li>
+                          <li className='pro-img' style={{
+                            width: '30px',
+                            height: '30px',
+                            // marginRight: '20px',
+                            // borderRadius:'50%'
+                          }}>
+                            <img src={user.profileImg? user.profileImg : defaultImg}
+                            alt=''
+                            onError={imgError}
+                            style={{
+                              height:'100%',
+                              width:'100%',
+                              borderRadius:'50%',
+
+                              objectFit: 'cover'
+
+                            }}/>
                           </li>
                           <li>
                             <div className='button'>

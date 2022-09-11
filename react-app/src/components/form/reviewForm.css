@@ -91,7 +91,7 @@
     color: #fff;
     cursor: pointer;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background: #B2C582;
+    background: #868c4e;
     border: 1px solid #fff;
     margin-right: 10px;
 }
@@ -99,7 +99,7 @@
 
 .delete-form-box {
     width: 700px;
-    height:150px;
+    height:190px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -136,7 +136,7 @@
     color: #fff;
     cursor: pointer;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background: #B2C582;
+    background: #868c4e;
     border: 1px solid #fff;
     margin-right: 10px;
 }

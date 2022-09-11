@@ -66,13 +66,18 @@ function ActivityList({trailId}) {
                                         width:'80px',
                                         height:'25px',
                                         color:'#fff',
-                                        background: '#B2C582',
+                                        background: '#868c4e',
                                         borderRadius:'10px',
                                         textAlign:'center',
                                         display:'flex',
                                         alignItems:'center',
-                                        justifyContent: 'center'
-                                        }}>Update</Link>
+                                        justifyContent: 'center',
+                                        fontFamily: 'Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif',
+
+                                        fontSize: '12px',
+                                        fontWeight:'600'
+
+                                        }}>UPDATE</Link>
 
 
                         <button onClick={()=>setDeleteModal(true)}>Delete</button>
@@ -86,6 +91,7 @@ function ActivityList({trailId}) {
                     </div>
                 </div>
                 <div className='activity-route'>
+                    <p style={{overflowWrap:'break-word'}}>{activity.name}</p>
                     <div className='rating-box'>
                     {/* <NavLink to={`/activities/${activity.id}`}> */}
                         <img className="activity-img" alt="" src={activity.staticMap}></img>

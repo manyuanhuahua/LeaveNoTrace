@@ -35,7 +35,8 @@ function ParkDetail() {
                 </div>
                 <h1>{park.name}</h1>
                 <div className='park-avg-rating-reviews'>
-                    <div className='park-avg-rating'>Rating:{park.avgRating}</div>
+                    <div className='park-avg-rating'>
+                        Rating:{(park.avgRating).toFixed(2)}</div>
                     <div className='park-reviews'>{park.totalReviews} Review(s)</div>
                 </div>
                 <div className='detail-text'>{park.description}</div>
