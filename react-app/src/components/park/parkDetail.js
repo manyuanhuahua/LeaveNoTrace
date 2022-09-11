@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams} from "react-router-dom";
 import {getParkDetailThunk,} from "../../store/park"
 import {getParkTrailsThunk} from "../../store/trail"
+import DisplayRating from '../../helper/displayRating';
 
 
 function ParkDetail() {
@@ -36,7 +37,11 @@ function ParkDetail() {
                 <h1>{park.name}</h1>
                 <div className='park-avg-rating-reviews'>
                     <div className='park-avg-rating'>
-                        Rating:{(park.avgRating).toFixed(2)}</div>
+
+                        <DisplayRating rating={park.avgRating} />
+                        <p>{(park.avgRating).toFixed(2)}</p>
+                    </div>
+                        {/* Rating:{(park.avgRating).toFixed(2)}</div> */}
                     <div className='park-reviews'>{park.totalReviews} Review(s)</div>
                 </div>
                 <div className='detail-text'>{park.description}</div>
@@ -77,8 +82,12 @@ function ParkDetail() {
                             <h4>{park.name}</h4>
                             <div className='content'>
                                 <p>Difficulty: {trail.difficulty}</p>
-                                <p>Avg Rating: {trail.avgRating}</p>
-                                <p>({trail.totalReviews} Review(s))</p>
+                                <div className='park-avg-rating'>
+                                <DisplayRating rating={park.avgRating} />
+                                <p>{(trail.avgRating).toFixed(2)}</p>
+                                </div>
+                                {/* <p>Avg Rating: {trail.avgRating}</p> */}
+                                <p>{trail.totalReviews} Review(s)</p>
                                 <p>Length: {trail.length} mi</p>
                             </div>
                         </div>

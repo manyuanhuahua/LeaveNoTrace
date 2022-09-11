@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink} from "react-router-dom";
 import {getAllparksThunk} from "../../store/park"
-import Loader from '../loader/Loader';
+
+import DisplayRating from '../../helper/displayRating';
 
 
 function ParkList() {
@@ -38,10 +39,14 @@ function ParkList() {
                     </div>
                 </NavLink>
                 <div className='park-list-content'>
-                <p>Avg raing:{park.avgRating}</p>
-                <p>total ratings:{park.totalReviews}</p>
+                <div className='park-avg-rating'>
+                    <DisplayRating rating={park.avgRating} />
+                    <p>{(park.avgRating).toFixed(2)}</p>
+                    </div>
+                <div className='park-summary'>
                 <p>{park.state}</p>
                 <p>{park.acreage} acres</p>
+                </div>
                 </div>
             </div>)
             )

@@ -8,6 +8,7 @@ import NearbyTrails from './nearbyTrails';
 import ActivityList from '../map/ActivityList';
 import {getReviewsThunk} from "../../store/review"
 import {getActivitiesThunk} from "../../store/activity"
+import DisplayRating from '../../helper/displayRating';
 
 
 import "../style/trail.css"
@@ -110,7 +111,10 @@ function TrailDetail() {
 
                         <div className='rate-create'>
                         {showReview &&<div className='rate-display'>
+                            <div className='trail-avg-rage'>
+                                <DisplayRating rating={trail.avgRating} />
                                 <h1>{(trail.avgRating).toFixed(2)}</h1>
+                            </div>
                                 <p>{trail.totalReviews} Review(s)</p>
                             </div>}
 
