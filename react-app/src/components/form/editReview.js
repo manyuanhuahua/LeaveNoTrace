@@ -19,15 +19,17 @@ const EditReviewForm = ({ selectedReview,hideModal }) => {
     const [rating, setRating] = useState(selectedReview.rating)
     // console.log('inform-----',selectedReview)
 
-    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
+        const trimedContent =content.trim()
+
         const updateReview = {
             ...selectedReview,
-            content,
-            rating
+            content:trimedContent,
+            rating:rating
         };
         dispatch(updateReviewThunk(trailId,updateReview))
             .then(
@@ -67,7 +69,7 @@ const EditReviewForm = ({ selectedReview,hideModal }) => {
                         <textarea
                             className='content-field'
                             placeholder="Share your thoughts about the trail so others know what to expect"
-                            value={content.trim()}
+                            value={content}
                             onChange={e => setContent(e.target.value)}
                         />
 

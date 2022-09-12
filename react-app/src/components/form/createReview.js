@@ -51,9 +51,10 @@ const CreateReviewForm = ({ trail,hideModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
+        const trimedContent =content.trim()
         const newReview = {
-            content,
-            rating
+            content:trimedContent,
+            rating:rating
         };
         dispatch(creatReviewThunk(trailId,newReview))
             .then(
@@ -98,7 +99,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                                 <textarea
                                     className='content-field'
                                     placeholder="Share your thoughts about the trail so others know what to expect"
-                                    value={content.trim()}
+                                    value={content}
                                     onChange={e => setContent(e.target.value)}
                                 />
                                 {/* {contentErrors && <ul>

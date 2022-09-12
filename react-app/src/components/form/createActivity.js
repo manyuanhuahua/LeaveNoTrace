@@ -170,9 +170,9 @@ function CreateActivity(){
   const handleSubmit = async (e) => {
     e.preventDefault();
         setErrors([]);
-
+        const trimedName = name.trim()
         const newActivity = {
-          name:name,
+          name:trimedName,
           ori_lat:oriLat,
           ori_log:oriLog,
           des_lat:desLat,
@@ -224,7 +224,7 @@ function CreateActivity(){
           <div className='marker-coords'>
                 <label>Name: </label>
                 <input type='text'
-                  value={name.trim()}
+                  value={name}
                   // placeholder='Please enter activity name'
                   onChange={e => setName(e.target.value)}
                   style={{overflowWrap:'break-word'}}
