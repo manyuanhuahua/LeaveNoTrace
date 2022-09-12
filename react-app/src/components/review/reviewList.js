@@ -5,6 +5,10 @@ import DeleteReviewModal from '../modals/DeleteReviewModal';
 import {getReviewsThunk} from "../../store/review"
 import {FaStar} from 'react-icons/fa'
 
+import { Modal } from "../../context/Modal";
+import EditReviewForm from '../form/editReview';
+
+import DeleteReviewAlarm from '../form/deleteReview';
 
 import "../style/review.css"
 
@@ -15,6 +19,7 @@ function ReviewList({trailId}) {
     const [reviewsIsLoaded, setReviewsIsLoaded] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
+    const [selectedReview, setSelectedReview] = useState({})
 
 
     const reviewsList = Object.values(reviews).reverse();
@@ -48,10 +53,30 @@ function ReviewList({trailId}) {
                         <p>{review.user.username}</p>
                         <p>{review.createdAt}</p>
                     </div>
+                    {/* {console.log('checker1------',review)} */}
+
                     {(review.user.id === session.id) && review && (
                         <div className='modal'>
-                            <EditReviewModal review={review} editModal={editModal} setEditModal={setEditModal} />
-                            <DeleteReviewModal review={review} deleteModal={deleteModal} setDeleteModal={setDeleteModal} />
+
+                            <div className='edit-button'onClick={()=>{
+                                setSelectedReview(review);
+                                setEditModal(true)}}>UPDATE</div>
+
+                                {editModal &&
+                                    (
+                                    <Modal onClose={()=>setEditModal(false)}>
+                                        <EditReviewForm selectedReview={selectedReview} hideModal={()=>setEditModal(false)} />
+                                    </Modal>
+                                )
+                            }
+                            <div className='delete-button' onClick={()=>{setSelectedReview(review);setDeleteModal(true)}}>Delete</div>
+                                {deleteModal &&
+                                    <Modal onClose={()=>setDeleteModal(false)} >
+                                        <DeleteReviewAlarm hideModal={()=> setDeleteModal(false)} review={selectedReview} />
+                                    </Modal>
+                                }
+                            {/* <EditReviewModal review={review} editModal={editModal} setEditModal={setEditModal} /> */}
+                            {/* <DeleteReviewModal review={review} deleteModal={deleteModal} setDeleteModal={setDeleteModal} /> */}
                         </div>
                         )}
                     </div>
@@ -69,7 +94,7 @@ function ReviewList({trailId}) {
                     })}
 
                     </div>
-                  
+
                     {/* {`Rating:${review.rating}`} */}
                     <div className='review-content'>{review.content}</div>
                 </div>

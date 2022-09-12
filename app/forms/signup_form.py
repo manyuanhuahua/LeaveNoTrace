@@ -37,7 +37,7 @@ def profile_checker(form, field):
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(message='Username is required'), username_exists])
+        'username', validators=[DataRequired(message='Username is required'), Length(max=10,message='Maximum username length is 10'),username_exists])
     email = StringField('email', validators=[DataRequired(message='Email is required'), user_exists])
     password = StringField('password', validators=[DataRequired(message='Password is required'),password_checker])
     profile_img = StringField('profile image',validators=[profile_checker])

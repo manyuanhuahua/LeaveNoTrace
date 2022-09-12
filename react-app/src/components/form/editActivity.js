@@ -240,15 +240,15 @@ function EditActivity(){
     <div className='main-box'>
       <div className='left-map-box'>
         <div className='map-use-instruction'>
-          <h3>Create activity intruction:</h3>
-          <p>1.Draggle markers on the map to change your origin and destination points.</p>
-          <p>2.Enter your activity name.</p>
-          <p>3.Click the 'Display' button to show your activity route.</p>
-          <p>4.Click the 'Update' button to update your activity.</p>
-          <p>*.Click the 'Cancel' button to cancel your activity creation.</p>
-          <p>*.If you accidently drop your markers, or after you click display, you change your mind,
+          <h3>Instruction to Edit activity:</h3>
+          <p>1. Draggle markers on the map to change your origin and destination points.</p>
+          <p>2. Enter your activity name.</p>
+          <p>3. Click the 'Display' button to show your activity route.</p>
+          <p>4. Click the 'Update' button to update your activity.</p>
+          <p>* Click the 'Cancel' button to cancel your activity creation.</p>
+          <p>* If you accidently drop your markers, or after you click display, you change your mind,
             you can click 'Clear' button to clear the points on map.</p>
-          <p>*.Click the 'ReCenter' button to relocate to the trail.</p>
+          <p>* Click the 'ReCenter' button to relocate to the trail.</p>
         </div>
         <div className='left-input-box'>
 
