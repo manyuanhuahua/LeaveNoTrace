@@ -63,7 +63,8 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                     }
                     else {
                         hideModal()
-                        history.goBack();
+                        history.push(`/trails/${trailId}`);
+                        // history.push(`/trails/');
                     }
 
                 })

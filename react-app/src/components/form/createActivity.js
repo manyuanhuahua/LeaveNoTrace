@@ -208,15 +208,15 @@ function CreateActivity(){
     <div className='main-box'>
       <div className='left-map-box'>
         <div className='map-use-instruction'>
-          <h3>Create activity intruction:</h3>
-          <p>1.Click on the map to set your origin and destination points.</p>
-          <p>2.Enter your activity name.</p>
-          <p>3.Click the 'Display' button to generate your activity route.</p>
-          <p>4.Click the 'Save' button to save your activity.</p>
-          <p>*.Click the 'Cancel' button to cancel your activity creation.</p>
-          <p>*.If you accidently drop your markers, or after you click display, you change your mind,
+          <h3>Instruction to Create activity:</h3>
+          <p>1. Click on the map to set your origin and destination points.</p>
+          <p>2. Enter your activity name.</p>
+          <p>3. Click the 'Display' button to generate your activity route.</p>
+          <p>4. Click the 'Save' button to save your activity.</p>
+          <p>* Click the 'Cancel' button to cancel your activity creation.</p>
+          <p>* If you accidently drop your markers, or after you click display, you change your mind,
             you can click 'Clear' button to clear the points on map.</p>
-          <p>*.Click the 'ReCenter' button to recenter the map according to the trail.</p>
+          <p>* Click the 'ReCenter' button to recenter the map according to the trail.</p>
 
         </div>
         <div className='left-input-box'>

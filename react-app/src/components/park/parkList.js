@@ -18,14 +18,14 @@ function ParkList() {
     }, [dispatch]);
 
 
-    const [loading,setLoading] = useState(false)
+    // const [loading,setLoading] = useState(false)
 
-    useEffect(()=>{
-        setLoading(true)
-        setTimeout(()=>{
-            setLoading(false);
-        },2000)
-    },[]);
+    // useEffect(()=>{
+    //     setLoading(true)
+    //     setTimeout(()=>{
+    //         setLoading(false);
+    //     },2000)
+    // },[]);
 
   return (parksIsLoaded &&
     <div className='parkList-container'>

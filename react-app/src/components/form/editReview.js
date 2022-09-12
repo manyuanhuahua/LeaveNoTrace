@@ -8,23 +8,24 @@ import "./reviewForm.css"
 
 
 
-const EditReviewForm = ({ review,hideModal }) => {
+const EditReviewForm = ({ selectedReview,hideModal }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    let trailId = review.trailId
+    let trailId = selectedReview.trailId
 
-    const [content, setContent] = useState(review.content)
+    const [content, setContent] = useState(selectedReview.content)
 
     const [errors, setErrors] = useState([])
-    const [rating, setRating] = useState(review.rating)
+    const [rating, setRating] = useState(selectedReview.rating)
+    // console.log('inform-----',selectedReview)
 
-
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
         const updateReview = {
-            ...review,
+            ...selectedReview,
             content,
             rating
         };
@@ -56,7 +57,7 @@ const EditReviewForm = ({ review,hideModal }) => {
         <div className='box-left'></div>
         <div className='box-right'>
             <div className="form-content">
-                <h3>{review.trailName}</h3>
+                <h3>{selectedReview.trailName}</h3>
             </div>
                 <form className="create-review-form" onSubmit={handleSubmit}>
                     <div className="create-form-content">
