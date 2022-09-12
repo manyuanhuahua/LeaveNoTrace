@@ -186,11 +186,12 @@ function EditActivity(){
   const handleSubmit = async (e) => {
     e.preventDefault();
         setErrors([]);
+        const trimedName = name.trim()
 
         const updatedActivity = {
           // ...activity,
           id:activity.id,
-          name:name,
+          name:trimedName,
           ori_lat:oriLat,
           ori_log:oriLog,
           des_lat:desLat,
@@ -256,7 +257,7 @@ function EditActivity(){
             <div className='marker-coords'>
                   <label>Name: </label>
                   <input type='text'
-                    value={name.trim()}
+                    value={name}
                     style={{overflowWrap:'break-word'}}
                     onChange={e => setName(e.target.value)}
                     maxLength={101}
