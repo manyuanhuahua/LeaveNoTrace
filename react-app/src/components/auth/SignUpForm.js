@@ -15,9 +15,10 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    setErrors([])
     const data = await dispatch(signUp(username, email, password,profile));
     if (password === repeatPassword) {
-      console.log('repeat----',data)
+      // console.log('repeat----',data)
       if (data) {
         setErrors(data)
       }
