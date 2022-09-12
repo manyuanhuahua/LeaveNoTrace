@@ -19,9 +19,9 @@ function TrailList() {
         dispatch(getAlltrailsThunk()).then(() => setTrailsIsLoaded(true));
     }, [dispatch]);
 
-    if(!trailsList){
-        return <Loader />
-    }
+    // if(!trailsList){
+    //     return <Loader />
+    // }
 
   return (trailsIsLoaded &&
     <div className='trailList-container'>
