@@ -1,18 +1,24 @@
 .parkList-container{
-    margin: auto;
-    position: relative;
     width: 1300px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    justify-items: center;
-    align-items: center;
-    padding: 30px;
-    padding-top: 30px;
+    min-height: 100vh;
+    margin: auto;
     background: rgb(243, 239, 239);
-
     /* background: #e4e4e4; */
     /* justify-content: center; */
+}
+
+.parkList-container .park-list-main {
+    margin: auto;
+    position: relative;
+
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    padding-top: 30px;
+
 }
 
 .parkList-container .card-container{
@@ -85,9 +91,27 @@
     transition-delay: 0.3s;
 }
 
+.parkList-container .filter-container  {
+    padding: 30px 30px 0 30px;
 
+}
+.parkList-container .filter-container button {
+    margin-right: 1.5rem;
+    min-width: 5rem;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background: #e4e4e4;
+    color: #333;
+    border-radius: 1rem;
+    border: 2px solid #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-
+.parkList-container .filter-container button.active {
+    background: #6e8b74;
+    color: #fff;
+}
 
 
 

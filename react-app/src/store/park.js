@@ -48,7 +48,7 @@ export default function reducer(state = initialState, action) {
           return newState;
         }
         case GET_PARK_DETAIL: {
-          newState = {...state}
+          newState = {}
           newState[action.park.id] = action.park
           return newState
         }

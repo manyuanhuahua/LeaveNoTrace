@@ -17,7 +17,7 @@ function ParkDetail() {
     // const session = useSelector(state => state.session.user);
     const [parksIsLoaded, setParksIsLoaded] = useState(false);
 
-
+    console.log('park------',park)
 
     useEffect(() => {
         dispatch(getParkDetailThunk(parkId))

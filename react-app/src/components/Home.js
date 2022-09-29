@@ -1,24 +1,53 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-
 import videoHome from "../assets/homeVideo.mp4"
 import "./style/homepage.css"
 import Footer from './Footer';
-import LoginAlarm from './form/loginAlarm';
 import { Modal } from '../context/Modal';
-import { useSelector } from 'react-redux';
+import SwitchForm from './auth/switchForm';
+import Search from './park/Search';
+import { getAllparksThunk } from '../store/park';
 
 
 const Main = () =>{
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false)
+    const [showSignup, setShowSignup] = useState(false);
+
     const user = useSelector(state => state.session.user);
+    const parks = useSelector(state => state.park);
+    const parksList = Object.values(parks);
+    const [parksIsLoaded, setParksIsLoaded] = useState(false);
+
+
+    const [searchTerm,setSearchTerm] = useState('')
+    const [searchResult,setSearchResult] = useState([])
     // const handleShow=()=>{
     //     setShowModal(true)
     // }
+    useEffect(() => {
+        dispatch(getAllparksThunk()).then(() => setParksIsLoaded(true));
+    }, [dispatch]);
 
     // console.log('indiv',showModal);
+
+    const searchHandler = (searchTerm)=>{
+        setSearchTerm(searchTerm)
+        if(searchTerm !== ''){
+            const newParks = parksList.filter((park)=>{
+                return park.name.toLowerCase()
+                            .includes(searchTerm.toLowerCase())
+            })
+
+                setSearchResult(newParks)
+
+        }else{
+            setSearchResult(parksList)
+        }
+    }
     return (
-        <div className='main-container'>
+        <div className='home-main-container'>
 
             <div className='overlay'></div>
 
@@ -26,24 +55,34 @@ const Main = () =>{
                 <div className='content'>
                     <h1>Leave The Road</h1>
                     <h1 className='slogan2'>Take The Trails</h1>
-                    <>
+                    <div className='explore-container'>
 
-                    {(!user) && (<div onClick={() => setShowModal(true)} className='explore' style={{cursor:'pointer'}}>Exploring</div>)}
-                        {showModal &&
+
+
+                    {(!user) && (<div className='explore' onClick={() => setShowModal(true)}  style={{cursor:'pointer'}}>Exploring</div>)}
+                        {showModal && (!user) && (!showSignup) &&
                             (
-                                <Modal onClose={() => setShowModal(false)}>
-                                    <LoginAlarm hideModal={()=>setShowModal(false)} />
-                                </Modal>
+                                <Modal className='forms-modal' onClose={() => setShowModal(false)}>
+                                <SwitchForm />
+                                {/* <LoginForm /> */}
+                            </Modal>
                             )
 
                     }
-                    {(user) && (!showModal) && (<Link to={'/explore'} className='explore'>Exploring</Link>)}
-                    </>
+                    {(user) && parksIsLoaded && (
+                    <>
+                    <Search
+                        parks={searchTerm.length < 1 ? parksList : searchResult}
+                        term={searchTerm}
+                        searchKeyWord={searchHandler}
+                        />
+                    <Link to={'/explore'} className='explore'>Explore</Link>
+                    </>)}
+                    <Footer />
+                    </div>
                 </div>
 
-                <div className='footer'>
-                    <Footer />
-                </div>
+
         </div>
 
     )
