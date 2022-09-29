@@ -18,9 +18,6 @@ const Search = ({parks,term,searchKeyWord})=>{
         setSelectValue(inputEl.current.value)
     }
 
-    const noResult = ['']
-
-
 
 
     return (
@@ -29,7 +26,11 @@ const Search = ({parks,term,searchKeyWord})=>{
                 <input ref={inputEl} type='text' value={selectValue} onChange={getSearchTerm} placeholder='Search Parks' />
                 <div className='search-button'
                     onClick={()=>{
-                        if(parks.length !== 0) history.push(`/parks/${select}`)}}
+                        if(select !== 0){
+                            history.push(`/parks/${select}`)
+                        }else if(term.length<1){
+                            history.push('/explore')
+                        }}}
                     >
                     <img src={icon} style={{width:'20px',height:'20px'}}/>
                 </div>

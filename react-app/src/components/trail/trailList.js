@@ -24,7 +24,7 @@ function TrailList() {
     // }
 
   return (trailsIsLoaded &&
-    <div className='trailList-container'>
+    <div className='trail-List-container'>
         {trailsList.map(trail => (
             <div className="card-container" key={trail.id}>
                 <NavLink to={`/trails/${trail.id}`} style={{textDecoration:'none',textAlign:'center',color:'#333'}}>
