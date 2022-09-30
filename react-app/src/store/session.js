@@ -2,6 +2,8 @@
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const ADD_API = 'session/ADD_API';
+const ADD_NPS_API = 'session/ADD_NPS_API';
+
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -17,8 +19,24 @@ const addApi = (api) =>({
   api
 })
 
+const addNpsApi = (api) =>({
+  type:ADD_NPS_API,
+  api
+})
+
+
 const initialState = { user: null };
 
+// export const addNpsApiThunk = () => async (dispatch) => {
+//   const response = await fetch('/api/auth/npskeys');
+//   if (response.ok) {
+//     const api = await response.json();
+//     console.log('res in thunk-------',api)
+//     dispatch(addNpsApi(api))
+//   }
+
+//   return response
+// }
 
 export const addApiThunk = () => async (dispatch) => {
   const response = await fetch('/api/auth/apikeys');
@@ -130,6 +148,11 @@ export default function reducer(state = initialState, action) {
       newState['api'] = action.api
       return newState
     }
+    // case ADD_NPS_API: {
+    //   newState = {...state};
+    //   newState['nps'] = action.api
+    //   return newState
+    // }
     default:
       return state;
   }

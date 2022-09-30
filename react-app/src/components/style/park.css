@@ -208,6 +208,11 @@
     grid-row: 2/3;
 }
 
+.park-detail-container .park-detail-mid-box .info-box .park-detial-mid-right{
+    grid-column: 3/4;
+    grid-row: 1/3;
+}
+
 .park-detail-container .park-detail-bom-box{
     box-sizing: border-box;
     color: #54677c;

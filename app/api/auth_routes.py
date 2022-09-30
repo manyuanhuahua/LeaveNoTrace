@@ -4,6 +4,7 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 import os
+import urllib.request, json
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -87,3 +88,21 @@ def unauthorized():
 def map_api_keys():
     keys = jsonify(os.environ.get('REACT_APP_GOOGLE_MAPS_API_KEY'))
     return keys
+
+@auth_routes.route('/npskeys')
+def nps_api_keys():
+    keys = os.environ.get('NPS_API_KEY')
+    url = f"https://developer.nps.gov/api/v1/parkinglots?limit=449&api_key={keys}"
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    dict = json.loads(data)
+    coors = []
+
+    for data in dict['data']:
+        data = {
+            'name': data['name'],
+            'lat': data['latitude'],
+            'lng': data['longitude'],
+        }
+        coors.append(data)
+    return {'parkingLots':coors}

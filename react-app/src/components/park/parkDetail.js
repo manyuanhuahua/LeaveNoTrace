@@ -4,6 +4,10 @@ import { NavLink, useParams} from "react-router-dom";
 import {getParkDetailThunk,} from "../../store/park"
 import {getParkTrailsThunk} from "../../store/trail"
 import DisplayRating from '../../helper/displayRating';
+import {addNpsApiThunk} from "../../store/session"
+
+import ParkingMap from './parkingMap';
+
 
 
 function ParkDetail() {
@@ -14,16 +18,19 @@ function ParkDetail() {
     const trailsList = Object.values(trails);
     const park = Object.values(parkObj)[0];
 
+
+
     // const session = useSelector(state => state.session.user);
     const [parksIsLoaded, setParksIsLoaded] = useState(false);
 
-    console.log('park------',park)
+
 
     useEffect(() => {
         dispatch(getParkDetailThunk(parkId))
         .then(() => dispatch(getParkTrailsThunk(parkId)))
         .then(() => setParksIsLoaded(true));
     }, [dispatch,parkId]);
+
 
 
 
@@ -48,6 +55,7 @@ function ParkDetail() {
                 <div className='static-map'></div>
             </div>
             <div className='park-detail-mid-box'>
+
                 <h2>Park information</h2>
                 <div className='info-box'>
                     <div className='acrage'>
@@ -67,7 +75,12 @@ function ParkDetail() {
                             Helper link
                         </a>
                     </div>
+                    <div className='park-detial-mid-right' >
+                        <h4>Parking Lots:</h4>
+                        <ParkingMap park={park}/>
+                    </div>
                 </div>
+
             </div>
             <div className='park-detail-bom-box'>
                 {trailsList.map((trail,indiex) => (
