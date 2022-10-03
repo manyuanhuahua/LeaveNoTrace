@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { useJsApiLoader,GoogleMap,Marker,DirectionsRenderer,LoadScript  } from "@react-google-maps/api"
-import MapLoading from '../map/mapLoading';
+import MapLoading from '../activity/mapLoading';
 import "./map.css"
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch,useSelector} from "react-redux";

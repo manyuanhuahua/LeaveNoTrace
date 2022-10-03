@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_img = db.Column(db.String(255),nullable=False)
 
-
+    photos = db.relationship("Photo", back_populates="user",cascade="all, delete")
     reviews = db.relationship("Review", back_populates="user",cascade="all, delete")
     activities = db.relationship("Activity", back_populates="user",cascade="all, delete")
 

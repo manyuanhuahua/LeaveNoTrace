@@ -98,6 +98,7 @@ function ParkingMap({park}){
                             strokeWeight: 0.5,
                           }}
                           clusterer={clusterer}
+                          
                         />
                       )
                     })}

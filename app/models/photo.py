@@ -8,7 +8,6 @@ class Photo(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id", ondelete="CASCADE"),nullable=False)
     trail_id = db.Column(db.Integer,db.ForeignKey("trails.id", ondelete="CASCADE"),nullable=False)
-    title=db.Column(db.String(500))
     url=db.Column(db.String(3000),nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
@@ -19,13 +18,12 @@ class Photo(db.Model):
     def to_dict(self):
         return {
           "id": self.id,
-          "trailId": self.trail_id,
           "url": self.url,
-          "title":self.title,
           "createdAt": self.created_at,
           "user": {
                     "id": self.user.id,
-                    "username": self.user.username
+                    "username": self.user.username,
+                    "profileImg": self.user.profile_img
                 },
           "trail": {
                     "id": self.trail.id,

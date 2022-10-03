@@ -28,6 +28,8 @@ class Trail(db.Model):
     park=relationship("Park",back_populates="trails")
     activities = db.relationship("Activity", back_populates="trail", cascade="all, delete")
     reviews = db.relationship("Review", back_populates="trail", cascade="all, delete")
+    photos = db.relationship("Photo", back_populates="trail", cascade="all, delete")
+
 
 
     trail_tags = db.relationship(
@@ -62,6 +64,7 @@ class Trail(db.Model):
         "avgRating":self.avg_rating(),
         "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
+        "totalPhotos": len(self.photos)
 
         }
 
