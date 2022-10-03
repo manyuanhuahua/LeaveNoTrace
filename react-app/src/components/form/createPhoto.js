@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch} from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {createPhotoThunk} from "../../store/photo"
-import "./reviewForm.css"
+import "../style/photo.css"
 
 
 const CreatePhotoForm = ({ trail,hideModal }) => {
@@ -78,46 +78,37 @@ const CreatePhotoForm = ({ trail,hideModal }) => {
 
     return (
         <div className="create-photo-form-container">
-            <div className='create-photo-form-container-box'>
-                <div className='box-left'></div>
-                <div className='box-right'>
                     <div className="photo-form-content">
-                        <h3>{trail.name}</h3>
                             <div className="create-form-content">
+                                <h3>{trail.name}</h3>
                                 <form onSubmit={handleUpload}>
                                 <div className="photo-content">
                                     <input type='file' accept='image/*' onChange={updateImage} />
                                     <button className='photo-upload-button' onClick={handleUpload} type='button'>Preview</button>
+                                    <p>(After choose your photo, please click <span style={{fontWeight:'700', fontSize:'12px'}}>'Preview'</span> to ensure the file is successfully selected !)</p>
                                 </div>
                                 </form>
-                                {displayImg && (
-                                    <div className='display-upload'>
-                                        <img src={url} alt='' />
-                                    </div>
-                                )}
                             </div>
                         <form className="create-photo-form" onSubmit={handleSubmit}>
                             <div className="create-form-buttons">
 
-                                <button id='submit-review-button' type="submit" onClick={handleSubmit}>Upload</button>
-                                <button id='cancel-review-button' type="button" onClick={handleCancel} >Cancel</button>
+                                <button id='upload-photo-button' type="submit" onClick={handleSubmit}>Upload</button>
+                                <button id='cancel-photo-button' type="button" onClick={handleCancel} >Cancel</button>
 
                             </div>
-                        </form>
                             <ul>
                                 {errors.map((error, idx) => (
                                     <li key={idx} >{error}</li>
                                 ))}
                             </ul>
+                        </form>
+                        </div>
+                        <div className='display-upload'>
+                        {displayImg && (
+                                        <img src={url} alt='' />
+                                        )}
+                        </div>
                     </div>
-                </div>
-
-            </div>
-
-            <div>
-                {/* <button onClick={history.goBack}>Cancel</button> */}
-            </div>
-        </div>
     )
 
 
