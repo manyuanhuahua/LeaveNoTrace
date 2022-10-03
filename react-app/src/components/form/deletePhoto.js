@@ -5,7 +5,7 @@ import { deletePhotoThunk } from "../../store/photo";
 import "./reviewForm.css"
 
 
-const DeletePhotoAlarm = ({ photo,hideModal }) => {
+const DeletePhotoAlarm = ({ photo,hideModal,setShowModal }) => {
     const dispatch = useDispatch();
     const {trailId} = useParams()
     const history = useHistory();
@@ -17,7 +17,7 @@ const DeletePhotoAlarm = ({ photo,hideModal }) => {
     const handleDelete = async (e) => {
         e.preventDefault();
         setErrors([]);
-        return dispatch(deletePhotoThunk(photo.trailId,photo.id))
+        return dispatch(deletePhotoThunk(trailId,photo.id))
             .then(
                 async (res) => {
                     if (res.errors) {
@@ -25,7 +25,7 @@ const DeletePhotoAlarm = ({ photo,hideModal }) => {
                     }
                     else {
                         hideModal()
-
+                        setShowModal(false)
                         history.push(`/trails/${trailId}`);
                     }
 

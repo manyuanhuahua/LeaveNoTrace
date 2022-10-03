@@ -19,34 +19,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
 
     const [errors, setErrors] = useState([])
     const [contentErrors, setContentErrors] = useState([])
-    // console.log('rating------',rating)
-
-    // const handleRating = (rate) => {
-    //     let score;
-    //     if (rate === 100){
-    //         score = 5
-    //     }else if(rate === 80){
-    //         score = 4
-    //     }else if(rate === 60){
-    //         score = 3
-    //     }else if(rate === 40){
-    //         score = 2
-    //     }else{
-    //         score = 1
-    //     }
-
-    //     setRating(score)
-    // }
-
-    // useEffect(()=>{
-    //     setErrors([])
-    //     const error = []
-    //     if(content.length>10){
-    //         error.push('Maximum is 500 characters')
-
-    //     }
-    //     setContentErrors(error);
-    // },[content])
+  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
