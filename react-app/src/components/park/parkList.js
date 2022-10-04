@@ -19,30 +19,29 @@ function ParkList() {
         dispatch(getAllparksThunk()).then(() => setParksIsLoaded(true));
     }, [dispatch]);
 
-
+    const states = ['AL','AK','AZ','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY']
 
   return (parksIsLoaded &&
-    <div className='parkList-container'>
+    <div className='park-list-page-container'>
+        <h2 style={{padding:'30px 30px 0 30px'}}>SELECT PARK BY STATE</h2>
         <div className='filter-container'>
             <button className={active === 0? 'active' : ''}
                 onClick={()=>{
                 setActive(0)
                 setFilter(parksList)}}>All</button>
-            <button className={active === 1? 'active' : ''}
-                onClick={()=>{
-                setActive(1)
-                const high = parksList.filter((park)=> park.avgRating > 4).slice(0,12).sort()
-                setFilter(high)}}>Highest Rank</button>
-            <button className={active === 2? 'active' : ''}
-                onClick={()=>{
-                setActive(2)
-                const most = parksList.sort((a, b) => (a.totalReviews > b.totalReviews) ? -1 : 1).slice(0,12)
-                setFilter(most)}}>Most Reviewed</button>
+            {states.map((state,index)=>{
+                return (<button className={active === (index+1)? 'active' : ''}
+                    onClick={()=>{
+                    setActive(index+1)
+                    const selectedParks = parksList.filter((park)=> park.state == state).sort()
+                    setFilter(selectedParks)
+                    console.log('selected------',filter)
+                }}>{state}</button>)
+            })}
         </div>
         <div className='park-list-main' >
         {filter.length < 1? parksList.map(park => (
             <div className="card-container" key={park.id}>
-
                 <NavLink to={`/parks/${park.id}`} style={{textDecoration:'none',textAlign:'center',color:'#333'}}>
                     <div className='img-box'>
                         <img className="park-img" alt="" src={park.preview_img}></img>

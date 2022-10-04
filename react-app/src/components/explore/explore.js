@@ -56,78 +56,76 @@ function Explore() {
                 <Loader />
             </div>
             ) : dataLoaded && (
-            <div className='explore-container'>
-            <div className='explore-parks'>
-                <div className='list-detail'>
+            <div className='explore-page-container'>
                 <div className='parkList-container'>
-                <div className='park-list'>
-                    <h2 style={{textAlign:'center',padding:'30px 0 10px 0',borderBottom:'1px solid #5d655f',marginLeft:'40px'}}>Explore Parks</h2>
-                    <div className='filter-container'>
-                        <button className={parkActive === 0? 'active' : ''}
-                            onClick={()=>{
-                            setParkActive(0)
-                            setParkFilter(parksList)}}>All</button>
-                        <button className={parkActive === 1? 'active' : ''}
-                            onClick={()=>{
-                            setParkActive(1)
-                            const high = parksList.filter((park)=> park.avgRating > 4).slice(0,12).sort()
-                            setParkFilter(high)}}>Highest Rank</button>
-                        <button className={parkActive === 2? 'active' : ''}
-                            onClick={()=>{
-                            setParkActive(2)
-                            const most = parksList.sort((a, b) => (a.totalReviews > b.totalReviews) ? -1 : 1).slice(0,12)
-                            setParkFilter(most)}}>Most Reviewed</button>
+                    <div className='park-list'>
+                        <h2 style={{textAlign:'center',padding:'30px 0 10px 0',borderBottom:'1px solid #5d655f',marginLeft:'40px'}}>Explore Parks</h2>
+                        <div className='filter-container'>
+                            <button className={parkActive === 0? 'active' : ''}
+                                onClick={()=>{
+                                setParkActive(0)
+                                setParkFilter(parksList)}}>All</button>
+                            <button className={parkActive === 1? 'active' : ''}
+                                onClick={()=>{
+                                setParkActive(1)
+                                const high = parksList.filter((park)=> park.avgRating > 4).slice(0,12).sort()
+                                setParkFilter(high)}}>Highest Rank</button>
+                            <button className={parkActive === 2? 'active' : ''}
+                                onClick={()=>{
+                                setParkActive(2)
+                                const most = parksList.sort((a, b) => (a.totalReviews > b.totalReviews) ? -1 : 1).slice(0,12)
+                                setParkFilter(most)}}>Most Reviewed</button>
+                        </div>
                     </div>
-                </div>
-                <div className='park-list-main' >
-                {parkFilter.length < 1? parksList.map(park => (
-                    <div className="card-container" key={park.id}>
+                    <div className='park-list-main' >
+                    {parkFilter.length < 1? parksList.map(park => (
+                        <div className="card-container" key={park.id}>
 
-                        <NavLink to={`/parks/${park.id}`} style={{textDecoration:'none',textAlign:'center',color:'#333'}}>
-                            <div className='img-box'>
-                                <img className="park-img" alt="" src={park.preview_img}></img>
-                            <h4 >{park.name}</h4>
+                            <NavLink to={`/parks/${park.id}`} style={{textDecoration:'none',textAlign:'center',color:'#333'}}>
+                                <div className='img-box'>
+                                    <img className="park-img" alt="" src={park.preview_img}></img>
+                                <h4 >{park.name}</h4>
+                                </div>
+                            </NavLink>
+                            <div className='park-list-content'>
+                            <div className='park-avg-rating'>
+                                <DisplayRating rating={park.avgRating} />
+                                <p>{(park.avgRating).toFixed(2)}</p>
+                                </div>
+                            <div className='park-summary'>
+                            <p>{park.state}</p>
+                            <p>{park.acreage} acres</p>
                             </div>
-                        </NavLink>
-                        <div className='park-list-content'>
-                        <div className='park-avg-rating'>
-                            <DisplayRating rating={park.avgRating} />
-                            <p>{(park.avgRating).toFixed(2)}</p>
                             </div>
-                        <div className='park-summary'>
-                        <p>{park.state}</p>
-                        <p>{park.acreage} acres</p>
-                        </div>
-                        </div>
-                    </div>)
-                    ): parkFilter.map(park => (
-                    <div className="card-container" key={park.id}>
+                        </div>)
+                        ): parkFilter.map(park => (
+                        <div className="card-container" key={park.id}>
 
-                        <NavLink to={`/parks/${park.id}`} style={{textDecoration:'none',textAlign:'center',color:'#333'}}>
-                            <div className='img-box'>
-                                <img className="park-img" alt="" src={park.preview_img}></img>
-                            <h4 >{park.name}</h4>
+                            <NavLink to={`/parks/${park.id}`} style={{textDecoration:'none',textAlign:'center',color:'#333'}}>
+                                <div className='img-box'>
+                                    <img className="park-img" alt="" src={park.preview_img}></img>
+                                <h4 >{park.name}</h4>
+                                </div>
+                            </NavLink>
+                            <div className='park-list-content'>
+                            <div className='park-avg-rating'>
+                                <DisplayRating rating={park.avgRating} />
+                                <p>{(park.avgRating).toFixed(2)}</p>
+                                </div>
+                            <div className='park-summary'>
+                            <p>{park.state}</p>
+                            <p>{park.acreage} acres</p>
                             </div>
-                        </NavLink>
-                        <div className='park-list-content'>
-                        <div className='park-avg-rating'>
-                            <DisplayRating rating={park.avgRating} />
-                            <p>{(park.avgRating).toFixed(2)}</p>
                             </div>
-                        <div className='park-summary'>
-                        <p>{park.state}</p>
-                        <p>{park.acreage} acres</p>
-                        </div>
-                        </div>
 
-            </div>)
+                </div>)
             )
         }
         </div>
     </div>
 
 
-                <div className='trailList-container'>
+            <div className='trailList-container'>
                 <div className='trail-list'>
                     <h2 style={{textAlign:'center',padding:'30px 0 10px 0',borderBottom:'1px solid #5d655f',marginLeft:'40px'}}>Explore Trails</h2>
                     <div className='filter-container'>
@@ -192,13 +190,8 @@ function Explore() {
         }
         </div>
     </div>
-    </div>
 
 
-
-
-
-            </div>
 
             </div>)
 

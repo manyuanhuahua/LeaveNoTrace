@@ -13,9 +13,16 @@ trail_routes = Blueprint('trails',__name__)
 @trail_routes.route('/all')
 def get_all_trails():
     trails = Trail.query.all()
+
+
+
     res = {}
     for trail in trails:
+        tags = []
+        for tag in trail.trail_tags:
+            tags.append(tag.name)
         res[trail.id]=trail.preview_dict()
+        res[trail.id]['tags']=tags
     return res
 
 

@@ -1,14 +1,13 @@
-.parkList-container{
-    width: 1300px;
-    /* min-height: 100vh; */
+.park-list-page-container{
+    width: 80vw;
+    min-height: 100vh;
     margin: auto;
     background: rgb(243, 239, 239);
     /* background: #e4e4e4; */
     /* justify-content: center; */
 }
 
-.parkList-container .park-list-main {
-    margin: auto;
+.park-list-page-container .park-list-main {
     position: relative;
 
     display: flex;
@@ -21,7 +20,7 @@
 
 }
 
-.parkList-container .card-container{
+.park-list-page-container .card-container{
     position: relative;
     max-width: 300px;
     height: 180px;
@@ -37,11 +36,11 @@
 
 
 
-.parkList-container .card-container:hover{
+.park-list-page-container .card-container:hover{
     height: 280px;
 }
 
-.parkList-container .card-container .img-box{
+.park-list-page-container .card-container .img-box{
     position: relative;
     width: 260px;
     height: 160px;
@@ -54,14 +53,14 @@
 
 }
 
-.parkList-container .card-container .img-box .park-img{
+.park-list-page-container .card-container .img-box .park-img{
     width: 100%;
     height: 100%;
     border-radius: 4px;
     object-fit: cover;
 }
 
-.parkList-container .card-container .park-list-content{
+.park-list-page-container .card-container .park-list-content{
     position: relative;
     margin-top: -140px;
     padding: 10px 15px;
@@ -73,7 +72,7 @@
     font-size: 14px;
 }
 
-.parkList-container .card-container .park-list-content .park-avg-rating{
+.park-list-page-container .card-container .park-list-content .park-avg-rating{
     margin: 10px 0;
     padding-top: 5px;
     display: flex;
@@ -84,18 +83,19 @@
 } */
 
 
-.parkList-container .card-container:hover .park-list-content{
+.park-list-page-container .card-container:hover .park-list-content{
     opacity: 1;
     visibility: visible;
     margin-top: -25px;
     transition-delay: 0.3s;
 }
 
-.parkList-container .filter-container  {
+.park-list-page-container .filter-container  {
     padding: 30px 30px 0 30px;
 
+
 }
-.parkList-container .filter-container button {
+.park-list-page-container .filter-container button {
     margin-right: 1.5rem;
     min-width: 5rem;
     padding: 0.4rem 0.8rem;
@@ -106,9 +106,10 @@
     border: 2px solid #fff;
     font-weight: bold;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
-.parkList-container .filter-container button.active {
+.park-list-page-container .filter-container button.active {
     background: #6e8b74;
     color: #fff;
 }

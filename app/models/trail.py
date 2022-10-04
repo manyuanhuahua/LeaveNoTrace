@@ -80,5 +80,5 @@ class Trail(db.Model):
                 "name":self.park.name
             },
             "totalReviews": len(self.reviews),
-            "avgRating":self.avg_rating()
+            "avgRating":self.avg_rating(),
             }
