@@ -4,6 +4,7 @@ from sqlalchemy import ForeignKey
 from .trail import trail_tags
 
 
+
 class Tag(db.Model):
     __tablename__="tags"
 
@@ -16,4 +17,3 @@ class Tag(db.Model):
         back_populates="trail_tags",
         passive_deletes=True
      )
-

@@ -1,13 +1,16 @@
 from .db import db
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
-
+from .list import list_trails
 
 trail_tags = db.Table(
   "trail_tags",
   db.Column("trail_id", db.Integer, db.ForeignKey("trails.id", ondelete="CASCADE"), primary_key=True),
   db.Column("tag_id", db.Integer, db.ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True)
 )
+
+
+
 
 class Trail(db.Model):
     __tablename__="trails"
@@ -38,6 +41,15 @@ class Trail(db.Model):
         back_populates="tags_trail",
         cascade="all, delete"
     )
+
+
+    trails_list = db.relationship(
+        "List",
+        secondary=list_trails,
+        back_populates="list_trails",
+        cascade="all, delete"
+    )
+
 
     def avg_rating(self):
         totalRating = 0

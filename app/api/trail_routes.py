@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, Response,request
 # from flask_api import status
 from flask_login import login_required, current_user
-from app.models import Park, Trail,Review,Activity,Photo,db
+from app.models import Park, Trail,Review,Activity,Photo,List,db
 from app.forms import CreateReviewForm,CreateActivityForm,CreatePhotoForm
 import json
 from app.api.auth_routes import validation_errors_to_error_messages
@@ -383,7 +383,7 @@ def delete_photo(trailId,photoId):
 @trail_routes.route('/photos/upload', methods=["POST"])
 @login_required
 def upload_image():
-    print('file-----', request.files)
+    # print('file-----', request.files)
     if "image" not in request.files:
         return {"errors": "image required"}, 400
 
@@ -400,5 +400,38 @@ def upload_image():
         return upload,400
 
     url = upload['url']
-    print('url-----',url)
+    # print('url-----',url)
     return {"url":url}
+
+
+#add trail to list
+@trail_routes.route('/<int:trailId>/lists/<int:listId>/new', methods=["PUT"])
+@login_required
+def update_list_content(trailId,listId):
+
+    li = List.query.get(listId)
+    if not li:
+        return {'errors':['List can not be found']},404
+
+
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    if li.user_id != current_user.id:
+        return {"errors": ['Unauthorized']}, 401
+
+    if trail in li.list_trails:
+        li.list_trails.remove(trail)
+        db.session.commit()
+    else:
+        li.list_trails.append(trail)
+        db.session.commit()
+
+    res = {}
+    content = []
+    for el in li.list_trails:
+        content.append(el.preview_dict())
+    res[li.id] = li.to_dict()
+    res[li.id]['content']=content
+    return res

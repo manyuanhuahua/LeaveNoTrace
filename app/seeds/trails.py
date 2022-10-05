@@ -1,4 +1,4 @@
-from app.models import db, Tag, Trail
+from app.models import db, Tag, Trail, List
 
 
 
@@ -14,6 +14,7 @@ def seed_trails():
         lat = 37.72620918325973,
         log = -119.55160191563179,
         trail_tags = [Tag.query.get(1), Tag.query.get(3), Tag.query.get(6)]
+      
     )
 
     trail2 = Trail(

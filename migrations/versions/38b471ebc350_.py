@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 1cbeaf0fbd1c
+Revision ID: 38b471ebc350
 Revises: 
-Create Date: 2022-09-30 16:43:13.041273
+Create Date: 2022-10-04 14:54:51.404097
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1cbeaf0fbd1c'
+revision = '38b471ebc350'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,6 +50,14 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    op.create_table('lists',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=255), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('trails',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('park_id', sa.Integer(), nullable=False),
@@ -84,11 +92,17 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
+    op.create_table('list_trails',
+    sa.Column('trail_id', sa.Integer(), nullable=False),
+    sa.Column('list_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['list_id'], ['lists.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['trail_id'], ['trails.id'], ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('trail_id', 'list_id')
+    )
     op.create_table('photos',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('trail_id', sa.Integer(), nullable=False),
-    sa.Column('title', sa.String(length=500), nullable=True),
     sa.Column('url', sa.String(length=3000), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['trail_id'], ['trails.id'], ondelete='CASCADE'),
@@ -121,8 +135,10 @@ def downgrade():
     op.drop_table('trail_tags')
     op.drop_table('reviews')
     op.drop_table('photos')
+    op.drop_table('list_trails')
     op.drop_table('activities')
     op.drop_table('trails')
+    op.drop_table('lists')
     op.drop_table('users')
     op.drop_table('tags')
     op.drop_table('parks')

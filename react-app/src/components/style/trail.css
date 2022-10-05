@@ -245,7 +245,7 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    max-width: 1400px;
+    width: 90vw;
     justify-items: center;
     background: rgb(243, 239, 239);
     /* padding: 0 20px; */
@@ -272,7 +272,7 @@
     font-weight: 700;
     line-height: 1.13;
     color: #414141;
-    margin: 10px 20px;
+    padding: 10px 30px;
 }
 
 .trail-detail-main-container .trail-detail-top-box .trail-summary{
@@ -317,18 +317,13 @@
     margin-bottom: 3px;
 }
 
-.trail-detail-main-container .mid-box {
-    display: flex;
-    flex-direction: column;
-    margin: 0 20px 10px 20px;
-    overflow-wrap: break-word;
-}
 
 .trail-detail-main-container .mid-box {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     /* margin: 0 20px 10px 20px; */
-    padding-left: 40px ;
+    padding: 0 30px ;
     overflow-wrap: break-word;
     width: 100%;
 }
@@ -336,19 +331,20 @@
 .trail-detail-main-container .mid-box .description{
     margin-bottom: 10px;
     overflow-wrap: break-word;
+    width: 100%;
 }
 
 .trail-detail-main-container .mid-box .info{
     margin-bottom: 20px;
     display: grid;
-    grid-template-columns: 1fr 1fr 4fr;
+    grid-template-columns: 1fr 1fr 3fr;
     grid-gap: 20px;
 }
 
 .trail-detail-main-container .mid-box .info-box .len{
     grid-column: 1/2;
     grid-row: 2/3;
-    margin-left: 10px;
+    padding-left: 10px;
 }
 
 .trail-detail-main-container .mid-box .info-box .ele{

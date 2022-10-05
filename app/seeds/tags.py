@@ -3,7 +3,8 @@ from app.models import db,Tag
 
 def seed_tags():
     tag1 = Tag(
-        name='forest'
+        name='forest',
+        
     )
 
     tag2 = Tag(

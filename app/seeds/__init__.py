@@ -2,10 +2,12 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .trails import seed_trails,undo_trails
 from .tags import seed_tags, undo_tags
+from .lists import seed_lists,undo_lists
 from .reviews import seed_reviews,undo_reviews
 from .parks import seed_parks,undo_parks
 from .activities import seed_activities,undo_activities
 from .photos import seed_photos,undo_photos
+
 
 # from .routes import seed_routes,undo_routes
 # Creates a seed group to hold our commands
@@ -20,9 +22,11 @@ def seed():
     seed_parks()
     seed_tags()
     seed_trails()
+    seed_lists()
     seed_reviews()
     seed_activities()
     seed_photos()
+
 
     # seed_routes()
 
@@ -35,6 +39,7 @@ def undo():
     undo_photos()
     undo_activities()
     undo_reviews()
+    undo_lists()
     undo_trails()
     undo_tags()
     undo_parks()
