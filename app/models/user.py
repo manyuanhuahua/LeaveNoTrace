@@ -33,5 +33,9 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'profileImg':self.profile_img
+            'profileImg':self.profile_img,
+            'totalReview':len(self.reviews),
+            'totalActivities':len(self.activities),
+            'totalPhotos':len(self.photos),
+            'totalLists':len(self.lists)
         }

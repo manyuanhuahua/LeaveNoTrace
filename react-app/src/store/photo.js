@@ -45,7 +45,7 @@ export const getPhotosThunk = (trailId) => async dispatch => {
   }
 
 export const createPhotoThunk = (trailId,photo) => async dispatch => {
-      console.log('in thunk000000',photo)
+    
       const response = await fetch(`/api/trails/${trailId}/photos/new`,{
           method:'POST',
           headers:{

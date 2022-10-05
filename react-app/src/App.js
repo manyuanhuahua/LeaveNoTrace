@@ -10,13 +10,14 @@ import ParkDetail from './components/park/parkDetail';
 import CreateActivity from './components/form/createActivity';
 
 
-import User from './components/User';
+
 import { authenticate } from './store/session';
 import TrailDetail from './components/trail/trailDetail';
 import EditActivity from './components/form/editActivity';
 
 import Main from './components/Home';
 import Explore from './components/explore/explore';
+import UserDetail from './components/user/profilepage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,17 +38,11 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        {/* <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+          <UserDetail />
         </ProtectedRoute>
         <ProtectedRoute path='/parks' exact={true} >
           <ParkList/>

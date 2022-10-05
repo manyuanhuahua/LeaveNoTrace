@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify,Response,request
 from flask_login import login_required,current_user
-from app.models import User,List,db,Trail
+from app.models import User,List,Review,Activity,Photo,db,Trail
 from app.forms import CreateListForm
 import json
 from app.api.auth_routes import validation_errors_to_error_messages
@@ -19,6 +19,7 @@ def users():
 @login_required
 def user(id):
     user = User.query.get(id)
+
     return user.to_dict()
 
 #get all lists
@@ -131,3 +132,46 @@ def delete_photo(userId,listId):
     res[li.id]['content']=content
 
     return res
+
+#get all reviews
+@user_routes.route('/<int:userId>/reviews')
+@login_required
+def user_get_reviews(userId):
+    user = User.query.get(userId)
+    if not user:
+        return {'errors':['User can not be found']},404
+
+    reviews = Review.query.filter(Review.user_id == userId).all()
+    res = {}
+    for review in reviews:
+        res[review.id] = review.to_dict()
+    return {'Reviews':res}
+
+
+#get all activities
+@user_routes.route('/<int:userId>/activities')
+@login_required
+def user_get_activities(userId):
+    user = User.query.get(userId)
+    if not user:
+        return {'errors':['User can not be found']},404
+
+    activities = Activity.query.filter(Activity.user_id == userId).all()
+    res = {}
+    for activity in activities:
+        res[activity.id] = activity.to_dict()
+    return {'Activities':res}
+
+#get all photos
+@user_routes.route('/<int:userId>/photos')
+@login_required
+def user_get_photos(userId):
+    user = User.query.get(userId)
+    if not user:
+        return {'errors':['User can not be found']},404
+
+    photos = Photo.query.filter(Photo.user_id == userId).all()
+    res = {}
+    for photo in photos:
+        res[photo.id] = photo.to_dict()
+    return {'Photos':res}
