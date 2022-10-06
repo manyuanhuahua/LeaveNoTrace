@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { GoogleMap,Marker,DirectionsRenderer, LoadScript, MarkerClusterer } from "@react-google-maps/api"
+import { GoogleMap,Marker, LoadScript, MarkerClusterer } from "@react-google-maps/api"
 
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -49,11 +49,9 @@ function ParkingMap({park}){
         },2000)
     },[]);
 
-    // if(!isLoaded){
-    //   return <MapLoading />
-    // }
 
-    console.log('markers-----',markers)
+
+
 
   return dataLoad && (
     <>
@@ -66,7 +64,7 @@ function ParkingMap({park}){
     <div className='parking-map-main-box'>
 
       <div className='right-map-box'>
-        {/* initMap */}
+       
         <LoadScript
         googleMapsApiKey={apiKey}
         >
@@ -98,7 +96,7 @@ function ParkingMap({park}){
                             strokeWeight: 0.5,
                           }}
                           clusterer={clusterer}
-                          
+
                         />
                       )
                     })}

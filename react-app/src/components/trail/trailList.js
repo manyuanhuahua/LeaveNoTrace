@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink} from "react-router-dom";
 import {getAlltrailsThunk} from "../../store/trail"
-import Loader from '../loader/Loader';
-import {FaStar,FaStarHalf} from 'react-icons/fa'
+
 import DisplayRating from '../../helper/displayRating';
 import "../style/trail.css"
 
@@ -12,7 +11,7 @@ import "../style/trail.css"
 function TrailList() {
     const dispatch = useDispatch();
     const trails = useSelector(state => state.trail);
-    // const session = useSelector(state => state.session.user);
+
     const [trailsIsLoaded, setTrailsIsLoaded] = useState(false);
     const trailsList = Object.values(trails);
     const [filter,setFilter] = useState([])
@@ -22,9 +21,7 @@ function TrailList() {
         dispatch(getAlltrailsThunk()).then(() => setTrailsIsLoaded(true));
     }, [dispatch]);
 
-    // if(!trailsList){
-    //     return <Loader />
-    // }
+
     const tags =['forest','waterfall','dog friendly','no dogs','views','wildflowers','beach','hot springs','historic site','fee']
 
   return (trailsIsLoaded &&
@@ -41,7 +38,7 @@ function TrailList() {
                     setActive(index+1)
                     const selectedTrails = trailsList.filter((trail)=> (trail.tags).indexOf(tag) !== -1).sort()
                     setFilter(selectedTrails)
-                    console.log('selected------',filter)
+                 
                 }}>{tag}</button>)
             })}
         </div>

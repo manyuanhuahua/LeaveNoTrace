@@ -9,7 +9,7 @@ import DisplayRating from '../../helper/displayRating';
 function ParkList() {
     const dispatch = useDispatch();
     const parks = useSelector(state => state.park);
-    // const session = useSelector(state => state.session.user);
+
     const [parksIsLoaded, setParksIsLoaded] = useState(false);
     const parksList = Object.values(parks);
     const [filter,setFilter] = useState([])
@@ -35,7 +35,7 @@ function ParkList() {
                     setActive(index+1)
                     const selectedParks = parksList.filter((park)=> park.state == state).sort()
                     setFilter(selectedParks)
-                    console.log('selected------',filter)
+                
                 }}>{state}</button>)
             })}
         </div>

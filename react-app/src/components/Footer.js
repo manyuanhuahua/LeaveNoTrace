@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import github from "../assets/git.png"
 import linkedin from "../assets/linkdin.png"
@@ -22,10 +22,6 @@ function Footer() {
             </a>
             </div>
 
-            {/* <div className='portfolio'>
-
-                <p>Portfolio</p>
-            </div> */}
 
     </div>
     )

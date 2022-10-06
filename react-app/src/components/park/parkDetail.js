@@ -20,7 +20,7 @@ function ParkDetail() {
 
 
 
-    // const session = useSelector(state => state.session.user);
+
     const [parksIsLoaded, setParksIsLoaded] = useState(false);
 
 
@@ -48,7 +48,7 @@ function ParkDetail() {
                         <DisplayRating rating={park.avgRating} />
                         <p>{(park.avgRating).toFixed(2)}</p>
                     </div>
-                        {/* Rating:{(park.avgRating).toFixed(2)}</div> */}
+
                     <div className='park-reviews'>{park.totalReviews} Review(s)</div>
                 </div>
                 <div className='detail-text'>{park.description}</div>
@@ -99,7 +99,7 @@ function ParkDetail() {
                                 <DisplayRating rating={park.avgRating} />
                                 <p>{(trail.avgRating).toFixed(2)}</p>
                                 </div>
-                                {/* <p>Avg Rating: {trail.avgRating}</p> */}
+                              
                                 <p>{trail.totalReviews} Review(s)</p>
                                 <p>Length: {trail.length} mi</p>
                             </div>

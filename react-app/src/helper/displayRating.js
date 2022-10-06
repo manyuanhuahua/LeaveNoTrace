@@ -1,4 +1,4 @@
-import react, { useState } from 'react'
+
 import {FaStar,FaStarHalf} from 'react-icons/fa'
 
 const DisplayRating = ({rating}) =>{

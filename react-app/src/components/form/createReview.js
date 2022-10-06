@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch} from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {creatReviewThunk} from "../../store/review"
-import { Rating } from 'react-simple-star-rating'
 import "./reviewForm.css"
 import StarRating from '../../helper/Rating';
 
@@ -13,13 +12,12 @@ const CreateReviewForm = ({ trail,hideModal }) => {
     const history = useHistory();
 
     const [content, setContent] = useState("")
-    // const [hover, setHover] = useState(0);
-    // const [rating, setRating] = useState(0)
+
     const [rating, setRating] = useState(null)
 
     const [errors, setErrors] = useState([])
-    const [contentErrors, setContentErrors] = useState([])
-  
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,7 +36,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                     else {
                         hideModal()
                         history.push(`/trails/${trailId}`);
-                        // history.push(`/trails/');
+
                     }
 
                 })
@@ -63,11 +61,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                             <div className="create-form-content">
                                 <div className="star-rating">
                                     <StarRating rating={rating} setRating={setRating}/>
-                                    {/* <Rating
-                                        onClick={handleRating}
-                                        rating={rating}
-                                        fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
-                                    /> */}
+
                                 </div>
                                 <textarea
                                     className='content-field'
@@ -75,12 +69,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
                                     value={content}
                                     onChange={e => setContent(e.target.value)}
                                 />
-                                {/* {contentErrors && <ul>
-                                {contentErrors.map((error, idx) => (
-                                    <li key={idx} >{error}</li>
-                                ))}
-                                </ul>
-                                } */}
+
                             </div>
                             <div className="create-form-buttons">
                                 <button id='submit-review-button' type="submit" onClick={handleSubmit}>Create</button>
@@ -98,9 +87,7 @@ const CreateReviewForm = ({ trail,hideModal }) => {
 
             </div>
 
-            <div>
-                {/* <button onClick={history.goBack}>Cancel</button> */}
-            </div>
+
         </div>
     )
 

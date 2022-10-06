@@ -21,7 +21,7 @@ function TrailDetail() {
     const {trailId} = useParams();
     const trailObj = useSelector(state => state.trail);
     const trail = Object.values(trailObj)[0];
-    // const session = useSelector(state => state.session.user);
+
     const [trailIsLoaded, setTrailsIsLoaded] = useState(false);
     const [createModal, setCreateModal] = useState(false);
     const [showReview, setShowReview] = useState(true);
@@ -49,7 +49,7 @@ function TrailDetail() {
 
     useEffect(() => {
         dispatch(getTrailDetailThunk(trailId)).then(() => setTrailsIsLoaded(true));
-    }, [dispatch,trailId,reviews,activities]);
+    }, [dispatch,trailId,reviews,activities,photos]);
 
     useEffect(() => {
         dispatch(getPhotosThunk(trailId)).then(() => setPhotoIsLoaded(true));
@@ -74,7 +74,7 @@ function TrailDetail() {
                 <div className='trail-summary'>
                     <div className='rate'>
                         <p>Difficulty: {trail.difficulty}</p>
-                        {/* <p>Total Reviews: {trail.totalReviews}</p> */}
+
                         <p>{trail.parkName}</p>
                     </div>
                     <div className='create-map'>

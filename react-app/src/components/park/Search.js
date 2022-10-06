@@ -1,6 +1,6 @@
-import React, { useEffect, useState,useRef } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory} from "react-router-dom";
+import React, { useState,useRef } from 'react';
+
+import { useHistory} from "react-router-dom";
 import "../style/search.css"
 import icon from "../../assets/searchbar.png"
 

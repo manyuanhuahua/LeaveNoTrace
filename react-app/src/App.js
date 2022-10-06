@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
 import ParkList from './components/park/parkList';
 import TrailList from './components/trail/trailList';
 import ParkDetail from './components/park/parkDetail';
@@ -38,9 +37,6 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <UserDetail />
 

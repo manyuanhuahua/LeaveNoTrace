@@ -17,8 +17,7 @@ const StarRating = ({rating, setRating}) =>{
                         onClick={()=>(setRating(ratingValue))}
                         style={{display:'none'}}
                         key={i}
-                        // onMouseEnter={()=>setHover(ratingValue)}
-                        // onMouseleave={()=>setHover(null)}
+                      
                         />
                         <FaStar className='star'
                         size={25}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch} from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {createPhotoThunk} from "../../store/photo"
@@ -31,7 +31,7 @@ const CreatePhotoForm = ({ trail,hideModal }) => {
         const newPhoto = {
             url:url
         }
-        console.log("newPhoto======",newPhoto)
+
 
         dispatch(createPhotoThunk(trailId,newPhoto))
             .then(
@@ -46,7 +46,7 @@ const CreatePhotoForm = ({ trail,hideModal }) => {
                         setDisplaylyImg(false)
                         hideModal()
                         history.push(`/trails/${trailId}`);
-                        // history.push(`/trails/');
+
                     }
 
                 })
@@ -71,7 +71,7 @@ const CreatePhotoForm = ({ trail,hideModal }) => {
       });
 
       const data = await res.json()
-      console.log('res-----',data.url)
+     
         setUrl(data.url)
         setDisplaylyImg(true)
       };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Link} from "react-router-dom";
+
 import { getPhotosThunk } from '../../store/photo';
 
 import { Modal } from '../../context/Modal'
@@ -34,7 +34,7 @@ function PhotoList({trailId}) {
 
 
 
-    // console.log('activities--------',activityList)
+
     return (photoIsLoaded
         &&
         <div className='photoList-container'>

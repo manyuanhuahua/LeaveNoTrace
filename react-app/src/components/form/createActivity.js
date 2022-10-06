@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleMap,Marker,DirectionsRenderer, LoadScript } from "@react-google-maps/api"
-import MapLoading from '../activity/mapLoading';
 import "./map.css"
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -42,7 +41,6 @@ function CreateActivity(){
     const trailObj = useSelector(state => state.trail);
     const trail = Object.values(trailObj)[0];
     const [trailIsLoaded, setTrailsIsLoaded] = useState(false);
-    // const [clear, setClear] = useState(false)
 
 
     useEffect(() => {
@@ -53,7 +51,6 @@ function CreateActivity(){
       dispatch(addApiThunk()).then(() => setApiLoad(true));
   }, [dispatch]);
 
-  // console.log('api------',apiKey)
 
     const addMarker = (coords) => {
       setId((id)=>id+1);
@@ -69,9 +66,7 @@ function CreateActivity(){
         },2000)
     },[]);
 
-    // if(!isLoaded){
-    //   return <MapLoading />
-    // }
+
 
 
 
@@ -95,11 +90,7 @@ function CreateActivity(){
       if(!origin || !destination){
         return
       }
-      // setOriLat(origin.lat)
-      // setOriLog(origin.lng)
-      // setDesLat(destination.lat)
-      // setDesLog(destination.lng)
-      // setShowMarker(false)
+
 
 
 
@@ -117,7 +108,6 @@ function CreateActivity(){
           setDesLat(destination.lat)
           setDesLog(destination.lng)
           setShowMarker(false)
-          // setOriLat()
           setDistance(res.routes[0].legs[0].distance.text)
           setDuration(res.routes[0].legs[0].duration.text)
         }).catch((e) => {
@@ -126,7 +116,6 @@ function CreateActivity(){
 
 
   }
-  // console.log("STATIC MAP------",mapUrl)
 
   const hancleClear = () =>{
     setDirectionsResponse(null)
@@ -143,16 +132,11 @@ function CreateActivity(){
 
     setId(0)
     setShowMarker(true)
-    // setClear(!clear)
-    // window.location.reload()
-
-    // history.push('/maps/new')
 
 
   }
 
   const hancleCancel = () =>{
-    // hancleClear()
     setDirectionsResponse(null)
     setDistance('')
     setDuration('')
@@ -181,7 +165,7 @@ function CreateActivity(){
           duration:duration,
           static_url:mapUrl
         };
-        // console.log("newActivity------",newActivity)
+
         dispatch(createActivityThunk(trailId,newActivity))
             .then(
                 async (res) => {
@@ -189,7 +173,7 @@ function CreateActivity(){
                         setErrors(res.errors)
                     }
                     else {
-                        // hideModal()
+
                         history.goBack();
                     }
 
@@ -225,7 +209,7 @@ function CreateActivity(){
                 <label>Name: </label>
                 <input type='text'
                   value={name}
-                  // placeholder='Please enter activity name'
+
                   onChange={e => setName(e.target.value)}
                   style={{overflowWrap:'break-word'}}
                   maxLength={101}
@@ -240,14 +224,14 @@ function CreateActivity(){
                   value={oriLat}
                   readOnly
 
-                  // onChange={e => setOriLat(e.target.value)}
+
                   />
                 <input
                   type='text'
                   placeholder='longtitude'
                   value={oriLog}
                   readOnly
-                  // onChange={e => setOriLog(e.target.value)}
+
                   />
               </div>
               <div className='input-des'>
@@ -257,14 +241,14 @@ function CreateActivity(){
                   placeholder='Latitude'
                   value={desLat}
                   readOnly
-                  // onChange={e => setDesLat(e.target.value)}
+
                   />
                 <input
                   type='text'
                   placeholder='longtitude'
                   value={desLog}
                   readOnly
-                  // onChange={e => setDesLog(e.target.value)}
+
                   />
               </div>
           </div>
@@ -300,7 +284,7 @@ function CreateActivity(){
       </div>
       </div>
       <div className='right-map-box'>
-        {/* initMap */}
+       
         <LoadScript
         googleMapsApiKey={apiKey}
         >

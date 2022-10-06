@@ -23,14 +23,12 @@ const Main = () =>{
 
     const [searchTerm,setSearchTerm] = useState('')
     const [searchResult,setSearchResult] = useState([])
-    // const handleShow=()=>{
-    //     setShowModal(true)
-    // }
+
     useEffect(() => {
         dispatch(getAllparksThunk()).then(() => setParksIsLoaded(true));
     }, [dispatch]);
 
-    // console.log('indiv',showModal);
+
 
     const searchHandler = (searchTerm)=>{
         setSearchTerm(searchTerm)
@@ -64,7 +62,7 @@ const Main = () =>{
                             (
                                 <Modal className='forms-modal' onClose={() => setShowModal(false)}>
                                 <SwitchForm />
-                                {/* <LoginForm /> */}
+                               
                             </Modal>
                             )
 

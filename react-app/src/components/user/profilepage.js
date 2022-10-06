@@ -8,7 +8,7 @@ import bg from "../../assets/profilebarbg.jpg"
 import icon from "../../assets/listicon.jpg"
 import {getListsThunk} from "../../store/list"
 import {FaStar} from 'react-icons/fa'
-import Loader from '../loader/Loader';
+
 import { Modal } from '../../context/Modal'
 import CreateListModal from '../modals/CreateListModal';
 import EditReviewForm from '../form/editReview';
@@ -52,7 +52,6 @@ function UserDetail() {
 
 
     const [selected,setSelected] = useState(null)
-    console.log("listlist------",listsList)
 
     useEffect(() => {
         dispatch(getUserReviewsThunk(userId))
