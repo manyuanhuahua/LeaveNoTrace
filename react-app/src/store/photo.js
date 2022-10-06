@@ -32,6 +32,15 @@ const updatePhoto = (photo) => {
     }
   }
 
+export const getUserPhotosThunk = (userId) => async dispatch => {
+    const response = await fetch(`/api/users/${userId}/photos`);
+    if (response.ok) {
+      const photos = await response.json();
+      dispatch(getPhotos(photos))
+    }
+
+    return response
+  }
 
 
 export const getPhotosThunk = (trailId) => async dispatch => {
@@ -45,7 +54,7 @@ export const getPhotosThunk = (trailId) => async dispatch => {
   }
 
 export const createPhotoThunk = (trailId,photo) => async dispatch => {
-    
+
       const response = await fetch(`/api/trails/${trailId}/photos/new`,{
           method:'POST',
           headers:{

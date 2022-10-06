@@ -2,11 +2,6 @@
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const ADD_API = 'session/ADD_API';
-const GET_REVIEWS = 'session/GET_REVIEWS'
-const GET_ACTIVITIES = 'session/GET_ACTIVITIES'
-const GET_PHOTOS = 'session/GET_PHOTOS'
-
-
 
 
 const setUser = (user) => ({
@@ -23,26 +18,7 @@ const addApi = (api) =>({
   api
 })
 
-const getReviews = (reviews) =>{
-  return {
-    type:GET_REVIEWS,
-    reviews
-  }
-}
 
-const getActivities = (activities) =>{
-  return {
-    type:GET_ACTIVITIES,
-    activities
-  }
-}
-
-const getPhotos = (photos) =>{
-  return {
-    type:GET_PHOTOS,
-    photos
-  }
-}
 const initialState = { user: null };
 
 
@@ -144,35 +120,9 @@ export const signUp = (username, email, password,profile_img) => async (dispatch
   }
 }
 
-export const getReviewsThunk = (userId) => async dispatch => {
-  const response = await fetch(`/api/users/${userId}/reviews`);
-  if (response.ok) {
-    const reviews = await response.json();
-    dispatch(getReviews(reviews))
-  }
 
-  return response
-}
 
-export const getActivitiesThunk = (userId) => async dispatch => {
-  const response = await fetch(`/api/users/${userId}/activities`);
-  if (response.ok) {
-    const activities = await response.json();
-    dispatch(getActivities(activities))
-  }
 
-  return response
-}
-
-export const getPhotosThunk = (userId) => async dispatch => {
-  const response = await fetch(`/api/users/${userId}/photos`);
-  if (response.ok) {
-    const photos = await response.json();
-    dispatch(getPhotos(photos))
-  }
-
-  return response
-}
 
 export default function reducer(state = initialState, action) {
   let newState
@@ -186,18 +136,7 @@ export default function reducer(state = initialState, action) {
       newState['api'] = action.api
       return newState
     }
-    case GET_REVIEWS: {
-      newState = action.reviews.Reviews;
-      return newState;
-    }
-    case GET_PHOTOS: {
-      newState = action.photos.Photos;
-      return newState;
-    }
-    case GET_ACTIVITIES: {
-      newState = action.activities.Activities;
-      return newState;
-    }
+
     default:
       return state;
   }

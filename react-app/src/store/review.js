@@ -31,6 +31,15 @@ const updateReview = (review) => {
     }
   }
 
+export const getUserReviewsThunk = (userId) => async dispatch => {
+      const response = await fetch(`/api/users/${userId}/reviews`);
+      if (response.ok) {
+        const reviews = await response.json();
+        dispatch(getReviews(reviews))
+      }
+
+      return response
+    }
 
 export const getReviewsThunk = (trailId) => async dispatch => {
     const response = await fetch(`/api/trails/${trailId}/reviews`);

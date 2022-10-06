@@ -27,6 +27,10 @@ const NavBar = () =>{
           e.target.src = defaultImg
     }
 
+    const menuToggle=()=>{
+      const toggleMenu = document.querySelector(".pro-drop-menu")
+      toggleMenu.classList.toggle('active')
+    }
 
     return (
         <div className='main-container'>
@@ -36,7 +40,7 @@ const NavBar = () =>{
                       <img src={logo} alt='' className='logo'  />
                       {/* <h3 className='logo'>LeaveNoTrace</h3> */}
                     </div>
-                    <ul>
+                    <ul style={{height:'100%'}}>
                     <li>
                       <Link className='button' to='/' exact={true} >
                         Home
@@ -56,21 +60,7 @@ const NavBar = () =>{
                                 )}
 
                         </li>
-                        {/* <li>
-                            <div className='button' onClick={() => setShowSignup(true)}>Signup</div>
-                                {showSignup && (!user) && (!showLogin) && (
-                                <Modal onClose={() => setShowSignup(false)}>
-                                    <SignUpForm />
-                                </Modal>
-                                )}
-                        </li> */}
-                        {/* <li>
-                          <Link to='/switch'>
-                                  switch
-                          </Link>
-                          </li> */}
-
-                      </>
+                    </>
                     )}
                       {user && (
                         <>
@@ -85,28 +75,25 @@ const NavBar = () =>{
                                   Trails
                               </Link>
                           </li>
-                          <li className='pro-img' style={{
-                            width: '30px',
-                            height: '30px',
-                            // marginRight: '20px',
-                            // borderRadius:'50%'
-                          }}>
-                            <img src={user.profileImg? user.profileImg : defaultImg}
-                            alt=''
-                            onError={imgError}
-                            style={{
-                              height:'100%',
-                              width:'100%',
-                              borderRadius:'50%',
+                          <li className='pro-section'>
+                            <div className='profile' onClick={()=>menuToggle()}>
+                                <img src={user.profileImg? user.profileImg : defaultImg}
+                                alt=''
+                                onError={imgError}
+                                />
+                            </div>
+                            <div className='pro-drop-menu'>
+                              <h4>{user.username}</h4>
+                              <ul>
+                                <li><img src='https://cdn-icons-png.flaticon.com/512/48/48674.png' /><NavLink to={`/users/${user.id}`}>My Profile</NavLink></li>
+                                <li><img src='https://www.nicepng.com/png/detail/368-3689520_email-icons-grey-email-icon-pink-png.png' /><p >{user.email}</p></li>
+                                <li ><img src='https://png.pngtree.com/png-vector/20190425/ourmid/pngtree-vector-logout-icon-png-image_991952.jpg' /><LogoutButton /></li>
 
-                              objectFit: 'cover'
-
-                            }}/>
+                              </ul>
+                            </div>
                           </li>
                           <li>
-                            <div className='button'>
-                                <LogoutButton />
-                            </div>
+
                           </li>
                         </>)}
                     </ul>

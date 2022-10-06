@@ -3,7 +3,7 @@ import { useDispatch} from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {creatListThunk} from "../../store/list"
 
-import "./listForm.css"
+import "../style/list.css"
 
 
 

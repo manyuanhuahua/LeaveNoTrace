@@ -32,8 +32,14 @@ def user_get_lists(userId):
 
     lists = List.query.filter(List.user_id == userId).all()
     res = {}
+
     for li in lists:
+        content= []
+        for el in li.list_trails:
+            content.append(el.preview_dict())
+
         res[li.id] = li.to_dict()
+        res[li.id]['content']=content
     return {'Lists':res}
 
 #get a list detail

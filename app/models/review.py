@@ -21,6 +21,7 @@ class Review(db.Model):
     def to_dict(self):
         return {
         "id": self.id,
+        "trailPreview":self.trail.preview_img,
         "trailId": self.trail_id,
         "trailName":self.trail.name,
         "content": self.content,
