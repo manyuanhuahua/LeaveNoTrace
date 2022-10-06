@@ -12,9 +12,9 @@ import Loader from '../loader/Loader';
 import { Modal } from '../../context/Modal'
 import CreateListModal from '../modals/CreateListModal';
 import EditReviewForm from '../form/editReview';
-
+import DeleteListAlarm from '../form/deleteList';
 import DeleteReviewAlarm from '../form/deleteReview';
-
+import EditListForm from '../form/editList';
 import DeletePhotoAlarm from '../form/deletePhoto';
 import DeleteActivityAlarm from '../form/deleteActivity';
 
@@ -47,32 +47,32 @@ function UserDetail() {
     const [deleteReviewModal, setDeleteReviewModal] = useState(false);
     const [editReviewModal, setEditReviewModal] = useState(false);
     const [createListModal, setCreateListModal] = useState(false);
-
-
+    const [editListModal, setEditListModal] = useState(false);
+    const [deleteListModal, setDeleteListModal] = useState(false);
 
 
     const [selected,setSelected] = useState(null)
-
+    console.log("listlist------",listsList)
 
     useEffect(() => {
         dispatch(getUserReviewsThunk(userId))
             .then(() => setReviewIsLoaded(true));
-    }, [dispatch,userId]);
+    }, [dispatch,userId,editReviewModal,deleteReviewModal]);
 
     useEffect(() => {
         dispatch(getUserPhotosThunk(userId))
             .then(() => setPhotoIsLoaded(true));
-    }, [dispatch,userId]);
+    }, [dispatch,userId,deletePhotoModal]);
 
     useEffect(() => {
         dispatch(getUserActivitiesThunk(userId))
             .then(() => setActivityIsLoaded(true));
-    }, [dispatch,userId]);
+    }, [dispatch,userId,deleteActivityModal]);
 
     useEffect(() => {
         dispatch(getListsThunk(userId))
             .then(() => setListIsLoaded(true));
-    }, [dispatch,userId]);
+    }, [dispatch,userId,editListModal,deleteListModal,createListModal]);
 
 
     const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
@@ -133,7 +133,7 @@ function UserDetail() {
                                     <div className='button-group'>
                                         <div className='edit-button'onClick={()=>{
                                             setSelected(list);
-                                            setEditReviewModal(true)}}
+                                            setEditListModal(true)}}
                                             style={{width:'30px',
                                             height:'25px',
                                             color:'#fff',
@@ -145,15 +145,15 @@ function UserDetail() {
                                             marginRight:'10px',
                                             border:'none'}}
                                             ><i className="fa-solid fa-pen" ></i></div>
-                                            {editReviewModal &&
+                                            {editListModal &&
                                                 (
-                                                <Modal onClose={()=>setEditReviewModal(false)}>
-                                                    <EditReviewForm selectedList={selected} hideModal={()=>setEditReviewModal(false)} />
+                                                <Modal onClose={()=>setEditListModal(false)}>
+                                                    <EditListForm selectedList={selected} hideModal={()=>setEditListModal(false)} />
                                                 </Modal>
                                             )
                                         }
                                     <div className='delete-button'
-                                        onClick={()=>{setSelected(list);setDeleteReviewModal(true)}}
+                                        onClick={()=>{setSelected(list);setDeleteListModal(true)}}
                                         style={{textDecoration:'none',
                                             width:'30px',
                                             height:'25px',
@@ -166,9 +166,9 @@ function UserDetail() {
                                             border:'none'
                                             }}
                                         ><i className="fa-solid fa-trash-can" ></i></div>
-                                        {deleteReviewModal &&
-                                            <Modal onClose={()=>setDeleteReviewModal(false)} >
-                                                <DeleteReviewAlarm hideModal={()=> setDeleteReviewModal(false)} review={selected} />
+                                        {deleteListModal &&
+                                            <Modal onClose={()=>setDeleteListModal(false)} >
+                                                <DeleteListAlarm hideModal={()=> setDeleteListModal(false)} list={selected} />
                                             </Modal>
                                         }
 

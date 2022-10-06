@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {deleteListThunk} from "../../store/list"
-import "./listForm.css"
+import "../style/list.css"
 
 
 const DeleteListAlarm = ({ list,hideModal }) => {

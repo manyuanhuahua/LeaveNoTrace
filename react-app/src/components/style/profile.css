@@ -151,7 +151,11 @@
 
 .profile-selected-list-container .list-selected-container .selected-img p{
     margin:auto;
-
+    width: 100px;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
     /* margin: 10px auto; */
 }
 

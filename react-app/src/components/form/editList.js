@@ -3,7 +3,7 @@ import { useDispatch} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import {updateListThunk} from "../../store/list";
 
-import "./listForm.css"
+import "../style/list.css"
 
 
 
@@ -12,7 +12,7 @@ const EditListForm = ({ selectedList,hideModal }) => {
     const history = useHistory();
     const {userId} = useParams()
 
-    const [name, setName] = useState(selectedList.content)
+    const [name, setName] = useState(selectedList.name)
 
     const [errors, setErrors] = useState([])
 
@@ -52,15 +52,15 @@ const EditListForm = ({ selectedList,hideModal }) => {
       };
 
     return (
-        <div className="create-list-form-container">
-        <div className='create-list-form-container-box'>
+        <div className="edit-list-form-container">
+        <div className='edit-list-form-container-box'>
         <div className='box-left'></div>
         <div className='box-right'>
             <div className="form-content">
                 <h3>Update {selectedList.name}</h3>
 
-                <form className="create-review-form" onSubmit={handleSubmit}>
-                    <div className="create-form-content">
+                <form className="edit-list-form" onSubmit={handleSubmit}>
+                    <div className="edit-form-content">
                         <input type='text'
                                 value={name}
                                 placeholder='Please enter list name'
@@ -70,7 +70,7 @@ const EditListForm = ({ selectedList,hideModal }) => {
                                 />
 
                     </div>
-                    <div className="create-form-buttons">
+                    <div className="edit-form-buttons">
                         <button id='submit-review-button' type="submit" onClick={handleSubmit}>Update</button>
                         <button id='cancel-review-button' type="button" onClick={handleCancel} >Cancel</button>
 

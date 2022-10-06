@@ -85,6 +85,7 @@ def create_list(userId):
         db.session.commit()
 
         res = li.to_dict()
+        res['content'] = []
         return res
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
