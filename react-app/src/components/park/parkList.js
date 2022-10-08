@@ -19,7 +19,7 @@ function ParkList() {
         dispatch(getAllparksThunk()).then(() => setParksIsLoaded(true));
     }, [dispatch]);
 
-    const states = ['AL','AK','AZ','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY']
+    const states = ['AL','AZ','CA','CO','FL','NE','UT','WA']
 
   return (parksIsLoaded &&
     <div className='park-list-page-container'>
@@ -33,9 +33,9 @@ function ParkList() {
                 return (<button className={active === (index+1)? 'active' : ''}
                     onClick={()=>{
                     setActive(index+1)
-                    const selectedParks = parksList.filter((park)=> park.state == state).sort()
+                    const selectedParks = parksList.filter((park)=> park.state === state).sort()
                     setFilter(selectedParks)
-                
+
                 }}>{state}</button>)
             })}
         </div>

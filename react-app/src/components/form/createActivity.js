@@ -284,7 +284,7 @@ function CreateActivity(){
       </div>
       </div>
       <div className='right-map-box'>
-       
+
         <LoadScript
         googleMapsApiKey={apiKey}
         >

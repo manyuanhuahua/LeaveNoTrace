@@ -88,7 +88,7 @@ function UserDetail() {
                         <img src={bg}  alt=''/>
                     </div>
                     <div className='sidebar-profile-info'>
-                        <img src={session.profileImg}/>
+                        <img src={session.profileImg? session.profileImg : defaultImg}  alt='' onError={imgError}/>
                         <h1>{session.username}</h1>
                         <CreateListModal createListModal={createListModal} setCreateListModal={setCreateListModal}/>
                         <div className='user-detail'>

@@ -17,7 +17,7 @@ const StarRating = ({rating, setRating}) =>{
                         onClick={()=>(setRating(ratingValue))}
                         style={{display:'none'}}
                         key={i}
-                      
+
                         />
                         <FaStar className='star'
                         size={25}

@@ -4,7 +4,6 @@ import { NavLink, useParams} from "react-router-dom";
 import {getParkDetailThunk,} from "../../store/park"
 import {getParkTrailsThunk} from "../../store/trail"
 import DisplayRating from '../../helper/displayRating';
-import {addNpsApiThunk} from "../../store/session"
 
 import ParkingMap from './parkingMap';
 
@@ -22,20 +21,25 @@ function ParkDetail() {
 
 
     const [parksIsLoaded, setParksIsLoaded] = useState(false);
+    const [parksTrailIsLoaded, setParksTrailIsLoaded] = useState(false);
+
 
 
 
     useEffect(() => {
         dispatch(getParkDetailThunk(parkId))
-        .then(() => dispatch(getParkTrailsThunk(parkId)))
-        .then(() => setParksIsLoaded(true));
+            .then(() => setParksIsLoaded(true));
+    }, [dispatch,parkId]);
+
+    useEffect(() => {
+       dispatch(getParkTrailsThunk(parkId))
+        .then(() => setParksTrailIsLoaded(true));
     }, [dispatch,parkId]);
 
 
 
 
-
-    return (parksIsLoaded &&
+    return (parksIsLoaded && parksTrailIsLoaded &&
         <div className='park-detail-container'>
             <div className='park-detail-top-box'>
                 <div className='pre-img'>
@@ -99,7 +103,7 @@ function ParkDetail() {
                                 <DisplayRating rating={park.avgRating} />
                                 <p>{(trail.avgRating).toFixed(2)}</p>
                                 </div>
-                              
+
                                 <p>{trail.totalReviews} Review(s)</p>
                                 <p>Length: {trail.length} mi</p>
                             </div>

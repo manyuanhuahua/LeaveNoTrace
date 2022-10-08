@@ -23,7 +23,7 @@ const LargePhoto = ({ photo,setShowModal }) => {
 
     useEffect(()=>{
         formatedDate(photo.createdAt)
-    },[])
+    },[photo.createdAt])
 
 
 

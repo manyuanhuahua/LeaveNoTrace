@@ -32,7 +32,7 @@ const Search = ({parks,term,searchKeyWord})=>{
                             history.push('/explore')
                         }}}
                     >
-                    <img src={icon} style={{width:'20px',height:'20px'}}/>
+                    <img src={icon} alt='' style={{width:'20px',height:'20px'}}/>
                 </div>
             </div>
             <div className='dropdown'>

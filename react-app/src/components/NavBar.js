@@ -53,7 +53,7 @@ const NavBar = () =>{
                                 {showLogin && (!user) && (!showSignup) && (
                                 <Modal className='forms-modal' onClose={() => setShowLogin(false)}>
                                     <SwitchForm />
-                                   
+
                                 </Modal>
                                 )}
 
@@ -83,9 +83,9 @@ const NavBar = () =>{
                             <div className='pro-drop-menu'>
                               <h4>{user.username}</h4>
                               <ul>
-                                <li><img src='https://cdn-icons-png.flaticon.com/512/48/48674.png' /><NavLink to={`/users/${user.id}`}>My Profile</NavLink></li>
-                                <li><img src='https://www.nicepng.com/png/detail/368-3689520_email-icons-grey-email-icon-pink-png.png' /><p >{user.email}</p></li>
-                                <li ><img src='https://png.pngtree.com/png-vector/20190425/ourmid/pngtree-vector-logout-icon-png-image_991952.jpg' /><LogoutButton /></li>
+                                <li><img src='https://cdn-icons-png.flaticon.com/512/48/48674.png' alt=''/><NavLink to={`/users/${user.id}`}>My Profile</NavLink></li>
+                                <li><img src='https://www.nicepng.com/png/detail/368-3689520_email-icons-grey-email-icon-pink-png.png' alt=''/><p >{user.email}</p></li>
+                                <li ><img src='https://png.pngtree.com/png-vector/20190425/ourmid/pngtree-vector-logout-icon-png-image_991952.jpg' alt=''/><LogoutButton /></li>
 
                               </ul>
                             </div>
