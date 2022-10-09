@@ -45,9 +45,9 @@ def seed_parks():
 
     park4 = Park(
         name = "Zion National Park",
-        description = "Zion National Park is a unique landscape with high cliffs, narrow gorges and a beautiful view. The park has many famous walks. Angels Landing is an intense switchback trail with truly spectacular views from the top of the canyon. Another famous hike is the unique Narrows "Trail", a very long hike through a river that lies between a steep gorge. Other notable trails include the East Rim Trail to the park's highest point, the Slot Canyon Subway Trail, and the family-friendly but equally beautiful Kayenta Trail.",
+        description = "Zion National Park is a unique landscape with high cliffs, narrow gorges and a beautiful view. The park has many famous walks. Angels Landing is an intense switchback trail with truly spectacular views from the top of the canyon. Another famous hike is the unique Narrows 'Trail', a very long hike through a river that lies between a steep gorge. Other notable trails include the East Rim Trail to the park's highest point, the Slot Canyon Subway Trail, and the family-friendly but equally beautiful Kayenta Trail.",
         preview_img = "https://images.pexels.com/photos/248820/pexels-photo-248820.jpeg",
-        acreage = 146,597,
+        acreage = 146597,
         contact = "435-772-3256",
         state = "UT",
         country = "United States of America",
@@ -69,7 +69,6 @@ def seed_parks():
         log = "-109.57613495812087",
         park_originlinks = "https://www.nps.gov/arch/index.htm",
         park_hours = "8:00 am - 6:00 pm"
-"
     )
 
     park6 = Park(
@@ -152,7 +151,7 @@ def seed_parks():
         country = "United States of America",
         lat = "40.340974056180826",
         log = "-105.6820157639068",
-        park_originlinks = "http://www.nps.gov/romo/",
+        park_originlinks = "https://www.nps.gov/romo/index.htm",
         park_hours = "dawn - dusk"
     )
 
@@ -166,7 +165,7 @@ def seed_parks():
         country = "United States of America",
         lat = "25.27939778903861",
         log = "-80.86943918099752",
-        park_originlinks = "http://www.nps.gov/ever/",
+        park_originlinks = "https://www.nps.gov/ever/index.htm",
         park_hours = "dawn - dusk"
     )
 
@@ -185,30 +184,30 @@ def seed_parks():
     )
 
     park14 = Park(
-        name = "Lake Tahoe-Nevada State Park",
-        description = "Lake Tahoe-Nevada State Park is located, like the name suggests, on the Nevada side of Lake Tahoe. It has a landscape that encompasses part of the lake and the beautiful forrest of aspens that surrounds it. It is a wonderful place to hike, horseback ride and mountain bike.",
-        preview_img = "https://img.peapix.com/a72f65f9efa64cb1b164d3d44b85850f_480.jpg",
-        acreage = 14301,
-        contact = "775-831-0494",
-        state = "Nevada",
+        name = "Topanga State Park",
+        description = " The park covers 11,000 acres stretching from Topanga Canyon to Rustic Canyon and down to the Pacific Palisades, all entirely within the City of Los Angeles, making it the largest wildland within major city limits. The park hosts 36 miles of trails and roads.",
+        preview_img = "https://www.parks.ca.gov/pages/21299/images/new_vista_topanga.jpg",
+        acreage = 7500,
+        contact = "310-455-2465",
+        state = "CA",
         country = "United States of America",
-        lat = "39.19918616698728",
-        log = "-119.92877222908082",
-        park_originlinks = "http://parks.nv.gov/parks/lake-tahoe-nevada-state-park-1",
-        park_hours = "dawn - dusk"
+        lat = "34.093319995488486",
+        log = "-118.58730387340395",
+        park_originlinks = "http://www.parks.ca.gov/?page_id=629",
+        park_hours = "8:00 am - dusk"
     )
 
     park15 = Park(
-        name = "Lake Tahoe-Nevada State Park",
-        description = "Lake Tahoe-Nevada State Park is located, like the name suggests, on the Nevada side of Lake Tahoe. It has a landscape that encompasses part of the lake and the beautiful forrest of aspens that surrounds it. It is a wonderful place to hike, horseback ride and mountain bike.",
-        preview_img = "https://img.peapix.com/a72f65f9efa64cb1b164d3d44b85850f_480.jpg",
-        acreage = 14301,
-        contact = "775-831-0494",
-        state = "Nevada",
+        name = "Joshua Tree National Park",
+        description = "Joshua Tree National Park was first designated as a national monument in 1936. The Joshua Tree Wilderness was established in 1976 by The United States Congress. The park was officially designated as a National Park and expanded by the California Desert Protection Act of 1994. ",
+        preview_img = "https://cdn.recreation.gov/public/2021/05/09/14/39/2782_b76e9c0e-5780-419c-9bc4-c2fbf294cae9_1440.jpeg",
+        acreage = 795200,
+        contact = "760-367-5500",
+        state = "CA",
         country = "United States of America",
-        lat = "39.19918616698728",
-        log = "-119.92877222908082",
-        park_originlinks = "http://parks.nv.gov/parks/lake-tahoe-nevada-state-park-1",
+        lat = "33.92036759751305",
+        log = "-115.89927985346955",
+        park_originlinks = "https://www.nps.gov/jotr/index.htm",
         park_hours = "dawn - dusk"
     )
 
