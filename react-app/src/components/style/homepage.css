@@ -68,7 +68,7 @@
 
 .home-main-container .content .explore {
     text-decoration: none;
-    display: inline-block;
+    display: flex;
     color: #fff;
     font-size: 36px;
     border: 3px solid #fff;
@@ -80,7 +80,9 @@
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     background: #6e8b74;
-
+    height:60px;
+    justify-content: center;
+    align-items: center;
 }
 
 
