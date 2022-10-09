@@ -85,7 +85,7 @@ def seed_trails():
     trail7 = Trail(
         park_id = 4,
         name = "The Zion Narrows Riverside Walk",
-        description = "This route along the Riverside Walk Trail is a relatively easy and paved out and back located at the end of the Zion Canyon Scenic Drive. This route only includes the maintained trail. Those looking for a longer adventure can find the full Zion Narrows route that continues down the river past this trail's endpoint. ",
+        description = "This route along the Riverside Walk Trail is a relatively easy and paved out and back located at the end of the Zion Canyon Scenic Drive. This route only includes the maintained trail. ",
         preview_img = "https://www.citrusmilo.com/zion2010/joebraun_riversidewalk21.jpg",
         length = 1.9,
         elevation = 193,
@@ -290,7 +290,7 @@ def seed_trails():
     db.session.add(trail18)
     db.session.add(trail19)
     db.session.add(trail20)
-   
+
 
     db.session.commit()
 

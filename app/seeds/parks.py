@@ -45,7 +45,7 @@ def seed_parks():
 
     park4 = Park(
         name = "Zion National Park",
-        description = "Zion National Park is a unique landscape with high cliffs, narrow gorges and a beautiful view. The park has many famous walks. Angels Landing is an intense switchback trail with truly spectacular views from the top of the canyon. Another famous hike is the unique Narrows 'Trail', a very long hike through a river that lies between a steep gorge. Other notable trails include the East Rim Trail to the park's highest point, the Slot Canyon Subway Trail, and the family-friendly but equally beautiful Kayenta Trail.",
+        description = "Zion National Park is a unique landscape with high cliffs, narrow gorges and a beautiful view. The park has many famous walks. Angels Landing is an intense switchback trail with truly spectacular views from the top of the canyon.",
         preview_img = "https://images.pexels.com/photos/248820/pexels-photo-248820.jpeg",
         acreage = 146597,
         contact = "435-772-3256",
@@ -59,7 +59,7 @@ def seed_parks():
 
     park5 = Park(
         name = "Arches National Park",
-        description = "Arches National Park, located in the Moab region of eastern Utah, is a highlight of any trip to the Southwest, especially for families with children. The park is also a haven for adventure travel and adrenaline junkies. Compared to other National Parks in the region, the highlights can be seen within a day or two. The bright red rock against the deep blue sky is an iconic southwestern sight enjoyed by all ages.",
+        description = "Arches National Park, located in the Moab region of eastern Utah, is a highlight of any trip to the Southwest, especially for families with children. The park is also a haven for adventure travel and adrenaline junkies.",
         preview_img = "https://images.pexels.com/photos/62600/pexels-photo-62600.jpeg",
         acreage = 76,
         contact = "435-719-2299",
@@ -73,7 +73,7 @@ def seed_parks():
 
     park6 = Park(
         name = "Bryce Canyon National Park",
-        description = "Bryce Canyon is a series of gorgeous, amphitheater shaped canyons that are known for their striking hoodoos. Because of the park's relatively remote location, it gets a lot less foot and car traffic than other National Parks. It is home to trees that are well over 1,000 years old,  endangered species like Utah prairie dog, the California condor, and the southwestern willow flycatcher, and 400 native plant species.",
+        description = "Bryce Canyon is a series of gorgeous, amphitheater shaped canyons that are known for their striking hoodoos. Because of the park's relatively remote location, it gets a lot less foot and car traffic than other National Parks. ",
         preview_img = "https://images.pexels.com/photos/8884864/pexels-photo-8884864.jpeg",
         acreage = 35835,
         contact = "435-834-5322",
@@ -87,7 +87,7 @@ def seed_parks():
 
     park7 = Park(
         name = "Chugach State Park",
-        description = "This beautiful park is a short drive from Anchorage, making for a great day trip. The park is the third largest state park in the United States, providing hundreds of thousands of acres for outdoor recreation. There are miles of trails for hiking, skiing, camping, and rock climbing. This is a must see if you're in the area.",
+        description = "This beautiful park is a short drive from Anchorage, making for a great day trip. The park is the third largest state park in the United States, providing hundreds of thousands of acres for outdoor recreation. There are miles of trails for hiking, skiing, camping, and rock climbing. ",
         preview_img = "https://www.alaskapublic.org/wp-content/uploads/2021/02/20210218_Crow-Pass-Trail_Chugach-State-Park-600x450.jpg",
         acreage = 495000,
         contact = "907-345-5014",
