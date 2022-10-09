@@ -9,8 +9,6 @@ import DeleteActivityAlarm from '../form/deleteActivity';
 import "../style/activity.css"
 
 
-
-
 function ActivityList({trailId}) {
     const dispatch = useDispatch();
     const activities = useSelector(state => state.activity);
