@@ -144,6 +144,7 @@
     justify-content: center;
     padding:10px auto;
     margin: auto;
+    cursor: pointer;
     /* margin: 10px auto; */
 }
 
@@ -211,6 +212,7 @@
     justify-content: flex-start;
     padding:10px auto;
     margin-right:20px;
+    cursor: pointer;
     /* margin: 10px auto; */
 }
 
@@ -254,6 +256,7 @@
     justify-content: flex-start;
     padding:10px auto;
     margin-right:20px;
+    cursor: pointer;
     /* margin: 10px auto; */
 }
 
@@ -295,6 +298,7 @@
     justify-content: flex-start;
     padding:10px auto;
     margin-right:20px;
+    cursor: pointer;
     /* margin: 10px auto; */
 }
 
