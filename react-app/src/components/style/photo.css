@@ -1,0 +1,210 @@
+.photoList-container{
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.photoList-container .photo-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 15px;
+}
+
+.photoList-container .photo-container .top-box{
+    width: 100%;
+    height: 100%;
+
+}
+
+.photoList-container .photo-container .top-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.display-photo{
+    display: flex;
+    flex-direction: column;
+}
+
+.display-photo .large-img{
+    width:650px;
+    height:500px;
+}
+
+.display-photo .large-img .large{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#eef7f2;
+
+}
+
+.display-photo .photo-user-pro{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #cad3c3;
+
+
+}
+
+.display-photo .photo-user-pro .user-pro-img{
+    width: 50px;
+    height: 50px;
+    margin: 10px 20px;
+}
+
+.display-photo .photo-user-pro .user-pro-img .pro-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.display-photo .photo-user-pro .photo-title{
+    margin-left: 15px;
+    font-size: 14px;
+    width: 350px;
+    word-wrap: break-word;
+}
+
+.display-photo .photo-user-pro .modal{
+    padding: 0 20px;
+}
+
+
+.create-photo-form-container {
+    position: relative;
+    display: flex;
+    width: 600px;
+    height: 400px;
+
+}
+
+.create-photo-form-container .photo-form-content{
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-photo-form-container .display-upload{
+    width: 50%;
+    height: 100%;
+    background-image: url("../../assets/previewbg.jpg") ;
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding:10px;
+}
+
+.create-photo-form-container .display-upload img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.create-photo-form-container .photo-form-content {
+    padding: 20px;
+    height: 100%;
+    background: #f0f5e5;
+}
+
+.create-photo-form-container .photo-form-content h3{
+    position: relative;
+    padding-bottom: 15px;
+    margin: 10px 0 10px 0;
+    text-align: center;
+}
+
+.create-photo-form-container .photo-form-content h3::after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 160px;
+    border-radius: 3px;
+    background:#97A675;
+
+}
+
+.create-photo-form-container .photo-form-content .photo-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    word-wrap: break-word;
+    margin: 30px auto;
+}
+
+.create-photo-form-container .photo-form-content .photo-content input{
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+}
+
+.create-photo-form-container .photo-form-content .photo-content .photo-upload-button{
+    margin-top:10px;
+    text-transform: uppercase;
+    width: 100px;
+    font-weight: 300;
+    height: 30px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #e8b004;
+    border: 1px solid #fff;
+    margin-right: 10px;
+}
+
+.create-photo-form-container .photo-form-content .photo-content p{
+    font-size: 10px;
+    color:#333;
+    margin-top: 10px;
+}
+
+.create-photo-form-container .photo-form-content .create-form-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-photo-form-container .photo-form-content #upload-photo-button{
+    text-transform: uppercase;
+    width: 100px;
+    font-weight: 300;
+    height: 30px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #868c4e;
+    border: 1px solid #fff;
+    margin-right: 10px;
+}
+
+.create-photo-form-container .photo-form-content #cancel-photo-button{
+    text-transform: uppercase;
+    width: 100px;
+    font-weight: 300;
+    height: 30px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #ad9e5f;
+    border: 1px solid #fff;
+    margin-right: 10px;
+}

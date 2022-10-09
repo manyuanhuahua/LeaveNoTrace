@@ -12,10 +12,10 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_img = db.Column(db.String(255),nullable=False)
 
-
+    photos = db.relationship("Photo", back_populates="user",cascade="all, delete")
     reviews = db.relationship("Review", back_populates="user",cascade="all, delete")
     activities = db.relationship("Activity", back_populates="user",cascade="all, delete")
-
+    lists = db.relationship("List", back_populates="user",cascade="all, delete")
 
     @property
     def password(self):
@@ -33,5 +33,9 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'profileImg':self.profile_img
+            'profileImg':self.profile_img,
+            'totalReview':len(self.reviews),
+            'totalActivities':len(self.activities),
+            'totalPhotos':len(self.photos),
+            'totalLists':len(self.lists)
         }

@@ -18,7 +18,6 @@ const SignUpForm = () => {
     setErrors([])
     const data = await dispatch(signUp(username, email, password,profile));
     if (password === repeatPassword) {
-      // console.log('repeat----',data)
       if (data) {
         setErrors(data)
       }
@@ -53,10 +52,6 @@ const SignUpForm = () => {
   }
 
 
-  // if (!(profile.includes('.jpg') || profile.includes('.png') || profile.includes('.jpeg'))){
-  //   errors.push('Profile type should be jpg/png/jpeg')
-  // }
-
 
 
   return (
@@ -65,7 +60,6 @@ const SignUpForm = () => {
         <h1>Sign Up</h1>
 
         <label>
-          {/* <span>Username</span> */}
         <input
           type='text'
           name='username'
@@ -76,7 +70,6 @@ const SignUpForm = () => {
         </label>
 
         <label>
-          {/* <span>Email</span> */}
         <input
           type='email'
           name='email'
@@ -87,7 +80,6 @@ const SignUpForm = () => {
         </label>
 
         <label>
-          {/* <span>Profile image</span> */}
         <input
           type='text'
           name='profileImage'
@@ -98,7 +90,6 @@ const SignUpForm = () => {
         </label>
 
         <label>
-          {/* <span>Password</span> */}
         <input
           type='password'
           name='password'
@@ -109,7 +100,6 @@ const SignUpForm = () => {
         </label>
 
         <label>
-          {/* <span>Repeat Password</span> */}
         <input
           type='password'
           name='repeat_password'

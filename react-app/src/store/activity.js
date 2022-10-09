@@ -40,6 +40,15 @@ const updateActivity = (activity) => {
     }
   }
 
+export const getUserActivitiesThunk = (userId) => async dispatch => {
+    const response = await fetch(`/api/users/${userId}/activities`);
+    if (response.ok) {
+      const activities = await response.json();
+      dispatch(getActivities(activities))
+    }
+
+    return response
+  }
 
 export const getActivitiesThunk = (trailId) => async dispatch => {
     const response = await fetch(`/api/trails/${trailId}/activities`);

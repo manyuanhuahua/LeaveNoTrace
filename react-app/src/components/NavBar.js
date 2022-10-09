@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
-import videoHome from "../assets/homeVideo.mp4"
+
 import LogoutButton from './auth/LogoutButton';
 import { Modal } from '../context/Modal';
-import LoginForm from './auth/LoginForm';
-import SignUpForm from './auth/SignUpForm';
+
 import { useSelector } from 'react-redux';
 import SwitchForm from './auth/switchForm';
 import "./style/nav.css"
@@ -14,8 +13,7 @@ import logo from "../assets/logo.jpg"
 const NavBar = () =>{
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
-    const [showParks, setShowParks] = useState(false);
-    const [showTrails, setTrails] = useState(false);
+
     const history = useHistory()
 
 
@@ -27,18 +25,22 @@ const NavBar = () =>{
           e.target.src = defaultImg
     }
 
+    const menuToggle=()=>{
+      const toggleMenu = document.querySelector(".pro-drop-menu")
+      toggleMenu.classList.toggle('active')
+    }
 
     return (
         <div className='main-container'>
             <div className='nav-bar'>
                 <nav>
-                    <div onClick={() => history.push('/')} exact={true} style={{cursor:'pointer'}}>
+                    <div onClick={() => history.push('/')} exact="true" style={{cursor:'pointer'}}>
                       <img src={logo} alt='' className='logo'  />
-                      {/* <h3 className='logo'>LeaveNoTrace</h3> */}
+
                     </div>
-                    <ul>
+                    <ul style={{height:'100%'}}>
                     <li>
-                      <Link className='button' to='/' exact={true} >
+                      <Link className='button' to='/' exact="true" >
                         Home
                       </Link>
 
@@ -51,62 +53,45 @@ const NavBar = () =>{
                                 {showLogin && (!user) && (!showSignup) && (
                                 <Modal className='forms-modal' onClose={() => setShowLogin(false)}>
                                     <SwitchForm />
-                                    {/* <LoginForm /> */}
+
                                 </Modal>
                                 )}
 
                         </li>
-                        {/* <li>
-                            <div className='button' onClick={() => setShowSignup(true)}>Signup</div>
-                                {showSignup && (!user) && (!showLogin) && (
-                                <Modal onClose={() => setShowSignup(false)}>
-                                    <SignUpForm />
-                                </Modal>
-                                )}
-                        </li> */}
-                        {/* <li>
-                          <Link to='/switch'>
-                                  switch
-                          </Link>
-                          </li> */}
-
-                      </>
+                    </>
                     )}
                       {user && (
                         <>
                           <li>
-                              <Link className='button' to='/parks' exact={true} >
+                              <Link className='button' to='/parks' exact="true" >
                                   Parks
                               </Link>
                           </li>
                           <li>
 
-                              <Link className='button' to='/trails' exact={true} >
+                              <Link className='button' to='/trails' exact="true" >
                                   Trails
                               </Link>
                           </li>
-                          <li className='pro-img' style={{
-                            width: '30px',
-                            height: '30px',
-                            // marginRight: '20px',
-                            // borderRadius:'50%'
-                          }}>
-                            <img src={user.profileImg? user.profileImg : defaultImg}
-                            alt=''
-                            onError={imgError}
-                            style={{
-                              height:'100%',
-                              width:'100%',
-                              borderRadius:'50%',
+                          <li className='pro-section'>
+                            <div className='profile' onClick={()=>menuToggle()}>
+                                <img src={user.profileImg? user.profileImg : defaultImg}
+                                alt=''
+                                onError={imgError}
+                                />
+                            </div>
+                            <div className='pro-drop-menu'>
+                              <h4>{user.username}</h4>
+                              <ul>
+                                <li><img src='https://cdn-icons-png.flaticon.com/512/48/48674.png' alt=''/><NavLink to={`/users/${user.id}`}>My Profile</NavLink></li>
+                                <li><img src='https://www.nicepng.com/png/detail/368-3689520_email-icons-grey-email-icon-pink-png.png' alt=''/><p >{user.email}</p></li>
+                                <li ><img src='https://png.pngtree.com/png-vector/20190425/ourmid/pngtree-vector-logout-icon-png-image_991952.jpg' alt=''/><LogoutButton /></li>
 
-                              objectFit: 'cover'
-
-                            }}/>
+                              </ul>
+                            </div>
                           </li>
                           <li>
-                            <div className='button'>
-                                <LogoutButton />
-                            </div>
+
                           </li>
                         </>)}
                     </ul>

@@ -1,10 +1,11 @@
 from flask import Blueprint, jsonify, Response,request
 # from flask_api import status
 from flask_login import login_required, current_user
-from app.models import Park, Trail,Review,Activity,db
-from app.forms import CreateReviewForm,CreateActivityForm
+from app.models import Park, Trail,Review,Activity,Photo,List,db
+from app.forms import CreateReviewForm,CreateActivityForm,CreatePhotoForm
 import json
 from app.api.auth_routes import validation_errors_to_error_messages
+from app.s3_helpers import (upload_file_to_s3,allowed_file,get_unique_filename)
 
 trail_routes = Blueprint('trails',__name__)
 
@@ -12,9 +13,16 @@ trail_routes = Blueprint('trails',__name__)
 @trail_routes.route('/all')
 def get_all_trails():
     trails = Trail.query.all()
+
+
+
     res = {}
     for trail in trails:
+        tags = []
+        for tag in trail.trail_tags:
+            tags.append(tag.name)
         res[trail.id]=trail.preview_dict()
+        res[trail.id]['tags']=tags
     return res
 
 
@@ -261,3 +269,169 @@ def delete_activities(trailId,activityId):
     db.session.delete(activity)
     db.session.commit()
     return {"message":"Successfully deleted!"}
+
+
+#photos
+@trail_routes.route('/<int:trailId>/photos')
+@login_required
+def get_all_photos(trailId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    photos = Photo.query.filter(Photo.trail_id == trailId).all()
+    res = {}
+    for photo in photos:
+        res[photo.id] = photo.to_dict()
+    return {'Photos':res}
+
+#get an photo detail
+@trail_routes.route('/<int:trailId>/photos/<int:photoId>')
+@login_required
+def get_photo_detail(trailId,photoId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    photo= Photo.query.get(photoId)
+    if not photo:
+        return {'errors':['Photo can not be found']},404
+
+
+    photo_dict = photo.to_dict()
+    return photo_dict
+
+
+#upload photos
+@trail_routes.route('/<int:trailId>/photos/new', methods=["POST"])
+@login_required
+def create_photo_post(trailId):
+
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    form = CreatePhotoForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        photo = Photo(
+            url=form.data['url']
+        )
+        photo.trail_id=trailId
+        photo.user_id=current_user.id
+
+        # print('backend-----',photo)
+        db.session.add(photo)
+        db.session.commit()
+
+        res = photo.to_dict()
+        return res
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
+
+#update an photo
+@trail_routes.route('/<int:trailId>/photos/<int:photoId>', methods=["PUT"])
+@login_required
+def update_photo(trailId,photoId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    photo = Photo.query.get(photoId)
+    if not photo:
+        return {'errors':['Photo can not be found']},404
+
+    if photo.user_id != current_user.id:
+        return {"errors": ['Unauthorized']}, 401
+
+    form = CreatePhotoForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        photo.title=form.data['title']
+        photo.url=form.data['url']
+
+        db.session.commit()
+
+
+        res = photo.to_dict()
+        return res
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+#delete a photo
+@trail_routes.route('/<int:trailId>/photos/<int:photoId>', methods=["DELETE"])
+@login_required
+def delete_photo(trailId,photoId):
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    photo = Photo.query.get(photoId)
+    if not photo:
+        return {'errors':['Photo can not be found']},404
+
+    if photo.user_id != current_user.id:
+        return {"errors": ['Unauthorized']}, 401
+
+    db.session.delete(photo)
+    db.session.commit()
+    return {"message":"Successfully deleted!"}
+
+#create image url
+@trail_routes.route('/photos/upload', methods=["POST"])
+@login_required
+def upload_image():
+    # print('file-----', request.files)
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        return upload,400
+
+    url = upload['url']
+    # print('url-----',url)
+    return {"url":url}
+
+
+#add trail to list
+@trail_routes.route('/<int:trailId>/lists/<int:listId>/new', methods=["PUT"])
+@login_required
+def update_list_content(trailId,listId):
+
+    li = List.query.get(listId)
+    if not li:
+        return {'errors':['List can not be found']},404
+
+
+    trail = Trail.query.get(trailId)
+    if not trail:
+        return {'errors':['Trail can not be found']},404
+
+    if li.user_id != current_user.id:
+        return {"errors": ['Unauthorized']}, 401
+
+    if trail in li.list_trails:
+        li.list_trails.remove(trail)
+        db.session.commit()
+    else:
+        li.list_trails.append(trail)
+        db.session.commit()
+
+    res = {}
+    content = []
+    for el in li.list_trails:
+        content.append(el.preview_dict())
+    res[li.id] = li.to_dict()
+    res[li.id]['content']=content
+    return res

@@ -31,34 +31,24 @@ const LoginForm = () => {
         }
       }
       )
-      // .then(()=>history.push('/home'));
     };
 
 
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
-        console.log("in the catch")
+        
 
     return await dispatch(login(email, password)).then(
       async (res) => {
-        // const data  = await res.json();
-        // console.log("in form data", data)
+
         if (res && res.errors){
           setErrors(res.errors)
         }else{
           history.push('/')
         }
-        // {
-
-          // console.log("in form data.error", res.errors)
-          // console.log('error----',errors)
-        // }else{
-        //   history.push('/home')
-        // } ;
 
       })
-      // .then(()=>history.push('/home'));
     }
 
   const updateEmail = (e) => {
@@ -79,7 +69,6 @@ const LoginForm = () => {
       <>
         <h1>Log In</h1>
         <label htmlFor='email'>
-          {/* <span>Email</span> */}
         <input
           name='email'
           type='text'
@@ -92,7 +81,6 @@ const LoginForm = () => {
 
 
         <label htmlFor='password'>
-          {/* <span>Password</span> */}
         <input
           name='password'
           type='password'

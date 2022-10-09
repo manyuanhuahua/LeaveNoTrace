@@ -31,6 +31,15 @@ const updateReview = (review) => {
     }
   }
 
+export const getUserReviewsThunk = (userId) => async dispatch => {
+      const response = await fetch(`/api/users/${userId}/reviews`);
+      if (response.ok) {
+        const reviews = await response.json();
+        dispatch(getReviews(reviews))
+      }
+
+      return response
+    }
 
 export const getReviewsThunk = (trailId) => async dispatch => {
     const response = await fetch(`/api/trails/${trailId}/reviews`);
@@ -109,8 +118,8 @@ export const deleteReviewThunk = (trailId,reviewId) => async dispatch => {
           }
           case UPDATE_REVIEW: {
             newState = {...state};
-            newState[action.reviewId] =
-                {...newState[action.rreview],...action.review}
+            newState[action.review.id] =
+                {...newState[action.review.id],...action.review}
             return newState;
           }
           case DELETE_REVIEW: {

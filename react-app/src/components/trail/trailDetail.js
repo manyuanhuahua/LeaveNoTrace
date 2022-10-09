@@ -3,30 +3,38 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams,Link} from "react-router-dom";
 import {getTrailDetailThunk} from "../../store/trail"
 import CreateReviewModal from '../modals/CreateReviewModal';
+import CreatePhotoModal from '../modals/CreatePhotoModal';
 import ReviewList from '../review/reviewList';
 import NearbyTrails from './nearbyTrails';
-import ActivityList from '../map/ActivityList';
+import ActivityList from '../activity/ActivityList';
 import {getReviewsThunk} from "../../store/review"
 import {getActivitiesThunk} from "../../store/activity"
+import { getPhotosThunk } from '../../store/photo';
 import DisplayRating from '../../helper/displayRating';
 
 
 import "../style/trail.css"
+import PhotoList from '../photo/photoList';
 
 function TrailDetail() {
     const dispatch = useDispatch();
     const {trailId} = useParams();
     const trailObj = useSelector(state => state.trail);
     const trail = Object.values(trailObj)[0];
-    // const session = useSelector(state => state.session.user);
+
     const [trailIsLoaded, setTrailsIsLoaded] = useState(false);
     const [createModal, setCreateModal] = useState(false);
     const [showReview, setShowReview] = useState(true);
     const [showActivity, setShowActivity] = useState(false);
+    const [showPhoto, setShowPhoto] = useState(false);
+
+
     const reviews = useSelector(state => state.review);
     const [reviewsIsLoaded, setReviewsIsLoaded] = useState(false);
     const activities = useSelector(state => state.activity);
     const [activityIsLoaded, setActivityIsLoaded] = useState(false);
+    const photos = useSelector(state => state.photo);
+    const [photoIsLoaded, setPhotoIsLoaded] = useState(false);
 
 
 
@@ -41,7 +49,11 @@ function TrailDetail() {
 
     useEffect(() => {
         dispatch(getTrailDetailThunk(trailId)).then(() => setTrailsIsLoaded(true));
-    }, [dispatch,trailId,reviews,activities]);
+    }, [dispatch,trailId,reviews,activities,photos]);
+
+    useEffect(() => {
+        dispatch(getPhotosThunk(trailId)).then(() => setPhotoIsLoaded(true));
+    }, [dispatch,trailId]);
 
     if(!trail){
         return null
@@ -52,7 +64,7 @@ function TrailDetail() {
 
 
 
-    return (trailIsLoaded && trail && reviewsIsLoaded && activityIsLoaded &&(
+    return (trailIsLoaded && trail && reviewsIsLoaded && activityIsLoaded && photoIsLoaded &&(
         <div className='trail-detail-main-container'>
             <div className='trail-detail-top-box'>
                 <div className='trail-detail-pre-img'>
@@ -62,7 +74,7 @@ function TrailDetail() {
                 <div className='trail-summary'>
                     <div className='rate'>
                         <p>Difficulty: {trail.difficulty}</p>
-                        {/* <p>Total Reviews: {trail.totalReviews}</p> */}
+
                         <p>{trail.parkName}</p>
                     </div>
                     <div className='create-map'>
@@ -101,38 +113,68 @@ function TrailDetail() {
             <div className='trail-detail-bot-box'>
                 <div className='bot-left-box'>
                         <div className='review-activity-bar'>
-                            <div className='bar-review' onClick={()=>{setShowReview(true); setShowActivity(false)}}>
+                            <div className='bar-review' onClick={()=>{setShowReview(true); setShowActivity(false);setShowPhoto(false)}}>
                                 Reviews
                             </div>
-                            <div className='bar-activity' onClick={()=>{setShowReview(false); setShowActivity(true)}}>
+                            <div className='bar-activity' onClick={()=>{setShowReview(false); setShowActivity(true);setShowPhoto(false)}}>
                                 Activities
+                            </div>
+                            <div className='bar-photo' onClick={()=>{setShowReview(false); setShowActivity(false);setShowPhoto(true)}}>
+                                Photos
                             </div>
                         </div>
 
                         <div className='rate-create'>
-                        {showReview &&<div className='rate-display'>
+                        {showReview &&
+                            <>
+                            <div className='rate-display'>
                             <div className='trail-avg-rage'>
                                 <DisplayRating rating={trail.avgRating} />
                                 <h1>{(trail.avgRating).toFixed(2)}</h1>
                             </div>
                                 <p>{trail.totalReviews} Review(s)</p>
-                            </div>}
-
-                        {showReview &&<div className='create-button'>
+                            </div>
+                            <div className='create-button'>
                                 <div className='create-review'>
                                     <CreateReviewModal trail={trail} createModal={createModal} setCreateModal={setCreateModal} />
-                                </div></div>}
-                        {showActivity &&<div className='rate-display'>
+                                </div>
+                            </div>
+                            </>
+                                }
+                        {showActivity &&
+                                <>
+                                <div className='rate-display'>
                                 <h1>{trail.totalActivities}</h1>
                                 <p>{trail.totalActivities <= 1? 'Activity' : 'Activities'}</p>
-                            </div>}
-                        {showActivity &&  <div className='create-button'>
+                                </div>
+
+                                <div className='create-button'>
                                 <div className='create-map'>
                                     <Link to={`/trails/${trail.id}/activities/new`} trail={trail} exact="true" style={{textDecoration: 'none', color:'#fff'}} >
                                     Create Activity
                                     </Link>
                                 </div>
-                                </div>}
+                                </div>
+                                </>
+                                }
+                            {showPhoto &&
+                                <>
+                                <div className='rate-display'>
+                                <h1>{trail.totalPhotos}</h1>
+                                <p>{trail.totalPhotos <= 1? 'Photo' : 'Photos'}</p>
+                                </div>
+
+                                <div className='create-button'>
+                                <div className='create-review'>
+                                    <CreatePhotoModal trail={trail} createModal={createModal} setCreateModal={setCreateModal} />
+
+                                </div>
+                                </div>
+                                </>
+                                }
+
+
+
                         </div>
                         <div className='left-list-box'>
                         {showReview && <div className='review-list'>
@@ -140,6 +182,9 @@ function TrailDetail() {
                         </div>}
                         {showActivity && <div className='activity-list'>
                             <ActivityList trailId={trailId}/>
+                        </div>}
+                        {showPhoto && <div className='activity-list'>
+                            <PhotoList trailId={trailId}/>
                         </div>}
                         </div>
                 </div>

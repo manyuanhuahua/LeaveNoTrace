@@ -5,4 +5,7 @@ from .park import Park
 from .trail import Trail
 from .tag import Tag
 from .activity import Activity
+from .photo import Photo
+from .list import List
+
 # from .route import Route

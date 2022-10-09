@@ -70,6 +70,7 @@ def seed_reviews():
         content = "Scenic, hot in the summer.",
         rating = 4
     )
+
     review11 = Review(
         user_id = 7,
         trail_id = 4,
@@ -105,6 +106,40 @@ def seed_reviews():
         rating = 3
     )
 
+    review16 = Review(
+        user_id = 7,
+        trail_id = 8,
+        content = "Elevation changes are very physical. Be prepared.",
+        rating = 4
+    )
+
+    review17 = Review(
+        user_id = 1,
+        trail_id = 9,
+        content = "nice walk as always.",
+        rating = 2
+    )
+
+    review18 = Review(
+        user_id = 9,
+        trail_id = 9,
+        content = "Great I really used the app to find the way. ",
+        rating = 5
+    )
+
+    review19 = Review(
+        user_id = 10,
+        trail_id = 11,
+        content = "beautiful",
+        rating = 4
+    )
+
+    review20 = Review(
+        user_id = 11,
+        trail_id = 5,
+        content = "Great trail!",
+        rating = 4
+    )
 
 
 
@@ -123,6 +158,11 @@ def seed_reviews():
     db.session.add(review13)
     db.session.add(review14)
     db.session.add(review15)
+    db.session.add(review16)
+    db.session.add(review17)
+    db.session.add(review18)
+    db.session.add(review19)
+    db.session.add(review20)
 
 
     db.session.commit()

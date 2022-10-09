@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import EditReviewModal from '../modals/EditReviewModal';
-import DeleteReviewModal from '../modals/DeleteReviewModal';
+
 import {getReviewsThunk} from "../../store/review"
 import {FaStar} from 'react-icons/fa'
 
@@ -53,7 +52,7 @@ function ReviewList({trailId}) {
                         <p>{review.user.username}</p>
                         <p>{review.createdAt}</p>
                     </div>
-                    {/* {console.log('checker1------',review)} */}
+
 
                     {(review.user.id === session.id) && review && (
                         <div className='modal'>
@@ -75,8 +74,7 @@ function ReviewList({trailId}) {
                                         <DeleteReviewAlarm hideModal={()=> setDeleteModal(false)} review={selectedReview} />
                                     </Modal>
                                 }
-                            {/* <EditReviewModal review={review} editModal={editModal} setEditModal={setEditModal} /> */}
-                            {/* <DeleteReviewModal review={review} deleteModal={deleteModal} setDeleteModal={setDeleteModal} /> */}
+
                         </div>
                         )}
                     </div>
@@ -95,7 +93,7 @@ function ReviewList({trailId}) {
 
                     </div>
 
-                    {/* {`Rating:${review.rating}`} */}
+            
                     <div className='review-content'>{review.content}</div>
                 </div>
 

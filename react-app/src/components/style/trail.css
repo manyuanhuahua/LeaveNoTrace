@@ -1,21 +1,28 @@
-.trailList-container{
+.trail-List-page-container{
+    width: 80vw;
+    min-height: 100vh;
+
     margin: auto;
-    position: relative;
-    width: 1300px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    justify-items: center;
-    /* align-items: center; */
-    padding: 30px;
-    padding-top: 30px;
+    background: rgb(243, 239, 239);
     /* background: #e4e4e4; */
     background: #f0f0f4;
 
 
 }
 
-.trailList-container .card-container{
+.trail-List-page-container .trail-list-main {
+    position: relative;
+
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    padding-top: 30px;
+}
+
+.trail-List-page-container .card-container{
     position: relative;
     max-width: 300px;
     height: 185px;
@@ -29,11 +36,11 @@
     transition: 0.5s ease-in-out;
 }
 
-.trailList-container .card-container:hover{
+.trail-List-page-container .card-container:hover{
     height: 290px;
 }
 
-.trailList-container .card-container .img-box{
+.trail-List-page-container .card-container .img-box{
     position: relative;
     width: 260px;
     height: 160px;
@@ -49,14 +56,14 @@
 
 
 
-.trailList-container .card-container .img-box .trail-img{
+.trail-List-page-container .card-container .img-box .trail-img{
     width: 100%;
     height: 100%;
     border-radius: 4px;
     object-fit: cover;
 }
 
-.trailList-container .card-container .trail-list-content{
+.trail-List-page-container .card-container .trail-list-content{
     position: relative;
     margin-top: -125px;
     padding: 10px 15px;
@@ -69,7 +76,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.trailList-container .card-container .trail-list-content .trail-avg-rating{
+.trail-List-page-container .card-container .trail-list-content .trail-avg-rating{
     margin: 10px 0;
     padding-top: 5px;
     display: flex;
@@ -79,12 +86,38 @@
     margin-bottom: 5px;
 } */
 
-.trailList-container .card-container:hover .trail-list-content{
+.trail-List-page-container .card-container:hover .trail-list-content{
     opacity: 1;
     visibility: visible;
     margin-top: -25px;
     transition-delay: 0.3s;
 }
+
+
+.trail-List-page-container .filter-container  {
+    margin: auto;
+    padding: 30px 30px 0 30px;
+
+}
+.trail-List-page-container .filter-container button {
+    margin-right: 1.5rem;
+    min-width: 5rem;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background: #e4e4e4;
+    color: #333;
+    border-radius: 1rem;
+    border: 2px solid #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.trail-List-page-container .filter-container button.active {
+    background: #6e8b74;
+    color: #fff;
+}
+
 
 .trail-detail-main-container .mid-box .mid-right .nearby-trail {
     display: flex;
@@ -197,7 +230,7 @@
     display: flex;
     align-items: center;
     transition: 0.6s;
-    bottom: -40px;
+    bottom: -55px;
     transition-property: bottom;
 }
 
@@ -212,7 +245,7 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    max-width: 1400px;
+    width: 90vw;
     justify-items: center;
     background: rgb(243, 239, 239);
     /* padding: 0 20px; */
@@ -239,7 +272,7 @@
     font-weight: 700;
     line-height: 1.13;
     color: #414141;
-    margin: 10px 20px;
+    padding: 10px 30px;
 }
 
 .trail-detail-main-container .trail-detail-top-box .trail-summary{
@@ -284,18 +317,13 @@
     margin-bottom: 3px;
 }
 
-.trail-detail-main-container .mid-box {
-    display: flex;
-    flex-direction: column;
-    margin: 0 20px 10px 20px;
-    overflow-wrap: break-word;
-}
 
 .trail-detail-main-container .mid-box {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     /* margin: 0 20px 10px 20px; */
-    padding-left: 40px ;
+    padding: 0 30px ;
     overflow-wrap: break-word;
     width: 100%;
 }
@@ -303,19 +331,20 @@
 .trail-detail-main-container .mid-box .description{
     margin-bottom: 10px;
     overflow-wrap: break-word;
+    width: 100%;
 }
 
 .trail-detail-main-container .mid-box .info{
     margin-bottom: 20px;
     display: grid;
-    grid-template-columns: 1fr 1fr 4fr;
+    grid-template-columns: 1fr 1fr 3fr;
     grid-gap: 20px;
 }
 
 .trail-detail-main-container .mid-box .info-box .len{
     grid-column: 1/2;
     grid-row: 2/3;
-    margin-left: 10px;
+    padding-left: 10px;
 }
 
 .trail-detail-main-container .mid-box .info-box .ele{

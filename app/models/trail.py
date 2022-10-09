@@ -1,13 +1,16 @@
 from .db import db
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
-
+from .list import list_trails
 
 trail_tags = db.Table(
   "trail_tags",
   db.Column("trail_id", db.Integer, db.ForeignKey("trails.id", ondelete="CASCADE"), primary_key=True),
   db.Column("tag_id", db.Integer, db.ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True)
 )
+
+
+
 
 class Trail(db.Model):
     __tablename__="trails"
@@ -28,6 +31,8 @@ class Trail(db.Model):
     park=relationship("Park",back_populates="trails")
     activities = db.relationship("Activity", back_populates="trail", cascade="all, delete")
     reviews = db.relationship("Review", back_populates="trail", cascade="all, delete")
+    photos = db.relationship("Photo", back_populates="trail", cascade="all, delete")
+
 
 
     trail_tags = db.relationship(
@@ -36,6 +41,15 @@ class Trail(db.Model):
         back_populates="tags_trail",
         cascade="all, delete"
     )
+
+
+    trails_list = db.relationship(
+        "List",
+        secondary=list_trails,
+        back_populates="list_trails",
+        cascade="all, delete"
+    )
+
 
     def avg_rating(self):
         totalRating = 0
@@ -62,6 +76,7 @@ class Trail(db.Model):
         "avgRating":self.avg_rating(),
         "totalActivities" : len(self.activities),
         "totalReviews" : len(self.reviews),
+        "totalPhotos": len(self.photos)
 
         }
 
@@ -77,5 +92,5 @@ class Trail(db.Model):
                 "name":self.park.name
             },
             "totalReviews": len(self.reviews),
-            "avgRating":self.avg_rating()
+            "avgRating":self.avg_rating(),
             }

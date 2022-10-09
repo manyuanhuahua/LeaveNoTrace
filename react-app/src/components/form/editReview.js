@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 import {updateReviewThunk} from "../../store/review";
-import { Rating } from 'react-simple-star-rating'
+
 import StarRating from '../../helper/Rating';
 import "./reviewForm.css"
 
@@ -17,7 +17,7 @@ const EditReviewForm = ({ selectedReview,hideModal }) => {
 
     const [errors, setErrors] = useState([])
     const [rating, setRating] = useState(selectedReview.rating)
-    // console.log('inform-----',selectedReview)
+
 
 
 
@@ -86,9 +86,7 @@ const EditReviewForm = ({ selectedReview,hideModal }) => {
                     </ul>
                 </form>
             </div>
-            <div>
-                {/* <button onClick={history.goBack}>Cancel</button> */}
-            </div>
+            
         </div>
     </div>
 

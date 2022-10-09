@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
-import { useJsApiLoader,GoogleMap,Marker,DirectionsRenderer,LoadScript  } from "@react-google-maps/api"
-import MapLoading from '../map/mapLoading';
+import { GoogleMap,Marker,DirectionsRenderer,LoadScript  } from "@react-google-maps/api"
+
 import "./map.css"
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch,useSelector} from "react-redux";
@@ -18,9 +18,7 @@ function EditActivity(){
     const [apiLoad, setApiLoad] = useState(false)
     const [loading,setLoading] = useState(false)
     const activity = location.state.activity
-    // const {isLoaded} = useJsApiLoader({
-    //   googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    // })
+
 
     const dispatch = useDispatch();
 
@@ -60,9 +58,7 @@ function EditActivity(){
   }, [dispatch]);
 
 
-    // if(!isLoaded){
-    //   return <MapLoading />
-    // }
+
 
 
     const staticMap = (res) =>{
@@ -93,10 +89,10 @@ function EditActivity(){
           travelMode: google.maps.TravelMode.WALKING,
           avoidTolls: true,
       }).then((res) => {
-          console.log("res--------",res)
+
           setDirectionsResponse(res);
           setmapUrl(staticMap(res))
-          console.log("url--------",mapUrl)
+
 
           setOriLat(origin.lat)
           setOriLog(origin.lng)
@@ -105,30 +101,23 @@ function EditActivity(){
 
 
           setShowMarker(false)
-          // setOriLat()
+
           setDistance(res.routes[0].legs[0].distance.text)
           setDuration(res.routes[0].legs[0].duration.text)
-          // console.log("distance--------",distance)
-          // console.log("duration--------",duration)
+
 
 
         }).catch((e) => {
           const emsg= e.message
-          console.log('error--------',e.message)
+
           const msgArr= emsg.split(':')
           const last = msgArr[msgArr.length-1]
-          console.log('last--------',last)
+          
 
             setErrors(["Could not display directions due to: " + last]);
         });
 
-    //     result.addListener("directions_changed", () => {
-    //   const directions = directionsRenderer.getDirections();
 
-    //   if (directions) {
-    //     computeTotalDistance(directions);
-    //   }
-    // });
 
   }
 
@@ -175,8 +164,7 @@ function EditActivity(){
     setDesLat('')
     setDesLog('')
     setName('')
-    // hideModal()
-    // history.push(`/trails/${activity.trail.id}`)
+
     history.goBack();
 
   }
@@ -189,7 +177,7 @@ function EditActivity(){
         const trimedName = name.trim()
 
         const updatedActivity = {
-          // ...activity,
+
           id:activity.id,
           name:trimedName,
           ori_lat:oriLat,
@@ -200,7 +188,7 @@ function EditActivity(){
           duration:duration,
           static_url:mapUrl
         };
-        // console.log("updatedActivity--------",updatedActivity)
+
 
 
         dispatch(updateActivityThunk(activity.trail.id,updatedActivity))
@@ -210,9 +198,9 @@ function EditActivity(){
                         setErrors(res.errors)
                     }
                     else {
-                        // console.log("res------",res)
+
                         history.goBack();
-                        // history.push(`/trails/${res.trail.id}`);
+
                     }
 
                 })
@@ -349,7 +337,7 @@ function EditActivity(){
 
             {markers &&
                 markers.map((marker) => {
-                  // console.log('marker-----',marker)
+
                   return showMarker && (
                     <Marker
                       key={marker.id}

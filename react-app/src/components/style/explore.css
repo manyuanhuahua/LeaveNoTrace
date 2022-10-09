@@ -1,35 +1,280 @@
 .explore-container{
     margin: auto;
-    /* width: 1500px; */
+    width: 80vw;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.explore-page-container{
+    margin: auto;
+    width: 68vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgb(243, 239, 239);
 
 }
 
 
-.explore-parks{
+/* .explore-trails{
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 50px;
     justify-content: space-evenly;
 
-    /* border-bottom: 1px solid #333; */
-}
-
-.explore-container h2{
-    margin-right: 40px;
-
-    /* border-bottom: 1px solid #333; */
-}
-
-.explore-trails{
+} */
+.explore-page-container .parkList-container {
+    width: 100%;
+    /* min-height: 100vh; */
+    margin: auto;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 50px;
-    justify-content: space-evenly;
-    /* border-bottom: 1px solid #333; */
+    flex-direction: column;
+
+}
+
+
+
+.explore-page-container .parkList-container .park-list{
+    display: flex;
+
+}
+
+.explore-page-container .parkList-container .filter-container {
+    padding: 30px 30px 0 30px;
+
+}
+
+.explore-page-container .parkList-container .park-list-main {
+    position: relative;
+
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    padding-top: 30px;
+
+}
+
+.explore-page-container .parkList-container .park-list-main .card-container{
+    position: relative;
+    max-width: 300px;
+    height: 180px;
+    background: #fff;
+    margin: 50px 10px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    transition: 0.5s ease-in-out;
+}
+
+
+
+.explore-page-container .parkList-container .park-list-main .card-container:hover{
+    height: 280px;
+}
+
+.explore-page-container .parkList-container .park-list-main .card-container .img-box{
+    position: relative;
+    width: 260px;
+    height: 160px;
+    /* height: 260px; */
+    top: -60px;
+    /* left: 20px; */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    margin: auto;
+    font-size: 16px;
+
+}
+
+.explore-page-container .parkList-container .park-list-main .card-container .img-box .park-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.explore-page-container .parkList-container .park-list-main .card-container .park-list-content{
+    position: relative;
+    margin-top: -140px;
+    padding: 10px 15px;
+    /* text-align: center; */
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    font-size: 14px;
+}
+
+.explore-page-container .parkList-container .park-list-main .card-container .park-list-content .park-avg-rating{
+    margin: 10px 0;
+    padding-top: 5px;
+    display: flex;
+}
+
+/* .parkList-container .card-container .park-list-content p{
+    margin-bottom: 5px;
+} */
+
+
+.explore-page-container .parkList-container .park-list-main .card-container:hover .park-list-content{
+    opacity: 1;
+    visibility: visible;
+    margin-top: -25px;
+    transition-delay: 0.3s;
+}
+
+.park-list-page-container .filter-container  {
+    padding: 30px 30px 0 30px;
+
+
+}
+
+.explore-page-container .parkList-container .park-list .filter-container button {
+    margin-right: 1.5rem;
+    min-width: 5rem;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background: #e4e4e4;
+    color: #333;
+    border-radius: 1rem;
+    border: 2px solid #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.explore-page-container .parkList-container .park-list .filter-container button.active {
+    background: #6e8b74;
+    color: #fff;
+}
+
+
+.explore-page-container .trailList-container .trail-list{
+    display: flex;
+
+}
+
+.explore-page-container .trailList-container{
+    width: 100%;
+    /* min-height: 100vh; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    /* background: #e4e4e4; */
+    /* justify-content: center; */
+}
+
+.explore-page-container .trailList-container .trail-list-main {
+
+    position: relative;
+
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    padding-top: 30px;
+
+}
+
+.explore-page-container .trailList-container .card-container{
+    position: relative;
+    max-width: 300px;
+    height: 180px;
+    background: #fff;
+    margin: 50px 10px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    transition: 0.5s ease-in-out;
+}
+
+
+
+.explore-page-container .trailList-container .card-container:hover{
+    height: 290px;
+}
+
+.explore-page-container .trailList-container .card-container .img-box{
+    position: relative;
+    width: 260px;
+    height: 160px;
+    /* height: 260px; */
+    top: -60px;
+    /* left: 20px; */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    margin: auto;
+    font-size: 16px;
+
+}
+
+.explore-page-container .trailList-container .card-container .img-box .trail-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.explore-page-container .trailList-container .card-container .trail-list-content{
+    position: relative;
+    margin-top: -140px;
+    padding: 10px 15px;
+    /* text-align: center; */
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    font-size: 14px;
+}
+
+.explore-page-container .trailList-container .card-container .trail-list-content .trail-avg-rating{
+    margin: 10px 0;
+    padding-top: 5px;
+    display: flex;
+}
+
+/* .parkList-container .card-container .park-list-content p{
+    margin-bottom: 5px;
+} */
+
+
+.explore-page-container .trailList-container .card-container:hover .trail-list-content{
+    opacity: 1;
+    visibility: visible;
+    margin-top: -25px;
+    transition-delay: 0.3s;
+}
+
+.explore-page-container .trailList-container .filter-container  {
+    padding: 30px 30px 0 30px;
+
+}
+.explore-page-container .trailList-container .filter-container button {
+    margin-right: 1.5rem;
+    min-width: 5rem;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background: #e4e4e4;
+    color: #333;
+    border-radius: 1rem;
+    border: 2px solid #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.explore-page-container .trailList-container .filter-container button.active {
+    background: #6e8b74;
+    color: #fff;
 }

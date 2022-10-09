@@ -7,9 +7,13 @@
     /* font-family: 'Courier New', Courier, monospace; */
 }
 
-.main-container {
-    width: 100%;
-    height: auto;
+.home-main-container {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* height: 100vh; */
 
 }
 
@@ -24,21 +28,24 @@
 }
 
 
-.content {
+.home-main-container .content {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 200px
+    margin: auto;
+    position: absolute;
+    top: 25%;
+
+    /* margin-top: 200px */
 }
 
-.content h1 {
-    font-size: 70px;
+.home-main-container .content h1 {
+    font-size: 4rem;
     color: #193833;
-    font-weight: 500;
     top: 50%;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-style: italic;
@@ -47,12 +54,11 @@
     /* z-index: 1; */
 }
 
-.content .slogan2 {
-    font-size: 70px;
+.home-main-container .content .slogan2 {
+    font-size: 4rem;
     color: #fff;
-    font-weight: 500;
     top: 50%;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-style: italic;
@@ -60,24 +66,25 @@
     /* z-index: 1; */
 }
 
-.content .explore {
+.home-main-container .content .explore {
     text-decoration: none;
     display: inline-block;
     color: #fff;
-    font-size: 40px;
+    font-size: 36px;
     border: 3px solid #fff;
     padding: calc(50% -1rem);
     border-radius: 50px;
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 30px;
+    /* padding: 10px; */
     width: 300px;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
+    background: #6e8b74;
 
 }
 
 
-.overlay {
+.home-main-container .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -87,32 +94,30 @@
     z-index: -4;
 }
 
-.footer-container{
-    width: 100%;
+
+
+.home-main-container .footer-container{
     height: 45px;
-    position: absolute;
+
     display: flex;
-    justify-content: flex-end;
-    background: #193833;
-    bottom: 0;
+    align-items: center;
+    color: #fff;
+
+    margin: 20px auto;
+
+
+
+
 }
 
 
-.footer-container .github{
+.home-main-container .footer-container a{
    display: flex;
-   margin-right: 80px;
-   width: 100px;
+   flex-direction: row;
+   margin: 30px 10px;
+   /* width: 100px; */
    justify-content: space-evenly;
    align-items: center;
    color: #fff;
+   text-decoration: none;
 }
-
-.footer-container .linkedin{
-    display: flex;
-    margin-right: 80px;
-    width: 100px;
-    justify-content: space-evenly;
-    align-items: center;
-   color: #fff;
-
- }

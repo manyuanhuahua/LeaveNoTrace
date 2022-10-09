@@ -4,6 +4,8 @@ import session from './session'
 import park from './park';
 import trail from './trail'
 import review from './review'
+import photo from './photo'
+import list from './list'
 import activity from './activity'
 import {nearby} from './trail'
 
@@ -13,7 +15,9 @@ const rootReducer = combineReducers({
   trail,
   activity,
   review,
-  nearby
+  photo,
+  nearby,
+  list
 });
 
 

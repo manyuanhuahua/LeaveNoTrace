@@ -3,6 +3,7 @@ const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const ADD_API = 'session/ADD_API';
 
+
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
@@ -16,6 +17,7 @@ const addApi = (api) =>({
   type:ADD_API,
   api
 })
+
 
 const initialState = { user: null };
 
@@ -68,7 +70,7 @@ export const login = (email, password) => async (dispatch) => {
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
-      // console.log('in thunk---',data.errors)
+     
       return data;
     }
   } else {
@@ -118,6 +120,10 @@ export const signUp = (username, email, password,profile_img) => async (dispatch
   }
 }
 
+
+
+
+
 export default function reducer(state = initialState, action) {
   let newState
   switch (action.type) {
@@ -130,6 +136,7 @@ export default function reducer(state = initialState, action) {
       newState['api'] = action.api
       return newState
     }
+
     default:
       return state;
   }

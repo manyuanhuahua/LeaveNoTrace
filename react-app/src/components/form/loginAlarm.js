@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+
 import "../style/loginAlarm.css"
 
 
@@ -8,7 +6,7 @@ import "../style/loginAlarm.css"
 
 const LoginAlarm = ({ hideModal }) => {
 
-    console.log('inmodal')
+  
 
     const handleOk = async (e) => {
         e.preventDefault();

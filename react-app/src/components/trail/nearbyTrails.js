@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {getNearbyTrailsThunk} from "../../store/trail"
-import { Rating } from 'react-simple-star-rating'
-import handleRating from '../../helper/StarConvert';
+
 import "../style/trail.css"
 import { useHistory } from 'react-router-dom';
 import DisplayRating from '../../helper/displayRating';
@@ -13,7 +12,7 @@ function NearbyTrails({parkId,trailId}) {
     const dispatch = useDispatch();
     const trails = useSelector(state => state.nearby);
     const trailsList = Object.values(trails);
-    // const session = useSelector(state => state.session.user);
+
     const [trailsIsLoaded, setTrailsIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -38,7 +37,7 @@ function NearbyTrails({parkId,trailId}) {
                         <p>Length: {trail.length} mi</p>
                         <div className='trail-avg-rating' style={{margin:'0px 0px 3px 10px'}}>
                             <DisplayRating rating={trail.avgRating} />
-                            {/* <Rating readonly={true} ratingValue={handleRating(trail.avgRating)} allowHalfIcon={true}/> */}
+                            
                             <span style={{marginLeft:'5px'}}>{(trail.avgRating).toFixed(2)}</span>
                         </div>
                         <p>{trail.totalReviews} Review(s)</p>

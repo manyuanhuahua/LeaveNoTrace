@@ -28,6 +28,7 @@ class Activity(db.Model):
             "id": self.id,
             "trail":{
                 'id':self.trail.id,
+                'name':self.trail.name,
                 'lat':self.trail.lat,
                 'lng':self.trail.log,
             },

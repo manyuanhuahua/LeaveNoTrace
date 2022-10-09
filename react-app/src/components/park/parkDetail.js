@@ -5,6 +5,9 @@ import {getParkDetailThunk,} from "../../store/park"
 import {getParkTrailsThunk} from "../../store/trail"
 import DisplayRating from '../../helper/displayRating';
 
+import ParkingMap from './parkingMap';
+
+
 
 function ParkDetail() {
     const dispatch = useDispatch();
@@ -14,21 +17,29 @@ function ParkDetail() {
     const trailsList = Object.values(trails);
     const park = Object.values(parkObj)[0];
 
-    // const session = useSelector(state => state.session.user);
+
+
+
     const [parksIsLoaded, setParksIsLoaded] = useState(false);
+    const [parksTrailIsLoaded, setParksTrailIsLoaded] = useState(false);
+
 
 
 
     useEffect(() => {
         dispatch(getParkDetailThunk(parkId))
-        .then(() => dispatch(getParkTrailsThunk(parkId)))
-        .then(() => setParksIsLoaded(true));
+            .then(() => setParksIsLoaded(true));
+    }, [dispatch,parkId]);
+
+    useEffect(() => {
+       dispatch(getParkTrailsThunk(parkId))
+        .then(() => setParksTrailIsLoaded(true));
     }, [dispatch,parkId]);
 
 
 
 
-    return (parksIsLoaded &&
+    return (parksIsLoaded && parksTrailIsLoaded &&
         <div className='park-detail-container'>
             <div className='park-detail-top-box'>
                 <div className='pre-img'>
@@ -41,13 +52,14 @@ function ParkDetail() {
                         <DisplayRating rating={park.avgRating} />
                         <p>{(park.avgRating).toFixed(2)}</p>
                     </div>
-                        {/* Rating:{(park.avgRating).toFixed(2)}</div> */}
+
                     <div className='park-reviews'>{park.totalReviews} Review(s)</div>
                 </div>
                 <div className='detail-text'>{park.description}</div>
                 <div className='static-map'></div>
             </div>
             <div className='park-detail-mid-box'>
+
                 <h2>Park information</h2>
                 <div className='info-box'>
                     <div className='acrage'>
@@ -67,7 +79,12 @@ function ParkDetail() {
                             Helper link
                         </a>
                     </div>
+                    <div className='park-detial-mid-right' >
+                        <h4>Parking Lots:</h4>
+                        <ParkingMap park={park}/>
+                    </div>
                 </div>
+
             </div>
             <div className='park-detail-bom-box'>
                 {trailsList.map((trail,indiex) => (
@@ -86,7 +103,7 @@ function ParkDetail() {
                                 <DisplayRating rating={park.avgRating} />
                                 <p>{(trail.avgRating).toFixed(2)}</p>
                                 </div>
-                                {/* <p>Avg Rating: {trail.avgRating}</p> */}
+
                                 <p>{trail.totalReviews} Review(s)</p>
                                 <p>Length: {trail.length} mi</p>
                             </div>

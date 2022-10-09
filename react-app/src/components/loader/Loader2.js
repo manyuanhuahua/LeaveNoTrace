@@ -5,7 +5,7 @@ import "../style/loader.css"
 const LoaderSecond = () =>{
     return (
         <Fragment >
-            <img className='loader-img' src={Loading2} style={{display:'block', margin:'auto'}} />
+            <img className='loader-img' src={Loading2} alt='' style={{display:'block', margin:'auto'}} />
         </Fragment>
     )
 }

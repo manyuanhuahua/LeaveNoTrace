@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import {getActivitiesThunk} from "../../store/activity"
 
 import { Modal } from '../../context/Modal'
@@ -34,7 +34,7 @@ function ActivityList({trailId}) {
 
 
 
-    // console.log('activities--------',activityList)
+  
     return (activityIsLoaded
         &&
         <div className='activityList-container'>
