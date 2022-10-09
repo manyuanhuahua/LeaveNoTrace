@@ -33,8 +33,6 @@ function ActivityList({trailId}) {
     }
 
 
-
-  
     return (activityIsLoaded
         &&
         <div className='activityList-container'>
