@@ -72,7 +72,7 @@
     color: #fff;
     font-size: 36px;
     border: 3px solid #fff;
-    padding: calc(50% -1rem);
+    /* padding: calc(50% -1rem); */
     border-radius: 50px;
     margin-top: 30px;
     /* padding: 10px; */
