@@ -57,12 +57,12 @@ const Main = () =>{
 
 
 
-                    {(!user) && (<div className='explore' onClick={() => setShowModal(true)}  style={{cursor:'pointer'}}>Exploring</div>)}
+                    {(!user) && (<div className='explore' onClick={() => setShowModal(true)}  style={{cursor:'pointer'}}><p>Exploring</p></div>)}
                         {showModal && (!user) && (!showSignup) &&
                             (
                                 <Modal className='forms-modal' onClose={() => setShowModal(false)}>
                                 <SwitchForm />
-                               
+
                             </Modal>
                             )
 
@@ -74,7 +74,7 @@ const Main = () =>{
                         term={searchTerm}
                         searchKeyWord={searchHandler}
                         />
-                    <Link to={'/explore'} className='explore'>Explore</Link>
+                    <Link to={'/explore'} className='explore'><p>Exploring</p></Link>
                     </>)}
                     <Footer />
                     </div>
