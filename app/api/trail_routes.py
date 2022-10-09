@@ -47,9 +47,8 @@ def get_trail_detail(trailId):
     for tag in trail.trail_tags:
         tags.append(tag.name)
 
-    avgRating = totalRating / len(trail.reviews)
+
     trail_dict = trail.to_dict()
-    trail_dict['avgRating'] = avgRating
     trail_dict['tags'] = tags
     return trail_dict
 

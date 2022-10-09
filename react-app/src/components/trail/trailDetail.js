@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams,Link} from "react-router-dom";
+import { useParams,Link, NavLink} from "react-router-dom";
 import {getTrailDetailThunk} from "../../store/trail"
 import CreateReviewModal from '../modals/CreateReviewModal';
 import CreatePhotoModal from '../modals/CreatePhotoModal';
@@ -63,7 +63,6 @@ function TrailDetail() {
 
 
 
-
     return (trailIsLoaded && trail && reviewsIsLoaded && activityIsLoaded && photoIsLoaded &&(
         <div className='trail-detail-main-container'>
             <div className='trail-detail-top-box'>
@@ -75,7 +74,7 @@ function TrailDetail() {
                     <div className='rate'>
                         <p>Difficulty: {trail.difficulty}</p>
 
-                        <p>{trail.parkName}</p>
+                        <NavLink to={`/parks/${trail.parkId}`} style={{textDecoration:'none',color:'#333'}}><p>{trail.parkName}</p></NavLink>
                     </div>
                     <div className='create-map'>
                         <Link to={`/trails/${trail.id}/activities/new`} trail={trail} exact="true" style={{textDecoration: 'none', color:'#fff'}} >
@@ -189,7 +188,6 @@ function TrailDetail() {
                         </div>
                 </div>
                 <div className='bot-right'>
-                    <div className='static-map'></div>
                     <div className='nearby-trail'>
                         <NearbyTrails parkId={trail.parkId} trailId={trailId}/>
                     </div>

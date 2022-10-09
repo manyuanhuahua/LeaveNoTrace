@@ -56,9 +56,12 @@ class Trail(db.Model):
 
         for review in self.reviews:
             totalRating += review.rating
+        if len(self.reviews)<1:
+            return 0
+        else:
+            avg_rating = totalRating / len(self.reviews)
+            return round(avg_rating,1)
 
-        avg_rating = totalRating / len(self.reviews)
-        return round(avg_rating,1)
 
     def to_dict(self):
         return {

@@ -29,9 +29,11 @@ class Park(db.Model):
         for trail in self.trails:
             for review in trail.reviews:
                 totalRating += review.rating
-
-        avg_rating = totalRating / self.total_review()
-        return round(avg_rating,1)
+        if self.total_review() < 1:
+            return 0
+        else:
+            avg_rating = totalRating / self.total_review()
+            return round(avg_rating,1)
 
     def total_review(self):
         totalReview = 0
