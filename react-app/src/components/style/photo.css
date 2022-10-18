@@ -1,17 +1,18 @@
 .photoList-container{
-
+    margin-top: 15px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
     grid-gap: 20px;
 }
 
-.photoList-container .photo-container{
+/* .photoList-container .photo-container{
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
     margin: 15px;
-}
+} */
 
 .photoList-container .photo-container .top-box{
     width: 100%;

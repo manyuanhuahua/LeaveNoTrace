@@ -3,6 +3,7 @@
     min-height: 100vh;
     margin: auto;
     background: rgb(243, 239, 239);
+
     /* background: #e4e4e4; */
     /* justify-content: center; */
 }
@@ -13,7 +14,7 @@
     display: flex;
 
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     padding: 30px;
     padding-top: 30px;
