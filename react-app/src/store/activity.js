@@ -4,6 +4,7 @@ const CREATE_ACTIVITY = "activity/CREATE_ACTIVITY"
 const DELETE_ACTIVITY = "activity/DELETE_ACTIVITY"
 const UPDATE_ACTIVITY = "activity/UPDATE_ACTIVITY"
 
+
 const getActivities = (activities) =>{
     return {
       type: GET_ACTIVITY,
