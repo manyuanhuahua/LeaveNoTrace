@@ -4,7 +4,7 @@ def seed_parks():
     park1 = Park(
         name = "Yosemite National Park",
         description = "With over 3.5 million yearly visitors from throughout the world, the iconic Yosemite National Park is known for some of the most beautiful hikes and landscapes in the United States.",
-        preview_img = "https://discovery.sndimg.com/content/dam/images/discovery/fullset/2022/5/18/GettyImages-1353388525.jpg.rend.hgtvcom.966.644.suffix/1652924149143.jpeg",
+        preview_img = "https://img-aws.ehowcdn.com/700x/www.onlyinyourstate.com/wp-content/uploads/2022/02/GettyImages-505872990.jpg",
         acreage = 759620,
         contact = "209-372-0200",
         state = "CA",
@@ -18,7 +18,7 @@ def seed_parks():
     park2 = Park(
         name = "Mount Rainier National Park",
         description = "Mount Rainier National Park is located in west-central Washington and is ideal for hiking, mountain climbing and scenic drives. Most roads are open from late May to early October, which allow for both stunning views and access to a wide range of hiking trails and other sites.",
-        preview_img = "https://mikeputnamphoto.com/wp-content/uploads/2016/01/Mt.-Rainier-National-Park.jpg",
+        preview_img = "https://img-aws.ehowcdn.com/700x/www.onlyinyourstate.com/wp-content/uploads/2022/12/GettyImages-1436153519-2.jpg",
         acreage = 236381,
         contact = "360-569-6600",
         state = "WA",
@@ -46,7 +46,7 @@ def seed_parks():
     park4 = Park(
         name = "Zion National Park",
         description = "Zion National Park is a unique landscape with high cliffs, narrow gorges and a beautiful view. The park has many famous walks. Angels Landing is an intense switchback trail with truly spectacular views from the top of the canyon.",
-        preview_img = "https://images.pexels.com/photos/248820/pexels-photo-248820.jpeg",
+        preview_img = "https://zionnationalpark.com/wp-content/uploads/2020/10/arches.jpeg",
         acreage = 146597,
         contact = "435-772-3256",
         state = "UT",
@@ -60,7 +60,7 @@ def seed_parks():
     park5 = Park(
         name = "Arches National Park",
         description = "Arches National Park, located in the Moab region of eastern Utah, is a highlight of any trip to the Southwest, especially for families with children. The park is also a haven for adventure travel and adrenaline junkies.",
-        preview_img = "https://images.pexels.com/photos/62600/pexels-photo-62600.jpeg",
+        preview_img = "https://www.moabadventurecenter.com/cdn-cgi/image/quality=60,/img/gallery/moab-arches-national-park-turret.jpg",
         acreage = 76,
         contact = "435-719-2299",
         state = "UT",
@@ -74,7 +74,7 @@ def seed_parks():
     park6 = Park(
         name = "Bryce Canyon National Park",
         description = "Bryce Canyon is a series of gorgeous, amphitheater shaped canyons that are known for their striking hoodoos. Because of the park's relatively remote location, it gets a lot less foot and car traffic than other National Parks. ",
-        preview_img = "https://images.pexels.com/photos/8884864/pexels-photo-8884864.jpeg",
+        preview_img = "https://zionnationalpark.com/wp-content/uploads/2020/10/bryce-canyon-sunrise-1024x685-1.jpg",
         acreage = 35835,
         contact = "435-834-5322",
         state = "UT",
@@ -102,7 +102,7 @@ def seed_parks():
     park8 = Park(
         name = "Coconino National Forest",
         description = "Coconino National Forest borders other nearby National Forests, including the Prescott National Forest, Tonto National Forest, and Kaibab National Forest. The park also encompasses portions of ten wilderness areas.",
-        preview_img = "https://images.pexels.com/photos/6315440/pexels-photo-6315440.jpeg",
+        preview_img = "https://st2.depositphotos.com/4038867/42835/i/600/depositphotos_428359622-stock-photo-munds-mountain-town-sedona-northern.jpg",
         acreage = 1821495,
         contact = "928-527-3600",
         state = "AZ",
@@ -130,7 +130,7 @@ def seed_parks():
     park10 = Park(
         name = "Mount Tamalpais State Park",
         description = "More than 50 miles of trail are within the park and connect to a larger, 200-mile-long trail system. Bicyclists are challenged by old railroad grade, or the twisting road to the highest point of the park's summit. Camping at Bootjack or Steep Ravine makes for a great overnight trip.",
-        preview_img = "https://d3kfjvhh435dey.cloudfront.net/_laravel/images/uploads/2016/08/img_2685812.jpg",
+        preview_img = "https://img.theculturetrip.com/wp-content/uploads/2015/12/BLICK_MT_TAM_PHOTO5.jpg",
         acreage = 6300,
         contact = "415-388-2070",
         state = "CA",
@@ -144,7 +144,7 @@ def seed_parks():
     park11 = Park(
         name = "Rocky Mountain National Park",
         description = "Rocky Mountain National Park is one of the most popular natural parks featuring 76 mountains each over 10 thousand feet high. Equally enjoyable on foot or from your car, there are four separate ecosystems: montane, subalpine, alpine tundra, and riparian. ",
-        preview_img = "https://images.pexels.com/photos/4107412/pexels-photo-4107412.jpeg",
+        preview_img = "https://www.brynwood.com/wp-content/uploads/sites/30/Hiking-Rocky-Mountain-National-Park.jpg",
         acreage = 265807,
         contact = "970-586-1206",
         state = "CO",
@@ -158,7 +158,7 @@ def seed_parks():
     park12 = Park(
         name = "Everglades National Park",
         description = "The Everglades are the largest subtropical wilderness in the United States. This mangrove ecosystem and marine estuary is home to 36 protected species, including the Florida panther, American crocodile, and West Indian manatee.",
-        preview_img = "https://www.gannett-cdn.com/-mm-/591f448b8a01799738e59e5f0c98dfa77e8f8fde/c=0-102-2048-1259/local/-/media/2016/07/01/USATODAY/USATODAY/636029857052338244-Lane-River-credit-NPSPhoto.jpg",
+        preview_img = "https://img-aws.ehowcdn.com/700x/www.onlyinyourstate.com/wp-content/uploads/2019/04/GettyImages-665764444.jpg",
         acreage = 1508537,
         contact = "305-242-7700",
         state = "FL",
@@ -172,7 +172,7 @@ def seed_parks():
     park13 = Park(
         name = "White River National Forest",
         description = "With 12 ski areas, 10 mountain peaks over 14,000 feet, 2,500 miles of trails, eight Wilderness areas, 1,900 miles of forest roads, and 2.3 million acres of nature, it is easy to see why White River National Forest is the most visited forest in the United States.",
-        preview_img = "https://cdn.summitdaily.com/wp-content/uploads/sites/2/2017/12/Skiareapayments-atd-122717-1.jpg",
+        preview_img = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/20111025-FS-SM-0002_-_Flickr_-_USDAgov.jpg/800px-20111025-FS-SM-0002_-_Flickr_-_USDAgov.jpg",
         acreage = 2285970,
         contact = "970-945-2521",
         state = "CO",
@@ -186,7 +186,7 @@ def seed_parks():
     park14 = Park(
         name = "Topanga State Park",
         description = " The park covers 11,000 acres stretching from Topanga Canyon to Rustic Canyon and down to the Pacific Palisades, all entirely within the City of Los Angeles, making it the largest wildland within major city limits. The park hosts 36 miles of trails and roads.",
-        preview_img = "https://www.parks.ca.gov/pages/21299/images/new_vista_topanga.jpg",
+        preview_img = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Topanga_State_Park%2C_Trippet_Ranch_entrance.jpeg/800px-Topanga_State_Park%2C_Trippet_Ranch_entrance.jpeg",
         acreage = 7500,
         contact = "310-455-2465",
         state = "CA",
@@ -200,7 +200,7 @@ def seed_parks():
     park15 = Park(
         name = "Joshua Tree National Park",
         description = "Joshua Tree National Park was first designated as a national monument in 1936. The Joshua Tree Wilderness was established in 1976 by The United States Congress. The park was officially designated as a National Park and expanded by the California Desert Protection Act of 1994. ",
-        preview_img = "https://cdn.recreation.gov/public/2021/05/09/14/39/2782_b76e9c0e-5780-419c-9bc4-c2fbf294cae9_1440.jpeg",
+        preview_img = "https://www.planetware.com/photos-large/USCA/california-joshua-tree-national-park-hidden-valley-day-use.jpg",
         acreage = 795200,
         contact = "760-367-5500",
         state = "CA",
